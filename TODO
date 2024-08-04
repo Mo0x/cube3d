@@ -1,0 +1,12 @@
+1 Gargage collector WIP
+2 parsing the minimap
+3 generate map
+	3.1 convert parsing to map
+	3.2 render map
+4 cub3d main prog
+5 bonus
+	5.1 collisions
+	5.2 minimap
+	5.3 door open close
+	5.4 animated sprite
+	5.5 rotate pov with mouse
