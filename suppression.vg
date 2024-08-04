@@ -1,0 +1,13 @@
+{
+    mlx_loop_hook
+    Memcheck:Leak
+    ...
+    fun:mlx_loop_hook
+}
+
+{
+   mlx_loop_hook
+   Memcheck:Leak
+   ...
+   fun:mlx_loop_hook
+}
