@@ -1,0 +1,35 @@
+To do parsing : 
+
+    Map closing Validation:
+     
+        The map closed surrounded by walls : 1
+      
+        1er & dernier char de chaque ligne doit être un 1
+      
+        1ere et derniere ligne/colonne doit être composé de 1 ou espace ( si espace : check qu un 1 se situe plus loin ?)
+                Creation fonction espace : si espace check si encadres par des 1 : si 0 erreur ?
+    
+    
+    
+    Map char validation
+     
+        La map contient uniquement : 0 empty space, 1 wall, N S E W (pos et orientation du player)
+            Si aucune position de player ou plusieurs pos de player = erreu
+            Autre char renvoit err
+        ( est ce qu on remplace les tabs par 4 espaces ou fuck that shit ? )
+
+
+    Error Handling:
+     
+        check pos player check si aucune pos de player ou plusieurs renvoit err
+       
+        check map : verifie si la map est bien closed by walls 
+       
+        probleme de fichier : si un des fichiers texture n existe pas 
+         =>Textures d un fichier non existant : open fail ou fichier existant mais pas 1 fichier xpm
+
+        idee en vrac : valeur resolutions + grande que ecran ou non digit nb ? l utilisateur met 3 valeurs
+
+        couleurs : valeurs des rgbs ? 3 nb separe par comma ou valeur < 0 ou > 255 ?
+
+
