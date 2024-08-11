@@ -12,10 +12,34 @@
 
 #include "../includes/cub3d.h"
 
+void	exit_exclaim(char *string)
+{
+	ft_printf(1, "%s", string);
+	/*
+	Je n ai pas inclu de free car ajout du garbage collector pour tout free ?
+	Fonction a add autre part que parsing eventuellement / repertoire check ou err ?
+	*/
+	exit (1);
+}
+
 int	main(int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
-	printf("hello\n");
+	t_data	*c3d;
+
+	c3d = malloc(sizeof(t_data));
+	if (!c3d)
+		exit_exclaim("c3d malloc failed\n");
+	c3d->map = malloc(sizeof(t_map));
+	if (!c3d->map)
+		exit_exclaim("c3d->map malloc failed\n");
+	parsing(c3d->map, argv, argc, c3d);
+	// check avec des test maps / semble etre good verif en cours encore 
+	printf("North path :%s\n", c3d->map->n_path);
+	printf("S path :%s\n", c3d->map->s_path);
+	printf("W path :%s\n", c3d->map->w_path);
+	printf("E path :%s\n", c3d->map->e_path);
+	printf("Color line ceiling :%s\n", c3d->map->ccolor);
+	printf("Color line floor :%s\n", c3d->map->fcolor);
+	// A venir : poursuite parsing check textures 
 	return (0);
 }

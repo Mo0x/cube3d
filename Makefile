@@ -1,6 +1,9 @@
 NAME = cub3d
 CC = gcc
-SRCS = ./srcs/main.c  
+SRCS = ./srcs/main.c  \
+		./srcs/parsing/parsing.c \
+		./srcs/parsing/parse_utils.c \
+		./srcs/parsing/parsing_get_color_and_texture.c
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 INCDIRS = ./includes
 CFLAGS = -Wall -Wextra -Werror -I$(INCDIRS) -I$(MLX)/include -g3
