@@ -67,7 +67,7 @@ int	add_info(char erase_me, t_map *map, char *palette_patrol, char *line)
 	skip_spaces(&line);
 	if (*line == '\0' || *line == '\n')
 		exit_exclaim("Have you missed something ? Nothing comes \
-							after identifier\n");
+after identifier\n");
 	if (erase_me == 'N')
 		map->n_path = ft_strdup(line);
 	else if (erase_me == 'S')

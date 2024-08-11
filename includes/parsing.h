@@ -25,4 +25,10 @@ void	colors_harvester(t_map *map);
 void	filename_check(char *filename);
 void	skip_spaces(char **str);
 
+// dans texture_check.c
+void	check_textures(t_map *map);
+
+// dans color_
+void	setup_colors(t_data *c3d);
+
 #endif
