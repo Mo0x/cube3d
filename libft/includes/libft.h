@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 15:57:48 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/12 12:09:41 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/12 12:49:24 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ void			*alloc(int size, int type, void *ptr);
 void			*walloc(int size);
 void			wfree(void *ptr);
 void			wclear(void);
+void			clear_alloc(t_list **h);
 
 #endif

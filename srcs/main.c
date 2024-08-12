@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 14:47:18 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/12 12:34:17 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/12 12:45:06 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	exit_exclaim(char *string)
 	Fonction a add autre part que parsing eventuellement / repertoire check ou err ?
 	rep : il faudra free avec wfree une fois operationnelle
 	*/
+	wclear();
 	exit (1);
 }
 
@@ -40,6 +41,6 @@ int	main(int argc, char **argv)
 	printf("E path :%s\n", c3d->map->e_path);
 	printf("Converted ceiling color: 0x%X\n", c3d->floorcolor); //testing hexa conversion color
 	printf("Converted floor color: 0x%X\n", c3d->ceilingcolor); //testing hexa conversion color
-
+	wclear();
 	return (0);
 }
