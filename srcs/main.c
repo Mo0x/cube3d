@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 14:47:18 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/12 12:45:06 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/12 12:54:30 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	exit_exclaim(char *string)
 	/*
 	Je n ai pas inclu de free car ajout du garbage collector pour tout free ?
 	Fonction a add autre part que parsing eventuellement / repertoire check ou err ?
-	rep : il faudra free avec wfree une fois operationnelle
 	*/
 	wclear();
 	exit (1);
@@ -27,11 +26,11 @@ void	exit_exclaim(char *string)
 int	main(int argc, char **argv)
 {
 	t_data	*c3d;
-
-	c3d = malloc(sizeof(t_data));
+	
+	c3d = walloc(sizeof(t_data));
 	if (!c3d)
 		exit_exclaim("c3d malloc failed\n");
-	c3d->map = malloc(sizeof(t_map));
+	c3d->map = walloc(sizeof(t_map));
 	if (!c3d->map)
 		exit_exclaim("c3d->map malloc failed\n");
 	parsing(c3d->map, argv, argc, c3d);

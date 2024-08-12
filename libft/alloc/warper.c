@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 10:29:45 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/12 12:50:05 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/12 13:00:07 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	clear_alloc(t_list **h)
 {
 	t_list	*t;
 
-	while(h)
+	while(*h)
 	{
 		t = (*h)->next;
 		free((*h)->content);
