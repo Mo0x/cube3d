@@ -22,4 +22,7 @@ void	parsing(t_map *map, char **filename, int argc, t_data *c3d)
 	if (map->fd == -1)
 		exit_exclaim("Error when openning file\n");
 	colors_harvester(map);
+	check_textures(map);
+	setup_colors(c3d);
+
 }

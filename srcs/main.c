@@ -33,13 +33,12 @@ int	main(int argc, char **argv)
 	if (!c3d->map)
 		exit_exclaim("c3d->map malloc failed\n");
 	parsing(c3d->map, argv, argc, c3d);
-	// check avec des test maps / semble etre good verif en cours encore 
 	printf("North path :%s\n", c3d->map->n_path);
 	printf("S path :%s\n", c3d->map->s_path);
 	printf("W path :%s\n", c3d->map->w_path);
 	printf("E path :%s\n", c3d->map->e_path);
-	printf("Color line ceiling :%s\n", c3d->map->ccolor);
-	printf("Color line floor :%s\n", c3d->map->fcolor);
-	// A venir : poursuite parsing check textures 
+	printf("Converted ceiling color: 0x%X\n", c3d->floorcolor); //testing hexa conversion color
+	printf("Converted floor color: 0x%X\n", c3d->ceilingcolor); //testing hexa conversion color
+
 	return (0);
 }
