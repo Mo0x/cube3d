@@ -6,13 +6,13 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 14:58:29 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/12 12:13:51 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/12 12:33:24 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 #include <stdio.h>
-#define HASH_SIZE 8192
+#define HASH_SIZE 1024
 
 unsigned int	hashf(void *p, int size)
 {
@@ -46,6 +46,7 @@ void	*alloc_new(t_list *allocs[HASH_SIZE], int size)
 	newalloc = malloc(size);
 	if (!newalloc)
 		return (NULL);
+	printf("DEBUG\n");
 	newnode = ft_lstnew(newalloc);
 	if (!newnode)
 	{
