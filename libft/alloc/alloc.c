@@ -6,12 +6,12 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 14:58:29 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/12 10:29:30 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/12 12:13:51 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/libft.h"
-
+#include "../includes/libft.h"
+#include <stdio.h>
 #define HASH_SIZE 8192
 
 unsigned int	hashf(void *p, int size)
@@ -19,13 +19,13 @@ unsigned int	hashf(void *p, int size)
 	unsigned long long	value;
 	unsigned int		hash;
 	size_t				i;
-	size_t				size;
+	size_t				s;
 
 	value = (unsigned long long)p;
 	i = 0;
 	hash = 0;
-	size = sizeof(value);
-	while (i < size)
+	s = sizeof(value);
+	while (i < s)
 	{
 		hash += ((value >> (i * 8)) & 0xFF);
 		hash += (hash << 10);
@@ -64,7 +64,7 @@ void	clear_all(t_list *allocs[HASH_SIZE])
 	while (i < HASH_SIZE)
 	{
 		if (allocs[i])
-			ft_lstclear(allocs[i], free);
+			ft_lstclear(&allocs[i], free);
 		i++;
 	}
 
@@ -98,7 +98,7 @@ void *alloc(int size, int type, void *ptr)
 	if (type == 1)
 		return (alloc_new(allocs, size));
 	else if (type == 2)
-		ft_lstdelone(&allocs[hashf(ptr, HASH_SIZE)], ptr);
+		ft_lstdelone(allocs[hashf(ptr, HASH_SIZE)], ptr);
 	else if (type == 0)
 		clear_all(allocs);
 	else if (type == 3)

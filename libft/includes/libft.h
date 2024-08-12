@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 15:57:48 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/02/22 15:25:43 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/12 12:09:41 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,9 @@ int				ft_string(int fd, char *string);
 int				ft_strcmp(char *s1, char *s2);
 long long		ft_atoll(const char *nptr);
 double			ft_atod(char *str);
+void			*alloc(int size, int type, void *ptr);
+void			*walloc(int size);
+void			wfree(void *ptr);
+void			wclear(void);
 
 #endif
