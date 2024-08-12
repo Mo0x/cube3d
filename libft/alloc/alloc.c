@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 14:58:29 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/04 17:26:39 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/12 10:29:30 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,37 @@ void	*alloc_new(t_list *allocs[HASH_SIZE], int size)
 
 void	clear_all(t_list *allocs[HASH_SIZE])
 {
+	int	i;
+
+	i = 0;
+	while (i < HASH_SIZE)
+	{
+		if (allocs[i])
+			ft_lstclear(allocs[i], free);
+		i++;
+	}
 
 }
 
 void print_size(t_list *allocs[HASH_SIZE])
 {
-	(void)allocs;
+	int		i;
+	int		size;
+	t_list	*ptr;
+
+	i = 0;
+	size = 0;
+	while (i < HASH_SIZE)
+	{
+		ptr = allocs[i];
+		while (ptr)
+		{
+			size += sizeof(ptr->content);
+			ptr = ptr->next;
+		}
+		i++;
+	}
+	printf("allocator size: %d\n", size);
 }
 
 void *alloc(int size, int type, void *ptr)
