@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgovinda <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:00:21 by mgovinda          #+#    #+#             */
-/*   Updated: 2023/10/25 18:55:23 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/12 10:40:58 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_zero(void)
 {
 	char	*ret;
 
-	ret = malloc(sizeof(char) * 2);
+	ret = walloc(sizeof(char) * 2);
 	if (!ret)
 		return (NULL);
 	ret[0] = '0';

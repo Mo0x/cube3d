@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgovinda <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 16:15:24 by mgovinda          #+#    #+#             */
-/*   Updated: 2023/10/27 17:11:06 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/12 10:41:14 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s1 && !s2)
 		return (NULL);
 	tot_length = ft_strlen(s1) + ft_strlen(s2);
-	ret = (char *)malloc(sizeof(char) * (tot_length + 1));
+	ret = (char *)walloc(sizeof(char) * (tot_length + 1));
 	if (!ret)
 		return (NULL);
 	begin = ret;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgovinda <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:41:09 by mgovinda          #+#    #+#             */
-/*   Updated: 2023/10/27 18:13:13 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/12 10:41:10 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static char	*ft_strdup_word(char const *s, char c)
 	int		i;
 
 	i = 0;
-	ret = malloc(sizeof(char) * (ft_strlen_till(s, c) + 1));
+	ret = walloc(sizeof(char) * (ft_strlen_till(s, c) + 1));
 	if (!ret)
 		return (NULL);
 	while (i < ft_strlen_till(s, c))
