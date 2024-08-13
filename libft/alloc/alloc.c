@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 14:58:29 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/12 12:53:05 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:47:01 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void *alloc(int size, int type, void *ptr)
 	if (type == 1)
 		return (alloc_new(allocs, size));
 	else if (type == 2)
-		ft_lstdelone(allocs[hashf(ptr, HASH_SIZE)], ptr);
+		del_one(&allocs[hashf(ptr, HASH_SIZE)], ptr);
 	else if (type == 0)
 		clear_all(allocs);
 	else if (type == 3)
