@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 14:47:18 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/12 13:02:36 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:54:21 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ int	main(int argc, char **argv)
 	printf("E path :%s\n", c3d->map->e_path);
 	printf("Converted ceiling color: 0x%X\n", c3d->floorcolor); //testing hexa conversion color
 	printf("Converted floor color: 0x%X\n", c3d->ceilingcolor); //testing hexa conversion color
-	wclear();
+	wclear(); /* <---- a mettre a chaque fin dexec pour clear les allocs*/
 	return (0);
 }
