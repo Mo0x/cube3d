@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 14:58:29 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/13 17:47:01 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:52:02 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,9 @@ void	clear_all(t_list *allocs[HASH_SIZE])
 			clear_alloc(&allocs[i]);
 		i++;
 	}
-
 }
 
-void print_size(t_list *allocs[HASH_SIZE])
+void	print_size(t_list *allocs[HASH_SIZE])
 {
 	int		i;
 	int		size;
@@ -91,7 +90,7 @@ void print_size(t_list *allocs[HASH_SIZE])
 	printf("allocator size: %d\n", size);
 }
 
-void *alloc(int size, int type, void *ptr)
+void	*alloc(int size, int type, void *ptr)
 {
 	static t_list	*allocs[HASH_SIZE];
 
