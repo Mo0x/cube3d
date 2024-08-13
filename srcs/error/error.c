@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 14:39:56 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/12 12:41:32 by mgovinda         ###   ########.fr       */
+/*   Created: 2024/08/13 17:59:21 by mgovinda          #+#    #+#             */
+/*   Updated: 2024/08/13 18:00:11 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/cub3d.h"
 
-t_list	*ft_lstnew(void *content)
+void	exit_exclaim(char *string)
 {
-	t_list	*ret;
-
-	ret = malloc(sizeof(t_list));
-	if (!ret)
-		return (NULL);
-	ret->content = content;
-	ret->next = NULL;
-	return (ret);
+	ft_printf(1, "%s", string);
+	/*
+	Je n ai pas inclu de free car ajout du garbage collector pour tout free ?
+	Fonction a add autre part que parsing eventuellement / repertoire check ou err ?
+	*/
+	wclear();
+	exit (1);
 }

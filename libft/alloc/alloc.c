@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 14:58:29 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/12 12:33:24 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:52:02 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	*alloc_new(t_list *allocs[HASH_SIZE], int size)
 	newalloc = malloc(size);
 	if (!newalloc)
 		return (NULL);
-	printf("DEBUG\n");
 	newnode = ft_lstnew(newalloc);
 	if (!newnode)
 	{
@@ -65,13 +64,12 @@ void	clear_all(t_list *allocs[HASH_SIZE])
 	while (i < HASH_SIZE)
 	{
 		if (allocs[i])
-			ft_lstclear(&allocs[i], free);
+			clear_alloc(&allocs[i]);
 		i++;
 	}
-
 }
 
-void print_size(t_list *allocs[HASH_SIZE])
+void	print_size(t_list *allocs[HASH_SIZE])
 {
 	int		i;
 	int		size;
@@ -92,14 +90,14 @@ void print_size(t_list *allocs[HASH_SIZE])
 	printf("allocator size: %d\n", size);
 }
 
-void *alloc(int size, int type, void *ptr)
+void	*alloc(int size, int type, void *ptr)
 {
 	static t_list	*allocs[HASH_SIZE];
 
 	if (type == 1)
 		return (alloc_new(allocs, size));
 	else if (type == 2)
-		ft_lstdelone(allocs[hashf(ptr, HASH_SIZE)], ptr);
+		del_one(&allocs[hashf(ptr, HASH_SIZE)], ptr);
 	else if (type == 0)
 		clear_all(allocs);
 	else if (type == 3)
