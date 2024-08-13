@@ -6,22 +6,13 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 14:47:18 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/13 17:54:21 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/13 18:25:50 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	exit_exclaim(char *string)
-{
-	ft_printf(1, "%s", string);
-	/*
-	Je n ai pas inclu de free car ajout du garbage collector pour tout free ?
-	Fonction a add autre part que parsing eventuellement / repertoire check ou err ?
-	*/
-	wclear();
-	exit (1);
-}
+
 
 int	main(int argc, char **argv)
 {
@@ -47,6 +38,7 @@ int	main(int argc, char **argv)
 	printf("E path :%s\n", c3d->map->e_path);
 	printf("Converted ceiling color: 0x%X\n", c3d->floorcolor); //testing hexa conversion color
 	printf("Converted floor color: 0x%X\n", c3d->ceilingcolor); //testing hexa conversion color
+	/* ft_start_game(c3d)*/
 	wclear(); /* <---- a mettre a chaque fin dexec pour clear les allocs*/
 	return (0);
 }
