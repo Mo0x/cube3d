@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 22:29:40 by wkeiser           #+#    #+#             */
-/*   Updated: 2024/08/13 18:41:29 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/17 15:21:16 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # define WIDTH 800
 # define TRUE 1
 # define FALSE 0
+# define TILE_SIZE 30
+# define FIELD_OF_VIEW 60
 # include <MLX42/MLX42.h>
 
 typedef struct s_map
@@ -64,6 +66,8 @@ typedef struct s_data
 	mlx_image_t *img;
 	t_ray		*ray;
 	t_plyer		*player;
+	int			p_x;
+	int			p_y;
 }				t_data;
 
 #endif
