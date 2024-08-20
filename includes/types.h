@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 22:29:40 by wkeiser           #+#    #+#             */
-/*   Updated: 2024/08/17 15:21:16 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/20 19:30:00 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # define WIDTH 800
 # define TRUE 1
 # define FALSE 0
-# define TILE_SIZE 30
-# define FIELD_OF_VIEW 60
 # include <MLX42/MLX42.h>
 
 typedef struct s_map
@@ -39,35 +37,29 @@ typedef struct s_img
 }				t_img;
 */
 
-typedef struct s_ray
+/*
+pos_x/y == position vector of the player
+dir_x/y == direction of the player 
+plane_x/y == camera plane of the player
+*/
+typedef struct s_player
 {
-	double	ray_agl;
-	double	distance;
-	int		flag;
-}				t_ray;
-
-typedef struct s_plyer
-{
-	int		plyer_x;
-	int		plyer_y;
-	double	angle;
-	float	fov_rd;
-	int		rotat;
-	int		l_r;
-	int		u_d;
-}			t_plyer;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+}
 
 typedef struct s_data
 {
-	t_map		*map;
-	int			floorcolor;
-	int			ceilingcolor;
-	mlx_t		*mlx;
-	mlx_image_t *img;
-	t_ray		*ray;
-	t_plyer		*player;
-	int			p_x;
-	int			p_y;
-}				t_data;
+	t_map			*map;
+	int				floorcolor;
+	int				ceilingcolor;
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+	struct s_player	*player;
+}					t_data;
 
 #endif
