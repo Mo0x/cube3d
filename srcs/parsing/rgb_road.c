@@ -77,8 +77,8 @@ int	convert_rgb_str_to_int(char *rgb_str)
 
 void	setup_colors(t_data *c3d)
 {
-	printf("before convert Color str ceiling :%s\n", c3d->map->ccolor);
-	printf("before convert Color str floor :%s\n", c3d->map->fcolor);
+	printf("before convert Color str ceiling :%s\n", c3d->map->ccolor); //test
+	printf("before convert Color str floor :%s\n", c3d->map->fcolor); //test
 	check_space_in_str_color(c3d->map->ccolor);
 	check_space_in_str_color(c3d->map->fcolor);
 	if (validate_rgb_format(c3d->map->ccolor) && \

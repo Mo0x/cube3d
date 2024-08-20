@@ -5,10 +5,18 @@ SRCS = ./srcs/main.c  \
 		./srcs/parsing/parse_utils.c \
 		./srcs/parsing/parsing_get_color_and_texture.c \
 		./srcs/parsing/texture_check.c \
-		./srcs/parsing/rgb_road.c
+		./srcs/parsing/rgb_road.c \
+		./srcs/parsing/parse_map.c \
+		./srcs/parsing/validate_rows.c \
+		./srcs/parsing/map_array.c \
+		./srcs/parsing/array_utils.c \
+		./srcs/parsing/map_check.c \
+		./srcs/parsing/map_enclosure_check.c \
+		./srcs/error/error.c \
+		./srcs/game/init.c
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 INCDIRS = ./includes
-CFLAGS = -Wall -Wextra -Werror -I$(INCDIRS) -I$(MLX)/include -g3
+CFLAGS = -g -Wall -Wextra -Werror -I$(INCDIRS) -I$(MLX)/include -g3
 MLX = ./MLX42
 
 all : $(NAME)
