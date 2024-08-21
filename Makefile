@@ -8,7 +8,7 @@ SRCS = ./srcs/main.c  \
 		./srcs/parsing/rgb_road.c \
 		./srcs/parsing/parse_map.c \
 		./srcs/parsing/map_array.c \
-		./srcs/parsing/validte_rows.c \
+		./srcs/parsing/validate_rows.c \
 		./srcs/parsing/array_utils.c \
 		./srcs/parsing/map_check.c \
 		./srcs/parsing/map_enclosure_check.c \
