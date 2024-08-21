@@ -6,42 +6,22 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 14:47:18 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/13 18:25:50 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/21 16:19:43 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-<<<<<<< HEAD
-
-
-int	main(int argc, char **argv)
-{
-	t_data	*c3d;
-	
-=======
 int	main(int argc, char **argv)
 {
 	t_data	*c3d;
 
->>>>>>> origin/parsing
 	c3d = walloc(sizeof(t_data));
 	if (!c3d)
 		exit_exclaim("c3d malloc failed\n");
 	c3d->map = walloc(sizeof(t_map));
 	if (!c3d->map)
 		exit_exclaim("c3d->map malloc failed\n");
-	alloc(0, 3, NULL);
-	char *ptr = walloc(1025);
-	alloc(0, 3, NULL);
-	printf("free\n");
-	wfree(ptr);
-	alloc(0, 3, NULL);
-<<<<<<< HEAD
-
-=======
-	ft_init(c3d);
->>>>>>> origin/parsing
 	parsing(c3d->map, argv, argc, c3d);
 	printf("North path :%s\n", c3d->map->n_path);
 	printf("S path :%s\n", c3d->map->s_path);
@@ -50,10 +30,6 @@ int	main(int argc, char **argv)
 	printf("Converted ceiling color: 0x%X\n", c3d->floorcolor); //testing hexa conversion color
 	printf("Converted floor color: 0x%X\n", c3d->ceilingcolor); //testing hexa conversion color
 	/* ft_start_game(c3d)*/
-<<<<<<< HEAD
-	wclear(); /* <---- a mettre a chaque fin dexec pour clear les allocs*/
-=======
 //	wclear(); /* <---- a mettre a chaque fin dexec pour clear les allocs*/
->>>>>>> origin/parsing
 	return (0);
 }
