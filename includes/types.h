@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/21 17:09:41 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:13:15 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,14 @@ typedef struct s_img
 
 }				t_img;
 */
+
+typedef struct	s_ray
+{
+	double camera_x;
+	double ray_dir_x;
+	double ray_dir_y;
+}
+
 typedef struct s_player
 {
 	double	pos_x;

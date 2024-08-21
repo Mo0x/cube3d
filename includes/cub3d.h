@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 14:44:27 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/04 17:28:28 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:14:31 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@
 
 void	exit_exclaim(char *string);
 void	parsing(t_map *map, char **filename, int argc, t_data *c3d);
-void	ft_init(t_data *c3d);
+void	ft_start_game(t_data *c3d);
 #endif
