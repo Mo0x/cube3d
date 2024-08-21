@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 14:47:18 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/21 16:19:43 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/21 16:32:51 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ int	main(int argc, char **argv)
 	printf("Converted ceiling color: 0x%X\n", c3d->floorcolor); //testing hexa conversion color
 	printf("Converted floor color: 0x%X\n", c3d->ceilingcolor); //testing hexa conversion color
 	/* ft_start_game(c3d)*/
-//	wclear(); /* <---- a mettre a chaque fin dexec pour clear les allocs*/
+	wclear(); /* <---- a mettre a chaque fin dexec pour clear les allocs*/
 	return (0);
 }

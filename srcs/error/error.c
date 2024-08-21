@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 17:59:21 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/21 16:23:50 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/21 16:34:32 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 void	exit_exclaim(char *string)
 {
 	ft_printf(1, "%s", string);
-	//wclear();
+	wclear();
 	exit (1);
 }
