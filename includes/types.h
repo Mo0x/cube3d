@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 22:29:40 by wkeiser           #+#    #+#             */
-/*   Updated: 2024/08/20 19:30:00 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:03:56 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_player
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
-}
+}				t_player;
 
 typedef struct s_data
 {
@@ -60,6 +60,8 @@ typedef struct s_data
 	mlx_t			*mlx;
 	mlx_image_t		*img;
 	struct s_player	*player;
+	double			time;
+	double			old_time;
 }					t_data;
 
 #endif
