@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wkeiser <wkeiser@student.42mulhouse.fr>    +#+  +:+       +#+        */
+/*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 20:29:06 by wkeiser           #+#    #+#             */
-/*   Updated: 2024/08/15 20:29:07 by wkeiser          ###   ########.fr       */
+/*   Updated: 2024/08/21 16:29:15 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ void	check_single_spawn_point(t_data *c3d)
 			{
 				if (!is_enclosed_by_walls_or_0(c3d->map, x, y))
 					exit_exclaim("The player should be in a clear area!\n");
-				c3d->player->plyer_x = x;
-				c3d->player->plyer_y = y;
+				c3d->player->pos_x = x;
+				c3d->player->pos_y = y;
 				spawn_count++;
 			}
 			x++;
