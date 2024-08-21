@@ -12,6 +12,21 @@
 
 #include "../includes/cub3d.h"
 
+<<<<<<< HEAD
+=======
+void	initialize_player(t_data *c3d)
+{
+	if (c3d->player == NULL)
+	{
+		c3d->player = walloc(sizeof(t_plyer));
+		if (c3d->player == NULL)
+			exit_exclaim("Failed to allocate memory for player.\n");
+		c3d->player->plyer_x = 0;
+		c3d->player->plyer_y = 0;
+	}
+}
+
+>>>>>>> origin/parsing
 void	ft_init(t_data *c3d)
 {
 	c3d->player = walloc(sizeof(t_plyer));
@@ -20,6 +35,10 @@ void	ft_init(t_data *c3d)
 	c3d->ray = walloc(sizeof(t_ray));
 	if (!c3d->ray)
 		exit_exclaim("Error malloc\n");
+<<<<<<< HEAD
+=======
+	initialize_player(c3d);
+>>>>>>> origin/parsing
 	/*here ini player and perhaps ray for data struct*/
 }
 /* 

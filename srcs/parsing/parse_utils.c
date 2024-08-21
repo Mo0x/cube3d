@@ -14,7 +14,7 @@
 
 void	filename_check(char *filename)
 {
-	if (ft_strlen(filename) == 4) //check si fichier est appele .cub
+	if (ft_strlen(filename) == 4)
 	{
 		ft_printf(1, "Wrong filename\n");
 		exit (1);

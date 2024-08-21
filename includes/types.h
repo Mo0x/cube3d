@@ -28,14 +28,26 @@ typedef struct s_map
 	char	*ccolor;
 	char	*fcolor;
 	int		fd;
+	char	**map_arr;
 }			t_map;
 
-/*
-typedef struct s_img
+typedef struct s_ray
 {
+	double	ray_agl;
+	double	distance;
+	int		flag;
+}				t_ray;
 
-}				t_img;
-*/
+typedef struct s_plyer
+{
+	int		plyer_x;
+	int		plyer_y;
+	double	angle;
+	float	fov_rd;
+	int		rotat;
+	int		l_r;
+	int		u_d;
+}			t_plyer;
 
 typedef struct s_ray
 {
@@ -61,7 +73,11 @@ typedef struct s_data
 	int			floorcolor;
 	int			ceilingcolor;
 	mlx_t		*mlx;
+<<<<<<< HEAD
 	mlx_image_t *img;
+=======
+	mlx_image_t	*img;
+>>>>>>> origin/parsing
 	t_ray		*ray;
 	t_plyer		*player;
 }				t_data;

@@ -15,6 +15,7 @@
 void	exit_exclaim(char *string)
 {
 	ft_printf(1, "%s", string);
+<<<<<<< HEAD
 	/*
 	Je n ai pas inclu de free car ajout du garbage collector pour tout free ?
 	Fonction a add autre part que parsing eventuellement / repertoire check ou err ?
@@ -22,3 +23,8 @@ void	exit_exclaim(char *string)
 	wclear();
 	exit (1);
 }
+=======
+	//wclear();
+	exit (1);
+}
+>>>>>>> origin/parsing

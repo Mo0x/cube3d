@@ -27,5 +27,5 @@
 
 void	exit_exclaim(char *string);
 void	parsing(t_map *map, char **filename, int argc, t_data *c3d);
-
+void	ft_init(t_data *c3d);
 #endif
