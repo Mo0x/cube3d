@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/21 17:13:15 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/22 18:12:50 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,16 @@ typedef struct s_img
 
 typedef struct	s_ray
 {
-	double camera_x;
-	double ray_dir_x;
-	double ray_dir_y;
-}
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int		map_x;
+	int		map_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_x;
+	double	delta_y;
+}				t_ray;
 
 typedef struct s_player
 {
