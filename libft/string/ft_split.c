@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:41:09 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/12 10:41:10 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/26 19:05:52 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static void	*ft_free(char **tab)
 	i = 0;
 	while (tab[i])
 	{
-		free(tab[i]);
+		wfree(tab[i]);
 		i++;
 	}
-	free(tab);
+	wfree(tab);
 	return (NULL);
 }
 

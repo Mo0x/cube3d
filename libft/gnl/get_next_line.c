@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:30:37 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/12 12:10:06 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/26 19:05:48 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ static char	*ft_get_line_and_clean(int fd, char **garbage)
 		i++;
 	ret = ft_substr(garbage[fd], 0, i);
 	trashbag = ft_substr(garbage[fd], i, ft_strlen(&garbage[fd][i]));
-	free(garbage[fd]);
+	wfree(garbage[fd]);
 	garbage[fd] = trashbag;
 	if (!ret || !trashbag || ft_strlen(ret) == 0)
 	{
-		free(garbage[fd]);
-		free(ret);
+		wfree(garbage[fd]);
+		wfree(ret);
 		garbage[fd] = NULL;
 		return (NULL);
 	}
@@ -53,7 +53,7 @@ static char	*ft_read_line(int fd, char **garbage, char *buffer)
 		byte_read = read(fd, buffer, BUFFER_SIZE);
 		if (byte_read < 0)
 		{
-			free(garbage[fd]);
+			wfree(garbage[fd]);
 			return (NULL);
 		}
 		if (!garbage[fd])
@@ -61,7 +61,7 @@ static char	*ft_read_line(int fd, char **garbage, char *buffer)
 		else
 		{
 			tmp = ft_strjoin(garbage[fd], buffer);
-			free(garbage[fd]);
+			wfree(garbage[fd]);
 			garbage[fd] = tmp;
 		}
 		if (garbage[fd] && (byte_read == 0 || ft_strchr(garbage[fd], '\n')))
@@ -82,7 +82,7 @@ char	*get_next_line(int fd)
 	if (!buffer)
 		return (NULL);
 	garbage[fd] = ft_read_line(fd, garbage, buffer);
-	free(buffer);
+	wfree(buffer);
 	if (!garbage[fd])
 		return (NULL);
 	ret = ft_get_line_and_clean(fd, garbage);
