@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/26 17:53:11 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/26 19:02:48 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ typedef struct	s_ray
 	int		step_y;
 	int		hit;
 	int		side;
-	double	perp_wall_dist;
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
@@ -86,6 +85,7 @@ typedef struct s_data
 	struct s_player	*player;
 	double			time;
 	double			old_time;
+	double			frame;
 }				t_data;
 
 #endif

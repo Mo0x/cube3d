@@ -13,7 +13,9 @@ SRCS = ./srcs/main.c  \
 		./srcs/parsing/map_check.c \
 		./srcs/parsing/map_enclosure_check.c \
 		./srcs/error/error.c \
-		./srcs/game/init.c
+		./srcs/game/init.c \
+		./srcs/game/render.c \
+		./srcs/utils/time.c
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 INCDIRS = ./includes
 CFLAGS = -g -Wall -Wextra -Werror -I$(INCDIRS) -I$(MLX)/include -g3
