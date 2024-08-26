@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 21:07:03 by wkeiser           #+#    #+#             */
-/*   Updated: 2024/08/26 19:07:12 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/26 19:09:40 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	trim_stuff(t_map *map)
 	save = map->fcolor;
 	map->fcolor = ft_strtrim(map->fcolor, nl);
 	wfree(save);
-	wfree((void *)nl);
+	wtfree((void *)nl);
 }
 
 int	add_info(char erase_me, t_map *map, char *palette_patrol, char *line)
