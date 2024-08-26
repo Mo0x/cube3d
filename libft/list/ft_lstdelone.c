@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:38:35 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/01/31 19:21:56 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/26 18:12:04 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
 	if (lst && del)
 	{
-		free(lst);
+		wfree(lst);
 		lst = NULL;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_get_color_and_texture.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wkeiser <wkeiser@student.42mulhouse.fr>    +#+  +:+       +#+        */
+/*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 21:07:03 by wkeiser           #+#    #+#             */
-/*   Updated: 2024/08/10 21:07:05 by wkeiser          ###   ########.fr       */
+/*   Updated: 2024/08/26 18:12:45 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,23 @@ void	trim_stuff(t_map *map)
 	save = map->n_path;
 	nl = ft_strdup("\n");
 	map->n_path = ft_strtrim(map->n_path, nl);
-	free(save);
+	wfree(save);
 	save = map->s_path;
 	map->s_path = ft_strtrim(map->s_path, nl);
-	free(save);
+	wfree(save);
 	save = map->w_path;
 	map->w_path = ft_strtrim(map->w_path, nl);
-	free(save);
+	wfree(save);
 	save = map->e_path;
 	map->e_path = ft_strtrim(map->e_path, nl);
-	free(save);
+	wfree(save);
 	save = map->ccolor;
 	map->ccolor = ft_strtrim(map->ccolor, nl);
-	free(save);
+	wfree(save);
 	save = map->fcolor;
 	map->fcolor = ft_strtrim(map->fcolor, nl);
-	free(save);
-	free((void *)nl);
+	wfree(save);
+	wfree((void *)nl);
 }
 
 int	add_info(char erase_me, t_map *map, char *palette_patrol, char *line)
@@ -116,11 +116,11 @@ void	colors_harvester(t_map *map)
 	while (get_info(map->line, palette_patrol, map) == 1 \
 			&& id_check(palette_patrol) == 1)
 	{
-		free(map->line);
+		wfree(map->line);
 		map->line = get_next_line(map->fd);
 		if (!map->line)
 			exit_exclaim("Empty file");
 	}
 	trim_stuff(map);
-	free(palette_patrol);
+	wfree(palette_patrol);
 }
