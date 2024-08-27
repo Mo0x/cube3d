@@ -12,6 +12,8 @@
 
 #include "../includes/cub3d.h"
 
+//test git
+
 int	main(int argc, char **argv)
 {
 	t_data	*c3d;
