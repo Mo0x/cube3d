@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_check.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wkeiser <wkeiser@student.42mulhouse.fr>    +#+  +:+       +#+        */
+/*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 22:29:28 by wkeiser           #+#    #+#             */
-/*   Updated: 2024/08/11 22:29:29 by wkeiser          ###   ########.fr       */
+/*   Updated: 2024/08/26 19:21:48 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ void	filename_texture_check(char *filename)
 	len = ft_strlen(filename);
 	if (len < 5)
 		exit_exclaim("How your texture can be that short?\n");
-	if (ft_strcmp(filename + len - 4, ".xpm") != 0)
-		exit_exclaim("Wrong texture file extension\n");
+	/* if (ft_strcmp(filename + len - 4, ".xpm") != 0)
+		exit_exclaim("Wrong texture file extension\n"); 
+		-> to renable after texture is clear
+		*/
 }
 
 void	check_texture(char *arr)

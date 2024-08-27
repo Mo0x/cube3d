@@ -6,20 +6,15 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/26 19:02:48 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:50:01 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #ifndef TYPES_H
 # define TYPES_H
-# define HEIGHT 800
-# define WIDTH 800
-# define TRUE 1
-# define FALSE 0
-# include <MLX42/MLX42.h>
-# define HEIGHT 800
-# define WIDTH 800
+# define HEIGHT 1280
+# define WIDTH 720
 # define TRUE 1
 # define FALSE 0
 # include <MLX42/MLX42.h>

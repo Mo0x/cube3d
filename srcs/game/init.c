@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:03:38 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/26 19:03:06 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/27 19:03:34 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,13 +115,11 @@ void	game_loop(t_data *c3d)
 		x++;
 	}
 	c3d->old_time = c3d->time;
-	c3d->time = give_me_time();
 	c3d->frame = (c3d->time - c3d->old_time) / 1000.0;
 }
 
-void	ft_start_game(t_data *c3d)
+void	init_mlx(t_data *c3d)
 {
-	ft_init(c3d);
 	c3d->mlx = mlx_init(WIDTH, HEIGHT, "MLX42", FALSE);
 	if (!(c3d->mlx))
 		exit_exclaim("Couldn't initialize mlx :(\n");
@@ -131,6 +129,18 @@ void	ft_start_game(t_data *c3d)
 		mlx_close_window(c3d->mlx);
 		exit_exclaim("Couldn't initialize image :(\n");
 	}
+	if (mlx_image_to_window(c3d->mlx, c3d->img, 0, 0) == -1)
+	{
+		mlx_close_window(c3d->mlx);
+		exit_exclaim("couldn't image to window");
+	}
+}
+
+void	ft_start_game(t_data *c3d)
+{
+	ft_init(c3d);
+	init_mlx(c3d);
+	
 	game_loop(c3d);
 	/* set hook here*/	
 }
