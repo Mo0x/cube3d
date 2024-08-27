@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:03:38 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/27 19:03:34 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/27 19:38:26 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,13 @@ void	ft_did_it_hit(t_ray *ray, t_data *c3d)
 	}
 }
 
-void	game_loop(t_data *c3d)
+void	game_loop(void *c4d)
 {
 	int		x;
 	t_ray	*ray;
+	t_data	*c3d;
 
+	c3d = (t_data *)c4d;
 	x = 0;
 	ray = walloc(sizeof(t_ray));
 	if (!ray)
@@ -114,8 +116,6 @@ void	game_loop(t_data *c3d)
 		ft_draw_vertical(c3d, ray, x);	
 		x++;
 	}
-	c3d->old_time = c3d->time;
-	c3d->frame = (c3d->time - c3d->old_time) / 1000.0;
 }
 
 void	init_mlx(t_data *c3d)
@@ -135,11 +135,50 @@ void	init_mlx(t_data *c3d)
 		exit_exclaim("couldn't image to window");
 	}
 }
+//TODO PLAYER MOVE AND PLAYER LOOK
+
+void	ft_do_the_input(t_data *c3d)
+{
+	if (mlx_is_key_down(c3d->mlx, MLX_KEY_W))
+		player_move(c3d, "UP");
+	else if (mlx_is_key_down(c3d->mlx, MLX_KEY_S))
+		player_move(c3d, "DOWN");
+	else if (mlx_is_key_down(c3d->mlx, MLX_KEY_A))
+		player_move(c3d, "LEFT");
+	else if (mlx_is_key_down(c3d->mlx, MLX_KEY_D))
+		player_move(c3d, "RIGHT");
+	else if (mlx_is_key_down(c3d->mlx, MLX_KEY_LEFT))
+		player_look(c3d, "LEFT");
+	else if (mlx_is_key_down(c3d->mlx, MLX_KEY_S))
+		player_look(c3d, "RIGHT");
+}
+
+void	set_up_player(t_data *c3d)
+{
+	//todo idk what delta time
+	c3d->player->cam_speed = (float)c3d->mlx->delta_time * 2.0f;
+	c3d->player->move_speed = (float)c3d->mlx->delta_time * 3.0f;
+	ft_do_the_input(c3d);
+}
+
+void	game_render(void *c4d)
+{
+	t_data	*c3d;
+
+	c3d = c4d;
+	if (c3d->start_time = 0)
+		c3d->start_time = mlx_get_time();
+	c3d->time = mlx_get_time() - c3d->start_time;
+	//todo frame time and sprite time
+	set_up_player(c3d);
+	render(c3d); // the function that draw ceilling and floor and call the ray_cast
+}
 
 void	ft_start_game(t_data *c3d)
 {
 	ft_init(c3d);
 	init_mlx(c3d);
+	mlx_loop_hook(c3d, game_render, c3d);
 	
 	game_loop(c3d);
 	/* set hook here*/	
