@@ -6,20 +6,15 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/21 16:28:48 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/28 17:14:56 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #ifndef TYPES_H
 # define TYPES_H
-# define HEIGHT 800
-# define WIDTH 800
-# define TRUE 1
-# define FALSE 0
-# include <MLX42/MLX42.h>
-# define HEIGHT 800
-# define WIDTH 800
+# define HEIGHT 1280
+# define WIDTH 720
 # define TRUE 1
 # define FALSE 0
 # include <MLX42/MLX42.h>
@@ -43,6 +38,28 @@ typedef struct s_img
 
 }				t_img;
 */
+
+typedef struct	s_ray
+{
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int		map_x;
+	int		map_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_x;
+	double	delta_y;
+	double	perp_wall_dist;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+}				t_ray;
+
 typedef struct s_player
 {
 	double	pos_x;
@@ -51,6 +68,9 @@ typedef struct s_player
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
+	float	cam_speed;
+	float	move_speed;
+
 }				t_player;
 
 typedef struct s_data
@@ -60,7 +80,14 @@ typedef struct s_data
 	int				ceilingcolor;
 	mlx_t			*mlx;
 	mlx_image_t 	*img;
+	mlx_image_t 	*img_minimap;
+	mlx_image_t 	*img_sprite;
 	struct s_player	*player;
+	double			start_time;
+	double			time;
+	double			old_time;
+	double			frame;
+	int				refresh;
 }				t_data;
 
 #endif
