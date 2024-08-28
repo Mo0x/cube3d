@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/27 19:30:46 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/28 17:14:56 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,14 @@ typedef struct s_data
 	int				ceilingcolor;
 	mlx_t			*mlx;
 	mlx_image_t 	*img;
+	mlx_image_t 	*img_minimap;
+	mlx_image_t 	*img_sprite;
 	struct s_player	*player;
 	double			start_time;
 	double			time;
 	double			old_time;
 	double			frame;
+	int				refresh;
 }				t_data;
 
 #endif

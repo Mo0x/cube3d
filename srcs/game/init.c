@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:03:38 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/27 19:38:26 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/28 17:13:26 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ void	ft_init(t_data *c3d)
 	c3d->player->plane_y = 0.66;
 	c3d->time = 0;
 	c3d->old_time = 0;
+	c3d->refresh = TRUE;
 }
 
-void	ft_step_and_side_dist(t_data *c3d, t_ray *ray)
+/* void	ft_step_and_side_dist(t_data *c3d, t_ray *ray)
 {
 	if (ray->ray_dir_x < 0)
 	{
@@ -65,6 +66,7 @@ void	ft_did_it_hit(t_ray *ray, t_data *c3d)
 			ray->hit = 1;
 	}
 }
+// gameloop going to be split in the raycasting.c calculeous are correct
 
 void	game_loop(void *c4d)
 {
@@ -116,7 +118,7 @@ void	game_loop(void *c4d)
 		ft_draw_vertical(c3d, ray, x);	
 		x++;
 	}
-}
+} */
 
 void	init_mlx(t_data *c3d)
 {

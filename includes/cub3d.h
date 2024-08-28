@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 14:44:27 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/26 18:49:40 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/28 17:10:00 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ void	exit_exclaim(char *string);
 void	parsing(t_map *map, char **filename, int argc, t_data *c3d);
 void	ft_start_game(t_data *c3d);
 void	ft_draw_vertical(t_data *c3d, t_ray *ray, int x);
-size_t	give_me_time(void);
+void	ft_clear_image(mlx_image_t *img, int color);
 
 #endif
