@@ -88,3 +88,4 @@ char	*get_next_line(int fd)
 	ret = ft_get_line_and_clean(fd, garbage);
 	return (ret);
 }
+
