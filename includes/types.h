@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/28 17:14:56 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/28 19:03:49 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,15 @@ typedef struct s_img
 
 }				t_img;
 */
+
+typedef	struct s_rect
+{
+	int	x_start;
+	int	x_end;
+	int	y_start;
+	int	y_end;
+	int	color;
+}			t_rect;
 
 typedef struct	s_ray
 {
