@@ -1,45 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_utils.c                                        :+:      :+:    :+:   */
+/*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/26 18:39:12 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/28 17:05:10 by mgovinda         ###   ########.fr       */
+/*   Created: 2024/08/28 17:47:30 by mgovinda          #+#    #+#             */
+/*   Updated: 2024/08/28 17:51:56 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
-void	ft_clear_image(mlx_image_t *img, int color)
+void	player_move(t_data *c3d, char *dir)
 {
-	int	x;
-	int	y;
-
-	if(!img)
-		return ;
-	y = 0;
-	while(y < HEIGHT)
-	{
-		x = 0;
-		while (x < img->width)
-		{
-			mlx_put_pixel(img, x, y, color);
-			x++;
-		}
-		y++;
-	}
+	(void)c3d;
+	(void)dir;
 }
-
-void	ft_draw_vertical(t_data *c3d, t_ray *ray, int x)
+void	player_look(t_data *c3d, char *dir)
 {
-	int y;
-
-	y = ray->draw_start;
-	while (y < ray->draw_end)
-	{
-			mlx_put_pixel(c3d->img, x, y, YELLOW);
-			y++;
-	}
+	(void)c3d;
+	(void)dir;
 }

@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 14:44:27 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/28 17:10:00 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/28 17:44:58 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,22 @@
 # define YELLOW 0xFFFF00FF
 # define BLUE 0x0000FFFF
 
+/* Error*/
 void	exit_exclaim(char *string);
+
+/*Parse*/
 void	parsing(t_map *map, char **filename, int argc, t_data *c3d);
+
+/*core*/
 void	ft_start_game(t_data *c3d);
+void	render(t_data *c3d);
+
+/*mlx utils*/
 void	ft_draw_vertical(t_data *c3d, t_ray *ray, int x);
 void	ft_clear_image(mlx_image_t *img, int color);
+
+/*Move set*/
+void	player_move(t_data *c3d, char *dir);
+void	player_look(t_data *c3d, char *dir);
 
 #endif

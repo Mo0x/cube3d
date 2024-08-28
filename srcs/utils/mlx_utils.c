@@ -1,28 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/28 17:01:05 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/28 17:46:21 by mgovinda         ###   ########.fr       */
+/*   Created: 2024/08/26 18:39:12 by mgovinda          #+#    #+#             */
+/*   Updated: 2024/08/28 17:46:33 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
-void	ft_roof_and_ground(t_data *c3d)
+void	ft_clear_image(mlx_image_t *img, int color)
 {
-	(void)c3d;
+	int	x;
+	int	y;
+
+	if(!img)
+		return ;
+	y = 0;
+	while(y < HEIGHT)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			mlx_put_pixel(img, x, y, color);
+			x++;
+		}
+		y++;
+	}
 }
 
-void	render(t_data *c3d)
+void	ft_draw_vertical(t_data *c3d, t_ray *ray, int x)
 {
-	if (c3d->refresh)
+	int y;
+
+	y = ray->draw_start;
+	while (y < ray->draw_end)
 	{
-		ft_clear_image(c3d->img, 0);
-		ft_clear_image(c3d->img_minimap, 0);
-		ft_roof_and_ground(c3d);
+			mlx_put_pixel(c3d->img, x, y, YELLOW);
+			y++;
 	}
 }

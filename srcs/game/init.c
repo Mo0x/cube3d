@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:03:38 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/28 17:13:26 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/28 17:45:33 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,12 +109,11 @@ void	game_loop(void *c4d)
 		ray->draw_end = ray->line_height / 2 + HEIGHT / 2;
 		if (ray->draw_end >= HEIGHT)
 			ray->draw_end = HEIGHT - 1;
-		/* TODO calculate from direction (NSEW) the wall is hit and determine color*/
-		
+		 TODO calculate from direction (NSEW) the wall is hit and determine color
 		int color = YELLOW;
 		if (ray->side == 1)
 			color = color / 2;
-		/* end temporary color*/
+		// end temporary color
 		ft_draw_vertical(c3d, ray, x);	
 		x++;
 	}
@@ -168,7 +167,7 @@ void	game_render(void *c4d)
 	t_data	*c3d;
 
 	c3d = c4d;
-	if (c3d->start_time = 0)
+	if (c3d->start_time == 0)
 		c3d->start_time = mlx_get_time();
 	c3d->time = mlx_get_time() - c3d->start_time;
 	//todo frame time and sprite time
@@ -180,8 +179,8 @@ void	ft_start_game(t_data *c3d)
 {
 	ft_init(c3d);
 	init_mlx(c3d);
-	mlx_loop_hook(c3d, game_render, c3d);
+	mlx_loop_hook(c3d->mlx, game_render, c3d);
 	
-	game_loop(c3d);
+	//game_loop(c3d);
 	/* set hook here*/	
 }
