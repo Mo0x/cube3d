@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 18:39:12 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/28 19:05:18 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/29 19:42:50 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,15 @@ void	ft_draw_rectangle(mlx_image_t *img, t_rect rect)
 		}
 		x++;
 	}
+}
+
+void	ft_warpper_put_pxl(mlx_image_t *img, int x, int y, unsigned int color)
+{
+	if (!img)
+		return ;
+	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
+		return ;
+	mlx_put_pixel(img, x, y, color);
 }
 
 void	ft_draw_vertical(t_data *c3d, t_ray *ray, int x)

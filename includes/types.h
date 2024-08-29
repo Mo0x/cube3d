@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/29 18:38:55 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/29 19:40:53 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,14 @@ typedef struct s_img
 
 typedef	struct s_rect
 {
-	int	x_start;
-	int	x_end;
-	int	y_start;
-	int	y_end;
-	int	color;
+	int				x_start;
+	int				x_end;
+	int				y_start;
+	int				y_end;
+	unsigned int	color;
 }			t_rect;
+
+/* perhaps need to convert line height draw_start and draw_end into float*/
 
 typedef struct	s_ray
 {
@@ -64,9 +66,9 @@ typedef struct	s_ray
 	int		step_y;
 	int		hit;
 	int		side;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
+	float	line_height;
+	float	draw_start;
+	float	draw_end;
 }				t_ray;
 
 typedef struct s_player

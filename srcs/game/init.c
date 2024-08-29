@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:03:38 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/29 18:42:14 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/29 19:06:20 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	ft_did_it_hit(t_ray *ray, t_data *c3d)
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
 		{
-			ray->side_dist_x += ray->delta_x;
 			ray->map_x += ray->step_x;
 			ray->side = 0;
 		}
@@ -64,8 +63,10 @@ void	ft_did_it_hit(t_ray *ray, t_data *c3d)
 			ray->side = 1;
 		}
 		if (c3d->map->map_arr[ray->map_x][ray->map_y] > 0)
-			ray->hit = 1;
+			ray->hit = TRUE;
 	}
+	ray->side_dist_x += ray->delta_x;
+		
 }
 // gameloop going to be split in the raycasting.c calculeous are correct
 
