@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 10:29:45 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/26 19:08:36 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/29 19:49:52 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	del_one(t_list **h, void *to_del)
 					ptr->next = ptr->next->next;
 				else
 					ptr->next = NULL;
-				free(ptr->next->content);
+				if (ptr->next && ptr->next->content)
+					free(ptr->next->content);
 				free(ptr->next);
 			}
 			ptr = ptr->next;
