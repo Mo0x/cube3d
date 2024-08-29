@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/28 19:03:49 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/29 18:38:55 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ typedef struct s_player
 	double	plane_y;
 	float	cam_speed;
 	float	move_speed;
-
+	t_ray	*ray;
 }				t_player;
 
 typedef struct s_data

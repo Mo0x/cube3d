@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:03:38 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/28 17:45:33 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/29 18:42:14 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_init(t_data *c3d)
 	c3d->player->dir_y = 0;
 	c3d->player->plane_x = 0;
 	c3d->player->plane_y = 0.66;
+	c3d->player->ray = NULL;
 	c3d->time = 0;
 	c3d->old_time = 0;
 	c3d->refresh = TRUE;
