@@ -51,14 +51,12 @@ void	draw_minimap_wall(t_data *c3d, int i, int j)
 	outer_rect.y_start = i * MINIMAP_CELL_SIZE;
 	outer_rect.x_end = outer_rect.x_start + MINIMAP_CELL_SIZE - 1;
 	outer_rect.y_end = outer_rect.y_start + MINIMAP_CELL_SIZE - 1;
-	outer_rect.color = 0xA2D2FFFF; // Pastel Blue
-
+	outer_rect.color = 0xA2D2FFFF;
 	inner_rect.x_start = outer_rect.x_start + 1;
 	inner_rect.y_start = outer_rect.y_start + 1;
 	inner_rect.x_end = outer_rect.x_end - 1;
 	inner_rect.y_end = outer_rect.y_end - 1;
-	inner_rect.color = 0x1A1A1AFF; // Almost Black
-
+	inner_rect.color = 0x1A1A1AFF;
 	draw_rect(c3d->img_minimap, &outer_rect);
 	draw_rect(c3d->img_minimap, &inner_rect);
 }
@@ -93,7 +91,6 @@ void	draw_minimap(t_data *c3d)
 
 	offset_x = c3d->player->pos_x - (MINIMAP_IMG_SIZE / (2 * MINIMAP_CELL_SIZE));
 	offset_y = c3d->player->pos_y - (MINIMAP_IMG_SIZE / (2 * MINIMAP_CELL_SIZE));
-
 	i = 0;
 	while (i < c3d->map->height)
 	{
