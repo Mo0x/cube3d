@@ -19,14 +19,16 @@ void	draw_rect(mlx_image_t *img, t_rect *rect)
 
 	if (!img || !rect)
 		return ;
-
-	y = rect->y - 1;
-	while (y++ < rect->y + rect->h)
+	y = rect->y_start;
+	while (y < rect->y_end)
 	{
 		if (y < 0 || y >= (int)img->height)
+		{
+			y++;
 			continue ;
-		x = rect->x;
-		while (x < rect->x + rect->w)
+		}
+		x = rect->x_start;
+		while (x < rect->x_end)
 		{
 			if (x < 0 || x >= (int)img->width)
 			{
@@ -36,6 +38,7 @@ void	draw_rect(mlx_image_t *img, t_rect *rect)
 			mlx_put_pixel(img, x, y, rect->color);
 			x++;
 		}
+		y++;
 	}
 }
 
@@ -44,16 +47,18 @@ void	draw_minimap_wall(t_data *c3d, int i, int j)
 	t_rect	outer_rect;
 	t_rect	inner_rect;
 
-	outer_rect.x = j * MINIMAP_CELL_SIZE;
-	outer_rect.y = i * MINIMAP_CELL_SIZE;
-	outer_rect.w = MINIMAP_CELL_SIZE - 1;
-	outer_rect.h = MINIMAP_CELL_SIZE - 1 - 1;
-	outer_rect.color = 0xA2D2FFFF; // Pastel Blue,
-	inner_rect.x = j * MINIMAP_CELL_SIZE + 1;
-	inner_rect.y = i * MINIMAP_CELL_SIZE + 1;
-	inner_rect.w = outer_rect.w - 2;
-	inner_rect.h = outer_rect.h - 2;
+	outer_rect.x_start = j * MINIMAP_CELL_SIZE;
+	outer_rect.y_start = i * MINIMAP_CELL_SIZE;
+	outer_rect.x_end = outer_rect.x_start + MINIMAP_CELL_SIZE - 1;
+	outer_rect.y_end = outer_rect.y_start + MINIMAP_CELL_SIZE - 1;
+	outer_rect.color = 0xA2D2FFFF; // Pastel Blue
+
+	inner_rect.x_start = outer_rect.x_start + 1;
+	inner_rect.y_start = outer_rect.y_start + 1;
+	inner_rect.x_end = outer_rect.x_end - 1;
+	inner_rect.y_end = outer_rect.y_end - 1;
 	inner_rect.color = 0x1A1A1AFF; // Almost Black
+
 	draw_rect(c3d->img_minimap, &outer_rect);
 	draw_rect(c3d->img_minimap, &inner_rect);
 }
@@ -62,22 +67,21 @@ void	draw_minimap_player(t_data *c3d)
 {
 	t_rect	player_outer;
 	t_rect	player_inner;
-	int		player_size;
 
-	player_size = 6;
-	player_outer.x = MINIMAP_IMG_SIZE / 2 - player_size / 2;
-	player_outer.y = MINIMAP_IMG_SIZE / 2 - player_size / 2;
-	player_outer.w = player_size;
-	player_outer.h = player_size;
-	player_outer.color = 0x00FF00FF; // Bright Green
-	player_inner.x = player_outer.x + 1;
-	player_inner.y = player_outer.y + 1;
-	player_inner.w = player_size - 2;
-	player_inner.h = player_size - 2;
-	player_inner.color = 0x1A1A1AFF; // Almost Black
+	player_outer.x_start = (MINIMAP_IMG_SIZE / 2 - 2) + 2;
+	player_outer.y_start = (MINIMAP_IMG_SIZE / 2 - 2) + 2;
+	player_outer.x_end = player_outer.x_start + 6;
+	player_outer.y_end = player_outer.y_start + 6;
+	player_outer.color = 0x00FF00FF;
+	player_inner.x_start = player_outer.x_start + 1;
+	player_inner.y_start = player_outer.y_start + 1;
+	player_inner.x_end = player_outer.x_end - 1;
+	player_inner.y_end = player_outer.y_end - 1;
+	player_inner.color = 0x1A1A1AFF;
 	draw_rect(c3d->img_minimap, &player_outer);
 	draw_rect(c3d->img_minimap, &player_inner);
 }
+
 
 void	draw_minimap(t_data *c3d)
 {
@@ -108,4 +112,5 @@ void	draw_minimap(t_data *c3d)
 		i++;
 	}
 	draw_minimap_player(c3d);
+//	draw_minimap_borders(c3d);
 }

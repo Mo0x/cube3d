@@ -94,10 +94,10 @@ typedef struct s_data
 
 typedef struct s_rect
 {
-	int		x;
-	int		y;
-	int		w;
-	int		h;
+	int		x_start;
+	int		x_end;
+	int		y_start;
+	int		y_end;
 	int		color;
 }				t_rect;
 
