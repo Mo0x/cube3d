@@ -17,10 +17,10 @@ void	ft_clear_image(mlx_image_t *img, int color)
 	int	x;
 	int	y;
 
-	if(!img)
+	if (!img)
 		return ;
 	y = 0;
-	while(y < (int)img->height)
+	while (y < (int)img->height)
 	{
 		x = 0;
 		while (x < (int)img->width)
@@ -34,7 +34,7 @@ void	ft_clear_image(mlx_image_t *img, int color)
 
 void	ft_draw_vertical(t_data *c3d, t_ray *ray, int x)
 {
-	int y;
+	int	y;
 
 	y = ray->draw_start;
 	while (y < ray->draw_end)

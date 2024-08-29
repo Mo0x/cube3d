@@ -15,8 +15,6 @@
 
 void	ft_init(t_data *c3d)
 {
-	c3d->player->pos_x = 0;
-	c3d->player->pos_y = 0;
 	c3d->player->dir_x = -1;
 	c3d->player->dir_y = 0;
 	c3d->player->plane_x = 0;
