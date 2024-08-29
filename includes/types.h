@@ -81,9 +81,9 @@ typedef struct s_data
 	int				floorcolor;
 	int				ceilingcolor;
 	mlx_t			*mlx;
-	mlx_image_t 	*img;
-	mlx_image_t 	*img_minimap;
-	mlx_image_t 	*img_sprite;
+	mlx_image_t		*img;
+	mlx_image_t		*img_minimap;
+	mlx_image_t		*img_sprite;
 	struct s_player	*player;
 	double			start_time;
 	double			time;
@@ -91,5 +91,14 @@ typedef struct s_data
 	double			frame;
 	int				refresh;
 }				t_data;
+
+typedef struct s_rect
+{
+	int		x;
+	int		y;
+	int		w;
+	int		h;
+	int		color;
+}				t_rect;
 
 #endif

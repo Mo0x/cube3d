@@ -12,74 +12,72 @@
 
 #include "../includes/cub3d.h"
 
-
-void	draw_square(mlx_image_t *img, int x_start, int y_start, int size, int color)
+void	draw_rect(mlx_image_t *img, t_rect *rect)
 {
 	int	x;
 	int	y;
-	int	x_end;
-	int	y_end;
 
-	x_end = x_start + size;
-	y_end = y_start + size;
-	if (!img)
+	if (!img || !rect)
 		return ;
-	y = y_start;
-	while (y < y_end)
+
+	y = rect->y - 1;
+	while (y++ < rect->y + rect->h)
 	{
 		if (y < 0 || y >= (int)img->height)
-		{
-			y++;
 			continue ;
-		}
-		x = x_start;
-		while (x < x_end)
+		x = rect->x;
+		while (x < rect->x + rect->w)
 		{
 			if (x < 0 || x >= (int)img->width)
 			{
 				x++;
 				continue ;
 			}
-			mlx_put_pixel(img, x, y, color);
+			mlx_put_pixel(img, x, y, rect->color);
 			x++;
 		}
-		y++;
 	}
 }
 
-
 void	draw_minimap_wall(t_data *c3d, int i, int j)
 {
-	int	color_outer;
-	int	color_inner;
+	t_rect	outer_rect;
+	t_rect	inner_rect;
 
-	color_outer = 0xA2D2FFFF; // Pastel Blue
-	color_inner = 0x1A1A1AFF; // Almost Black
-	draw_square(c3d->img_minimap, j * MINIMAP_CELL_SIZE, \
-	i * MINIMAP_CELL_SIZE, MINIMAP_CELL_SIZE - 1, color_outer);
-	draw_square(c3d->img_minimap, j * MINIMAP_CELL_SIZE + 1, \
-	i * MINIMAP_CELL_SIZE + 1, MINIMAP_CELL_SIZE - 3, color_inner);
+	outer_rect.x = j * MINIMAP_CELL_SIZE;
+	outer_rect.y = i * MINIMAP_CELL_SIZE;
+	outer_rect.w = MINIMAP_CELL_SIZE - 1;
+	outer_rect.h = MINIMAP_CELL_SIZE - 1 - 1;
+	outer_rect.color = 0xA2D2FFFF; // Pastel Blue,
+	inner_rect.x = j * MINIMAP_CELL_SIZE + 1;
+	inner_rect.y = i * MINIMAP_CELL_SIZE + 1;
+	inner_rect.w = outer_rect.w - 2;
+	inner_rect.h = outer_rect.h - 2;
+	inner_rect.color = 0x1A1A1AFF; // Almost Black
+	draw_rect(c3d->img_minimap, &outer_rect);
+	draw_rect(c3d->img_minimap, &inner_rect);
 }
 
 void	draw_minimap_player(t_data *c3d)
 {
-	int		player_screen_x;
-	int		player_screen_y;
+	t_rect	player_outer;
+	t_rect	player_inner;
 	int		player_size;
-	int		color;
-	int		color2;
 
 	player_size = 6;
-	color = 0x00FF00FF;
-	color2 = 0x1A1A1AFF;
-	player_screen_x = MINIMAP_IMG_SIZE / 2 - player_size / 2;
-	player_screen_y = MINIMAP_IMG_SIZE / 2 - player_size / 2;
-	draw_square(c3d->img_minimap, player_screen_x, \
-	player_screen_y, player_size, color);
-	draw_square(c3d->img_minimap, player_screen_x + 1, \
-	player_screen_y + 1, player_size - 2, color2);
+	player_outer.x = MINIMAP_IMG_SIZE / 2 - player_size / 2;
+	player_outer.y = MINIMAP_IMG_SIZE / 2 - player_size / 2;
+	player_outer.w = player_size;
+	player_outer.h = player_size;
+	player_outer.color = 0x00FF00FF; // Bright Green
+	player_inner.x = player_outer.x + 1;
+	player_inner.y = player_outer.y + 1;
+	player_inner.w = player_size - 2;
+	player_inner.h = player_size - 2;
+	player_inner.color = 0x1A1A1AFF; // Almost Black
+	draw_rect(c3d->img_minimap, &player_outer);
+	draw_rect(c3d->img_minimap, &player_inner);
 }
-
 
 void	draw_minimap(t_data *c3d)
 {
