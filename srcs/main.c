@@ -28,7 +28,7 @@ int	main(int argc, char **argv)
 	if (!c3d->player)
 		exit_exclaim("c3d->player malloc failed\n");
 	parsing(c3d->map, argv, argc, c3d);
-	/* ft_start_game(c3d)*/
+	ft_start_game(c3d);
 	wclear(); /* <---- a mettre a chaque fin dexec pour clear les allocs*/
 	return (0);
 }

@@ -20,10 +20,10 @@ void	ft_clear_image(mlx_image_t *img, int color)
 	if(!img)
 		return ;
 	y = 0;
-	while(y < HEIGHT)
+	while(y < (int)img->height)
 	{
 		x = 0;
-		while (x < WIDTH)
+		while (x < (int)img->width)
 		{
 			mlx_put_pixel(img, x, y, color);
 			x++;

@@ -22,12 +22,25 @@ void	remove_newline(char *line)
 //Remplace '\n' par '\0' car penible ce \n de merdeee qui me plombait mes comparaisons !!
 }
 
+void	update_map_dimensions(t_map *map, char *to_add)
+{
+	int	current_width;
+
+	current_width = ft_strlen(to_add);
+	if (current_width > map->width)
+	{
+		map->width = current_width;
+	}
+	map->height++;
+}
+
 void	add_line(t_map *map, char *to_add)
 {
 	static int	size = 1;
 	char		**new_array;
 
 	remove_newline(to_add);
+	update_map_dimensions(map, to_add);
 	new_array = NULL;
 	if (size == 1)
 	{

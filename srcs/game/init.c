@@ -11,9 +11,12 @@
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+#include "../includes/minimap.h"
 
 void	ft_init(t_data *c3d)
 {
+	c3d->player->pos_x = 0;
+	c3d->player->pos_y = 0;
 	c3d->player->dir_x = -1;
 	c3d->player->dir_y = 0;
 	c3d->player->plane_x = 0;
@@ -21,6 +24,7 @@ void	ft_init(t_data *c3d)
 	c3d->time = 0;
 	c3d->old_time = 0;
 	c3d->refresh = TRUE;
+	c3d->start_time = 0;
 }
 
 /* void	ft_step_and_side_dist(t_data *c3d, t_ray *ray)
@@ -121,7 +125,7 @@ void	game_loop(void *c4d)
 
 void	init_mlx(t_data *c3d)
 {
-	c3d->mlx = mlx_init(WIDTH, HEIGHT, "MLX42", FALSE);
+	c3d->mlx = mlx_init(HEIGHT, WIDTH, "Cube3D", FALSE);
 	if (!(c3d->mlx))
 		exit_exclaim("Couldn't initialize mlx :(\n");
 	c3d->img = mlx_new_image(c3d->mlx, WIDTH, HEIGHT);
@@ -135,6 +139,11 @@ void	init_mlx(t_data *c3d)
 		mlx_close_window(c3d->mlx);
 		exit_exclaim("couldn't image to window");
 	}
+	c3d->img_minimap = mlx_new_image(c3d->mlx, MINIMAP_IMG_SIZE, \
+							MINIMAP_IMG_SIZE);
+	if (!c3d->img_minimap)
+		exit_exclaim("Failed to create minimap image");
+
 }
 //TODO PLAYER MOVE AND PLAYER LOOK
 
@@ -166,12 +175,12 @@ void	game_render(void *c4d)
 {
 	t_data	*c3d;
 
-	c3d = c4d;
+	c3d = (t_data *)c4d;
 	if (c3d->start_time == 0)
 		c3d->start_time = mlx_get_time();
 	c3d->time = mlx_get_time() - c3d->start_time;
 	//todo frame time and sprite time
-	set_up_player(c3d);
+	//set_up_player(c3d);
 	render(c3d); // the function that draw ceilling and floor and call the ray_cast
 }
 
@@ -179,7 +188,10 @@ void	ft_start_game(t_data *c3d)
 {
 	ft_init(c3d);
 	init_mlx(c3d);
+	game_render(c3d);
 	mlx_loop_hook(c3d->mlx, game_render, c3d);
+
+	mlx_loop(c3d->mlx);
 	
 	//game_loop(c3d);
 	/* set hook here*/	

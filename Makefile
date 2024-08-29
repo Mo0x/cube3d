@@ -17,6 +17,7 @@ SRCS = ./srcs/main.c  \
 		./srcs/game/render.c \
 		./srcs/utils/mlx_utils.c \
 		./srcs/player/player_move.c \
+		./srcs/minimap/minimap.c
 
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 INCDIRS = ./includes

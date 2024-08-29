@@ -30,6 +30,8 @@ typedef struct s_map
 	char	*fcolor;
 	int		fd;
 	char	**map_arr;
+	int		width;
+	int		height;
 }			t_map;
 
 /*

@@ -25,4 +25,7 @@ void	render(t_data *c3d)
 		ft_clear_image(c3d->img_minimap, 0);
 		ft_roof_and_ground(c3d);
 	}
+	ft_clear_image(c3d->img_minimap, 0);
+	draw_minimap(c3d);
+	mlx_image_to_window(c3d->mlx, c3d->img_minimap, MINIMAP_OFF_X, MINIMAP_OFF_Y);
 }

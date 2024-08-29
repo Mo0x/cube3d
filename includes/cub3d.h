@@ -24,6 +24,7 @@
 # include <string.h>
 # include <fcntl.h>
 # include "parsing.h"
+# include "minimap.h"
 
 /* temporary color*/
 # define BLACK 0x000000FF
