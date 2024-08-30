@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:03:38 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/29 19:06:20 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/30 20:04:02 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,12 @@ void	ft_init(t_data *c3d)
 	c3d->player->ray = NULL;
 	c3d->time = 0;
 	c3d->old_time = 0;
+	c3d->start_time = 0;
 	c3d->refresh = TRUE;
+	// temp;
+	c3d->player->pos_x = 1;
+	c3d->player->pos_y = 1;
+
 }
 
 /* void	ft_step_and_side_dist(t_data *c3d, t_ray *ray)
@@ -152,7 +157,7 @@ void	ft_do_the_input(t_data *c3d)
 		player_move(c3d, "RIGHT");
 	else if (mlx_is_key_down(c3d->mlx, MLX_KEY_LEFT))
 		player_look(c3d, "LEFT");
-	else if (mlx_is_key_down(c3d->mlx, MLX_KEY_S))
+	else if (mlx_is_key_down(c3d->mlx, MLX_KEY_RIGHT))
 		player_look(c3d, "RIGHT");
 }
 
@@ -184,5 +189,6 @@ void	ft_start_game(t_data *c3d)
 	mlx_loop_hook(c3d->mlx, game_render, c3d);
 	
 	//game_loop(c3d);
-	/* set hook here*/	
+	/* set hook here*/
+	mlx_loop(c3d->mlx);
 }

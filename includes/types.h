@@ -6,15 +6,15 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/29 19:40:53 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/30 19:16:53 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #ifndef TYPES_H
 # define TYPES_H
-# define HEIGHT 1280
-# define WIDTH 720
+# define HEIGHT 720
+# define WIDTH 1280
 # define TRUE 1
 # define FALSE 0
 # include <MLX42/MLX42.h>

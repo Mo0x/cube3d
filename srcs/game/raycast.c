@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 19:09:39 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/29 19:44:09 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/30 20:02:09 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ t_ray	*ft_init_ray(t_data *c3d, int x)
 	ray = walloc(sizeof(t_ray));
 	if (!ray)
 		exit_exclaim("Error mallocing ray");
+	ray->hit = FALSE;
 	ray->camera_x = 2 * x / WIDTH - 1;
 	ray->ray_dir_x = c3d->player->dir_x + c3d->player->plane_x * ray->camera_x;
 	ray->ray_dir_y = c3d->player->dir_y + c3d->player->plane_y * ray->camera_x;
@@ -69,6 +70,7 @@ int	ft_ray_hit(t_data *c3d, t_ray *ray)
 		return (FALSE);
 	if (ray->map_x >= WIDTH || ray->map_y >= HEIGHT)
 		return (FALSE);
+	printf("DeBUG x = %d y = %d \n", ray->map_x, ray->map_y);
 	cell = c3d->map->map_arr[ray->map_x][ray->map_y];
 	if (cell == FALSE)
 	{
@@ -89,12 +91,13 @@ void	ft_cast_ray(t_data *c3d)
 		if (ray->side_dist_x < ray->side_dist_y)
 		{
 			ray->map_x += ray->step_x;
+			ray->side_dist_x += ray->delta_x;
 			ray->side = 0;
 		}
 		else
 		{
-			ray->side_dist_y += ray->delta_y;
 			ray->map_y += ray->step_x;
+			ray->side_dist_y += ray->delta_y;
 			ray->side = 1;
 		}
 		if (ft_ray_hit(c3d, ray))
@@ -112,6 +115,7 @@ void ft_do_the_raycast(t_data *c3d)
 
 	if (c3d->player->ray)
 		free(c3d->player->ray);
+	x = 0;
 	while (x < WIDTH)
 	{
 		c3d->player->ray = ft_init_ray(c3d, x);
