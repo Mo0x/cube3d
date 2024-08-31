@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 19:09:39 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/30 20:02:09 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/31 17:19:27 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	ft_ray_hit(t_data *c3d, t_ray *ray)
 		return (FALSE);
 	printf("DeBUG x = %d y = %d \n", ray->map_x, ray->map_y);
 	cell = c3d->map->map_arr[ray->map_x][ray->map_y];
-	if (cell == FALSE)
+	if (cell != FALSE)
 	{
 		/* if (current_cell = DOOR) here we will handle doors*/
 		return (TRUE);
@@ -113,8 +113,6 @@ void ft_do_the_raycast(t_data *c3d)
 {
 	int	x;
 
-	if (c3d->player->ray)
-		free(c3d->player->ray);
 	x = 0;
 	while (x < WIDTH)
 	{
@@ -122,6 +120,7 @@ void ft_do_the_raycast(t_data *c3d)
 		ft_cast_ray(c3d);
 		if(c3d->player->ray->hit)
 			ft_draw_wall(c3d, c3d->player->ray, x);
+		free(c3d->player->ray);
 		x++;
 	}
 }

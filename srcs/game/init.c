@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:03:38 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/30 20:04:02 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/31 17:11:28 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	ft_init(t_data *c3d)
 	c3d->start_time = 0;
 	c3d->refresh = TRUE;
 	// temp;
-	c3d->player->pos_x = 1;
-	c3d->player->pos_y = 1;
+	c3d->player->pos_x = 8;
+	c3d->player->pos_y = 8;
 
 }
 

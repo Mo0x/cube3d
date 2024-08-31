@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 18:39:12 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/30 19:20:27 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/31 17:06:27 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_clear_image(mlx_image_t *img, int color)
 	unsigned int	x;
 	unsigned int	y;
 
-	if(!img)
+	if (!img)
 		return ;
 	y = 0;
 	while(y < HEIGHT)
