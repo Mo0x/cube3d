@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 19:09:39 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/31 17:19:27 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/07 16:34:17 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void ft_do_the_raycast(t_data *c3d)
 		ft_cast_ray(c3d);
 		if(c3d->player->ray->hit)
 			ft_draw_wall(c3d, c3d->player->ray, x);
-		free(c3d->player->ray);
+		//free(c3d->player->ray); <- idk about this
 		x++;
 	}
 }
