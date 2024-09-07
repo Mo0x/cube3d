@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 17:47:30 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/31 17:45:48 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/07 16:17:53 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,4 @@ void	player_move(t_data *c3d, char *dir)
 	else if (!ft_strcmp("RIGHT", dir))
 		move_right(c3d, c3d->player);
 	c3d->refresh = TRUE;
-}
-void	player_look(t_data *c3d, char *dir)
-{
-	(void)c3d;
-	(void)dir;
 }

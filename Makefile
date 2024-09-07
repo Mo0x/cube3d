@@ -18,7 +18,8 @@ SRCS = ./srcs/main.c  \
 		./srcs/game/raycast.c \
 		./srcs/game/draw_wall.c \
 		./srcs/utils/mlx_utils.c \
-		./srcs/player/player_move.c
+		./srcs/player/player_move.c \
+		./srcs/player/player_look.c
 
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 INCDIRS = ./includes
