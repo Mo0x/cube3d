@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 17:47:30 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/09/07 16:17:53 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:07:32 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int	ft_valid_cell(t_data *c3d, int x, int y)
 {
 	//door check here too
-	if (c3d->map->map_arr[x][y])
+	printf("valid x = %d, y = %d, maparr = %d\n", x, y, c3d->map->map_arr[y][x]);
+	if (c3d->map->map_arr[y][x] == 0)
 		return (TRUE);
 	return (FALSE);
 }

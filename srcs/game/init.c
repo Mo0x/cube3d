@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:03:38 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/09/09 18:21:34 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:12:17 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_init(t_data *c3d)
 {
-	c3d->player->dir_x = -1;
-	c3d->player->dir_y = 0;
+	/* c3d->player->dir_x = -1;
+	c3d->player->dir_y = 0; */
 	c3d->player->plane_x = 0;
 	c3d->player->plane_y = 0.66;
 	c3d->player->ray = NULL;
@@ -24,7 +24,6 @@ void	ft_init(t_data *c3d)
 	c3d->start_time = 0;
 	c3d->refresh = TRUE;
 	// temp;
-	printf("x = %d, y = %d, arr = %d\n", (int)c3d->player->pos_x, (int)c3d->player->pos_y, c3d->map->map_arr[(int)c3d->player->pos_x][(int)c3d->player->pos_y]);
 }
 
 /* void	ft_step_and_side_dist(t_data *c3d, t_ray *ray)
@@ -182,6 +181,18 @@ void	game_render(void *c4d)
 
 void	ft_start_game(t_data *c3d)
 {
+	int x = 0;
+	int y = 0;
+	while (c3d->map->map_arr[y])
+	{
+		while (c3d->map->map_arr[y][x])
+		{
+			printf("%d ", c3d->map->map_arr[y][x]);
+			x++;
+		}
+		printf("\n");
+		y++;
+	}
 	ft_init(c3d);
 	init_mlx(c3d);
 	mlx_loop_hook(c3d->mlx, game_render, c3d);
