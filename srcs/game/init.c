@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:03:38 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/31 17:11:28 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/09 18:21:34 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ void	ft_init(t_data *c3d)
 	c3d->start_time = 0;
 	c3d->refresh = TRUE;
 	// temp;
-	c3d->player->pos_x = 8;
-	c3d->player->pos_y = 8;
-
+	printf("x = %d, y = %d, arr = %d\n", (int)c3d->player->pos_x, (int)c3d->player->pos_y, c3d->map->map_arr[(int)c3d->player->pos_x][(int)c3d->player->pos_y]);
 }
 
 /* void	ft_step_and_side_dist(t_data *c3d, t_ray *ray)
