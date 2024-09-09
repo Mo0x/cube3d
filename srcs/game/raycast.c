@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 19:09:39 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/09/07 16:34:17 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:38:39 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	ft_ray_hit(t_data *c3d, t_ray *ray)
 		return (FALSE);
 	if (ray->map_x >= WIDTH || ray->map_y >= HEIGHT)
 		return (FALSE);
-	printf("DeBUG x = %d y = %d \n", ray->map_x, ray->map_y);
+	//printf("DeBUG x = %d y = %d \n", ray->map_x, ray->map_y);
 	cell = c3d->map->map_arr[ray->map_x][ray->map_y];
 	if (cell != FALSE)
 	{
