@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_row_check.c                                    :+:      :+:    :+:   */
+/*   validate_rows.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wkeiser <wkeiser@student.42mulhouse.fr>    +#+  +:+       +#+        */
+/*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 23:23:19 by wkeiser           #+#    #+#             */
-/*   Updated: 2024/08/20 23:23:20 by wkeiser          ###   ########.fr       */
+/*   Updated: 2024/09/11 16:39:20 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ void	validate_map_boundaries(char **map_arr, int height)
 	y = 0;
 	while (y < height)
 	{
-
-
 		current_width = ft_strlen(map_arr[y]);
 		if (y == 0 || y == height - 1)
 			validate_boundary_row(map_arr, y, current_width);

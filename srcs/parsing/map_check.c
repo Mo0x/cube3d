@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 20:29:06 by wkeiser           #+#    #+#             */
-/*   Updated: 2024/09/09 18:30:40 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/11 17:54:28 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	check_single_spawn_point(t_data *c3d)
 					exit_exclaim("The player should be in a clear area!\n");
 				c3d->player->pos_x = x;
 				c3d->player->pos_y = y;
+				c3d->player->dir = c3d->map->map_arr[y][x];
+				c3d->map->map_arr[y][x] = '0';
 				spawn_count++;
 			}
 			x++;

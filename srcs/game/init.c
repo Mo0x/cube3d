@@ -6,23 +6,54 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:03:38 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/09/09 19:12:17 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/11 17:54:07 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+void	ft_set_up_dir(t_player *player)
+{
+	if (player->dir == 'N')
+	{
+		player->dir_x = -1.0f;
+		player->dir_y = 0.0f;
+		player->plane_x = 0.0f;
+		player->plane_y = 0.66f;
+	}
+	else if (player->dir == 'S')
+	{
+		player->dir_x = 1.0f;
+		player->dir_y = 0.0f;
+		player->plane_x = 0.0f;
+		player->plane_y = -0.66f;
+	}
+	else if (player->dir == 'W')
+	{
+		player->dir_x = 0.0f;
+		player->dir_y = -1.0f;
+		player->plane_x = -0.66f;
+		player->plane_y = -0.0f;
+	}
+	else if (player->dir == 'E')
+	{
+		player->dir_x = 0.0f;
+		player->dir_y = 1.0f;
+		player->plane_x = 0.66f;
+		player->plane_y = 0.0f;
+	}
+}
+
 void	ft_init(t_data *c3d)
 {
-	/* c3d->player->dir_x = -1;
+	/* c3d->_x = -1;
 	c3d->player->dir_y = 0; */
-	c3d->player->plane_x = 0;
-	c3d->player->plane_y = 0.66;
 	c3d->player->ray = NULL;
 	c3d->time = 0;
 	c3d->old_time = 0;
 	c3d->start_time = 0;
 	c3d->refresh = TRUE;
+	ft_set_up_dir(c3d->player);
 	// temp;
 }
 
@@ -181,18 +212,6 @@ void	game_render(void *c4d)
 
 void	ft_start_game(t_data *c3d)
 {
-	int x = 0;
-	int y = 0;
-	while (c3d->map->map_arr[y])
-	{
-		while (c3d->map->map_arr[y][x])
-		{
-			printf("%d ", c3d->map->map_arr[y][x]);
-			x++;
-		}
-		printf("\n");
-		y++;
-	}
 	ft_init(c3d);
 	init_mlx(c3d);
 	mlx_loop_hook(c3d->mlx, game_render, c3d);

@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 17:47:30 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/09/09 19:07:32 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/11 17:32:34 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int	ft_valid_cell(t_data *c3d, int x, int y)
 {
 	//door check here too
-	printf("valid x = %d, y = %d, maparr = %d\n", x, y, c3d->map->map_arr[y][x]);
-	if (c3d->map->map_arr[y][x] == 0)
+	printf("valide = %c\n", c3d->map->map_arr[y][x]);
+	if (c3d->map->map_arr[y][x] == '0')
 		return (TRUE);
 	return (FALSE);
 }
@@ -27,12 +27,14 @@ void	move_up(t_data *c3d, t_player *player)
 	float	new_pos;
 
 	speed = player->move_speed;
+	printf("old x = %d, y = %d, dir_x = %f\n", (int)player->pos_x, (int)player->pos_y, player->dir_x);
 	new_pos = player->pos_x + player->dir_x * speed;
 	if (ft_valid_cell(c3d, (int)new_pos, player->pos_y))
 		player->pos_x = new_pos;
 	new_pos = player->pos_y + player->dir_y * speed;
 	if (ft_valid_cell(c3d, (int)player->pos_x, (int)new_pos))
 		player->pos_y = new_pos;
+	printf("new x = %d, y = %d\n", (int)player->pos_x, (int)player->pos_y);
 }
 void	move_down(t_data *c3d, t_player *player)
 {
