@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 14:44:27 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/28 17:44:58 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/08/29 19:44:29 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,14 @@ void	parsing(t_map *map, char **filename, int argc, t_data *c3d);
 /*core*/
 void	ft_start_game(t_data *c3d);
 void	render(t_data *c3d);
+void	ft_do_the_raycast(t_data *c3d);
+void	ft_draw_wall(t_data *c3d, t_ray *ray, int x);
 
 /*mlx utils*/
 void	ft_draw_vertical(t_data *c3d, t_ray *ray, int x);
 void	ft_clear_image(mlx_image_t *img, int color);
+void	ft_draw_rectangle(mlx_image_t *img, t_rect rect);
+void	ft_warpper_put_pxl(mlx_image_t *img, int x, int y, unsigned int color);
 
 /*Move set*/
 void	player_move(t_data *c3d, char *dir);

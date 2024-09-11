@@ -6,15 +6,15 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/08/28 17:14:56 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/11 17:48:28 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #ifndef TYPES_H
 # define TYPES_H
-# define HEIGHT 1280
-# define WIDTH 720
+# define HEIGHT 720
+# define WIDTH 1280
 # define TRUE 1
 # define FALSE 0
 # include <MLX42/MLX42.h>
@@ -39,6 +39,17 @@ typedef struct s_img
 }				t_img;
 */
 
+typedef	struct s_rect
+{
+	int				x_start;
+	int				x_end;
+	int				y_start;
+	int				y_end;
+	unsigned int	color;
+}			t_rect;
+
+/* perhaps need to convert line height draw_start and draw_end into float*/
+
 typedef struct	s_ray
 {
 	double	camera_x;
@@ -55,9 +66,9 @@ typedef struct	s_ray
 	int		step_y;
 	int		hit;
 	int		side;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
+	float	line_height;
+	float	draw_start;
+	float	draw_end;
 }				t_ray;
 
 typedef struct s_player
@@ -70,7 +81,8 @@ typedef struct s_player
 	double	plane_y;
 	float	cam_speed;
 	float	move_speed;
-
+	char	dir;
+	t_ray	*ray;
 }				t_player;
 
 typedef struct s_data
