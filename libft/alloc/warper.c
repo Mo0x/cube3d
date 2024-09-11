@@ -19,7 +19,8 @@ void	clear_alloc(t_list **h)
 	while (*h)
 	{
 		t = (*h)->next;
-		free((*h)->content);
+		if ((*h)->content)
+			free((*h)->content);
 		free(*h);
 		*h = t;
 	}
