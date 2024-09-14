@@ -25,16 +25,17 @@ void	ft_rotate(double *x, double *y, float angle)
 
 void	player_look_right(t_data *c3d)
 {
-	t_player *p;
+	t_player	*p;
 
 	p = c3d->player;
 	ft_rotate(&(p->dir_x), &(p->dir_y), -p->cam_speed);
 	ft_rotate(&(p->plane_x), &(p->plane_y), -p->cam_speed);
 	c3d->refresh = TRUE;
 }
+
 void	player_look_left(t_data *c3d)
 {
-	t_player *p;
+	t_player	*p;
 
 	p = c3d->player;
 	ft_rotate(&(p->dir_x), &(p->dir_y), p->cam_speed);
