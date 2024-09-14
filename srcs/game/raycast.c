@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 19:09:39 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/09/14 15:22:07 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/14 15:24:09 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	ft_step_and_side_dist(t_data *c3d, t_ray *ray)
 {
-	if (ray->ray_dir_x < 0.0)
+	if (ray->ray_dir_x < 0.0f)
 	{
 		ray->step_x = -1;
 		ray->side_dist_x = (c3d->player->pos_x - ray->map_x) * ray->delta_x;
@@ -23,9 +23,9 @@ void	ft_step_and_side_dist(t_data *c3d, t_ray *ray)
 	else
 	{
 		ray->step_x = 1;
-		ray->side_dist_x = (ray->map_x + 1.0 - c3d->player->pos_x) * ray->delta_x;
+		ray->side_dist_x = (ray->map_x + 1.0f - c3d->player->pos_x) * ray->delta_x;
 	}
-	if (ray->ray_dir_y < 0.0)
+	if (ray->ray_dir_y < 0.0f)
 	{
 		ray->step_y = -1;
 		ray->side_dist_y = (c3d->player->plane_y - ray->map_y) * ray->delta_y;
@@ -33,7 +33,7 @@ void	ft_step_and_side_dist(t_data *c3d, t_ray *ray)
 	else
 	{
 		ray->step_y = 1;
-		ray->side_dist_y = (ray->map_y + 1.0 - c3d->player->pos_y) * ray->delta_y;
+		ray->side_dist_y = (ray->map_y + 1.0f - c3d->player->pos_y) * ray->delta_y;
 	}
 }
 

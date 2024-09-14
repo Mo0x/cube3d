@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 19:18:15 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/09/07 16:34:33 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/14 15:26:54 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	ft_draw_wall(t_data *c3d, t_ray *ray, int x)
 	int	color;
 
 	ray->line_height = (float)HEIGHT / ray->perp_wall_dist;
-	ray->draw_start = (-ray->line_height / 2 + HEIGHT) / 2;
+	ray->draw_start = (-ray->line_height / 2 + (float)HEIGHT) / 2;
 	if (ray->draw_start < 0.0f)
 		ray->draw_start = 0.0f;
-	ray->draw_end = (ray->line_height / 2 + HEIGHT) / 2;
-	if (ray->draw_end >= HEIGHT)
-		ray->draw_end = HEIGHT - 1;
+	ray->draw_end = (ray->line_height / 2 + (float)HEIGHT) / 2;
+	if (ray->draw_end >= (float)HEIGHT)
+		ray->draw_end = (float)HEIGHT - 1;
 	/*TODO setup texture*/
 	y = ray->draw_start;
 	while (y < ray->draw_end)

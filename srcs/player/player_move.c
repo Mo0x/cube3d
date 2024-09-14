@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 17:47:30 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/09/11 17:58:29 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/14 15:48:19 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ void	move_right(t_data *c3d, t_player *player)
 	float	new_pos;
 
 	speed = player->move_speed;
-	new_pos = player->pos_x - player->plane_x * speed;
+	new_pos = player->pos_x + player->plane_x * speed;
 	if (ft_valid_cell(c3d, (int)new_pos, player->pos_y))
 		player->pos_x = new_pos;
-	new_pos = player->pos_y - player->plane_y * speed;
+	new_pos = player->pos_y + player->plane_y * speed;
 	if (ft_valid_cell(c3d, (int)player->pos_x, (int)new_pos))
 		player->pos_y = new_pos;
 }
