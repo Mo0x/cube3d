@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 19:09:39 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/09/11 17:20:43 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/14 15:20:07 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_ray	*ft_init_ray(t_data *c3d, int x)
 	if (!ray)
 		exit_exclaim("Error mallocing ray");
 	ray->hit = FALSE;
-	ray->camera_x = 2 * x / WIDTH - 1;
+	ray->camera_x = 2 * x / (float)WIDTH - 1;
 	ray->ray_dir_x = c3d->player->dir_x + c3d->player->plane_x * ray->camera_x;
 	ray->ray_dir_y = c3d->player->dir_y + c3d->player->plane_y * ray->camera_x;
 	ray->map_x = (int)c3d->player->pos_x;
@@ -53,11 +53,11 @@ t_ray	*ft_init_ray(t_data *c3d, int x)
 	if (ray->ray_dir_x == 0)
 		ray->delta_x = INFINITY;
 	else
-		ray->delta_x = ft_abs_double(1/ray->ray_dir_x);
+		ray->delta_x = ft_abs_double(1.0 /ray->ray_dir_x);
 	if (ray->ray_dir_y == 0)
 		ray->delta_y = INFINITY;
 	else
-		ray->delta_y = ft_abs_double(1/ray->ray_dir_y);
+		ray->delta_y = ft_abs_double(1.0 /ray->ray_dir_y);
 	ft_step_and_side_dist(c3d, ray);
 	return (ray);
 }
