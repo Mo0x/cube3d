@@ -24,6 +24,7 @@
 # include <string.h>
 # include <fcntl.h>
 # include "parsing.h"
+# include "minimap.h"
 
 /* temporary color*/
 # define BLACK 0x000000FF
@@ -48,6 +49,7 @@ void	ft_draw_wall(t_data *c3d, t_ray *ray, int x);
 /*mlx utils*/
 void	ft_draw_vertical(t_data *c3d, t_ray *ray, int x);
 void	ft_clear_image(mlx_image_t *img, int color);
+void	ft_clear_mini_image(mlx_image_t *img, int color);
 void	ft_draw_rectangle(mlx_image_t *img, t_rect rect);
 void	ft_warpper_put_pxl(mlx_image_t *img, int x, int y, unsigned int color);
 

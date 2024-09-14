@@ -33,9 +33,10 @@ void	render(t_data *c3d)
 	if (c3d->refresh)
 	{
 		ft_clear_image(c3d->img, BLACK);
-		//ft_clear_image(c3d->img_minimap, 0);
+		ft_clear_mini_image(c3d->img_minimap, BLACK);
 		ft_roof_and_ground(c3d);
 		ft_do_the_raycast(c3d);
+		draw_minimap(c3d);
 		c3d->refresh = FALSE;
 	}
 }

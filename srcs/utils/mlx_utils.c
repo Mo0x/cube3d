@@ -20,7 +20,7 @@ void	ft_clear_image(mlx_image_t *img, int color)
 	if (!img)
 		return ;
 	y = 0;
-	while(y < HEIGHT)
+	while (y < HEIGHT)
 	{
 		x = 0;
 		while (x < WIDTH)
@@ -31,6 +31,27 @@ void	ft_clear_image(mlx_image_t *img, int color)
 		y++;
 	}
 }
+
+void	ft_clear_mini_image(mlx_image_t *img, int color)
+{
+	unsigned int	x;
+	unsigned int	y;
+
+	if (!img)
+		return ;
+	y = 0;
+	while (y < MINIMAP_IMG_SIZE)
+	{
+		x = 0;
+		while (x < MINIMAP_IMG_SIZE)
+		{
+			mlx_put_pixel(img, x, y, color);
+			x++;
+		}
+		y++;
+	}
+}
+
 
 /*x_start and y_start must be << to x_end and y_end*/
 void	ft_warpper_put_pxl(mlx_image_t *img, int x, int y, unsigned int color)

@@ -170,6 +170,17 @@ void	init_mlx(t_data *c3d)
 		mlx_close_window(c3d->mlx);
 		exit_exclaim("couldn't image to window");
 	}
+	c3d->img_minimap = mlx_new_image(c3d->mlx, MINIMAP_IMG_SIZE, MINIMAP_IMG_SIZE);
+	if (!(c3d->img_minimap))
+	{
+		mlx_close_window(c3d->mlx);
+		exit_exclaim("Couldn't initialize minimap image :(\n");
+	}
+	if (mlx_image_to_window(c3d->mlx, c3d->img_minimap, MINIMAP_OFF_X, MINIMAP_OFF_Y) == -1)
+	{
+		mlx_close_window(c3d->mlx);
+		exit_exclaim("couldn't image to window");
+	}
 }
 //TODO PLAYER MOVE AND PLAYER LOOK
 

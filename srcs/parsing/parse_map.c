@@ -53,6 +53,7 @@ void	parse_map(t_map *map, t_data *c3d)
 	}
 	if (!line)
 		exit_exclaim("Where is the map ?\n");
+	map->height = 0;
 	while (map_check(&line, map))
 	{
 		add_line(map, line);
