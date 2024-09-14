@@ -181,11 +181,36 @@ void	init_mlx(t_data *c3d)
 		mlx_close_window(c3d->mlx);
 		exit_exclaim("couldn't image to window");
 	}
+	load_weapon_image(c3d, "srcs/sprite/gun.png");
+	if (mlx_image_to_window(c3d->mlx, c3d->img_sprite, 0, 0) == -1)
+	{
+		mlx_close_window(c3d->mlx);
+		exit_exclaim("Couldn't display weapon sprite");
+	}
+	// Positionnement initial du sprite
+	c3d->img_sprite->instances[0].x = (WIDTH / 2) - (c3d->img_sprite->width / 2);
+	c3d->img_sprite->instances[0].y = HEIGHT - c3d->img_sprite->height;
 }
 //TODO PLAYER MOVE AND PLAYER LOOK
 
+void	ft_check_moving(t_data *c3d)
+{
+	int	is_moving;
+
+	is_moving = FALSE;
+	if (mlx_is_key_down(c3d->mlx, MLX_KEY_W) || \
+	mlx_is_key_down(c3d->mlx, MLX_KEY_S) || \
+	mlx_is_key_down(c3d->mlx, MLX_KEY_A) || \
+	mlx_is_key_down(c3d->mlx, MLX_KEY_D) || \
+	mlx_is_key_down(c3d->mlx, MLX_KEY_LEFT) || \
+	mlx_is_key_down(c3d->mlx, MLX_KEY_RIGHT))
+		is_moving = TRUE;
+	c3d->is_moving = is_moving;
+}
+
 void	ft_do_the_input(t_data *c3d)
 {
+	ft_check_moving(c3d);
 	if (mlx_is_key_down(c3d->mlx, MLX_KEY_W))
 		player_move(c3d, "UP");
 	else if (mlx_is_key_down(c3d->mlx, MLX_KEY_S))

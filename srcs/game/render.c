@@ -37,6 +37,7 @@ void	render(t_data *c3d)
 		ft_roof_and_ground(c3d);
 		ft_do_the_raycast(c3d);
 		draw_minimap(c3d);
+		update_weapon_sprite(c3d);
 		c3d->refresh = FALSE;
 	}
 }

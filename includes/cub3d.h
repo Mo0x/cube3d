@@ -57,4 +57,8 @@ void	ft_warpper_put_pxl(mlx_image_t *img, int x, int y, unsigned int color);
 void	player_move(t_data *c3d, char *dir);
 void	player_look(t_data *c3d, char *dir);
 
+/*sprite*/
+void	load_weapon_image(t_data *c3d, char *weapon_path);
+void	update_weapon_sprite(t_data *c3d);
+
 #endif
