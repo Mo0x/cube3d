@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 19:09:39 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/09/14 15:20:07 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/14 15:22:07 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ t_ray	*ft_init_ray(t_data *c3d, int x)
 	ray->ray_dir_y = c3d->player->dir_y + c3d->player->plane_y * ray->camera_x;
 	ray->map_x = (int)c3d->player->pos_x;
 	ray->map_y = (int)c3d->player->pos_y;
-	if (ray->ray_dir_x == 0)
+	if (ray->ray_dir_x == 0.0f)
 		ray->delta_x = INFINITY;
 	else
 		ray->delta_x = ft_abs_double(1.0 /ray->ray_dir_x);
-	if (ray->ray_dir_y == 0)
+	if (ray->ray_dir_y == 0.0f)
 		ray->delta_y = INFINITY;
 	else
 		ray->delta_y = ft_abs_double(1.0 /ray->ray_dir_y);
