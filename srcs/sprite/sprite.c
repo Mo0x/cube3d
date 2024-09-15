@@ -27,7 +27,7 @@ void	update_moving(float *offset, int *direction)
 }
 
 /*fonction qui verifie si le curseur est en haut au milieu ou en bas si neg monte 
-si pos monte jusqua 10 
+si pos monte jusqua 10 pixels 
 ou 1 pour deplacer dans l autre sens de maniere smoooth*/
 
 void	update_idle(float *offset, int *direction)
@@ -59,7 +59,6 @@ void	update_weapon_sprite(t_data *c3d)
 	c3d->img_sprite->instances[0].y = (HEIGHT - c3d->img_sprite->height) \
 					+ offset;
 }
-
 
 void	load_weapon_image(t_data *c3d, char *weapon_path)
 {
