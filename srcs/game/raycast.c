@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 19:09:39 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/09/14 18:49:25 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/16 16:44:13 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,19 +88,21 @@ void	ft_cast_ray(t_data *c3d)
 
 	depth = 0;
 	ray = c3d->player->ray;
-	while (!ray->hit && depth < 64)
+	while (ray->hit == 0 && depth < 64)
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
 		{
 			ray->map_x += ray->step_x;
 			ray->side_dist_x += ray->delta_x;
 			ray->side = 0;
+			//printf("map_x %d, step_x %d, dist_x %f delta_x %f\n", ray->map_x, ray->step_x, ray->side_dist_x, ray->delta_x);
 		}
 		else
 		{
 			ray->map_y += ray->step_y;
 			ray->side_dist_y += ray->delta_y;
 			ray->side = 1;
+			//printf("map_y %d, step_y %d, dist_y %f delta_y %f\n", ray->map_y, ray->step_y, ray->side_dist_y, ray->delta_y);
 		}
 		if (ft_ray_hit(c3d, ray))
 			ray->hit = TRUE;
@@ -110,7 +112,7 @@ void	ft_cast_ray(t_data *c3d)
 		ray->perp_wall_dist = (ray->side_dist_x - ray->delta_x);
 	else
 		ray->perp_wall_dist = (ray->side_dist_y - ray->delta_y);
-	printf("side %d perp %f\n", ray->side, ray->perp_wall_dist); //probleme here
+	//printf("side %d perp %f\n", ray->side, ray->perp_wall_dist); //probleme here
 }
 
 void ft_do_the_raycast(t_data *c3d)
