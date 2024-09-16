@@ -28,7 +28,7 @@ void	ft_step_and_side_dist(t_data *c3d, t_ray *ray)
 	if (ray->ray_dir_y < 0.0f)
 	{
 		ray->step_y = -1;
-		ray->side_dist_y = (c3d->player->plane_y - (double) ray->map_y) * ray->delta_y;
+		ray->side_dist_y = (c3d->player->pos_y - (double) ray->map_y) * ray->delta_y;
 	}
 	else
 	{
