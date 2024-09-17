@@ -102,6 +102,7 @@ typedef struct s_data
 	double			old_time;
 	double			frame;
 	int				refresh;
+	int				is_moving;
 }				t_data;
 
 #endif

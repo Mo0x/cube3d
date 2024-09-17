@@ -65,7 +65,7 @@ void	ft_warpper_put_pxl(mlx_image_t *img, int x, int y, unsigned int color)
 
 void	ft_draw_rectangle(mlx_image_t *img, t_rect rect)
 {
-	int x;
+	int	x;
 	int	y;
 
 	if (!img)
@@ -76,23 +76,22 @@ void	ft_draw_rectangle(mlx_image_t *img, t_rect rect)
 		x = 0;
 		while (x < rect.x_end)
 		{
-			ft_warpper_put_pxl(img, rect.x_start + x, rect.y_start + y, rect.color);
+			ft_warpper_put_pxl(img, rect.x_start + x, \
+							rect.y_start + y, rect.color);
 			x++;
 		}
 		y++;
 	}
 }
 
-
-
 void	ft_draw_vertical(t_data *c3d, t_ray *ray, int x)
 {
-	int y;
+	int	y;
 
 	y = ray->draw_start;
 	while (y < ray->draw_end)
 	{
-			mlx_put_pixel(c3d->img, x, y, YELLOW);
-			y++;
+		mlx_put_pixel(c3d->img, x, y, YELLOW);
+		y++;
 	}
 }
