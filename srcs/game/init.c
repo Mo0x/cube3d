@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:03:38 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/09/11 17:54:07 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/17 18:10:15 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,5 +254,6 @@ void	ft_start_game(t_data *c3d)
 	
 	//game_loop(c3d);
 	/* set hook here*/
+	mlx_key_hook(c3d->mlx, ft_escape, c3d);
 	mlx_loop(c3d->mlx);
 }
