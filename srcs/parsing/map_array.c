@@ -26,7 +26,6 @@ void	update_map_dimensions(t_map *map, char *to_add)
 {
 	int	current_width;
 
-	map->width = 0;
 	current_width = ft_strlen(to_add);
 	if (current_width > map->width)
 	{

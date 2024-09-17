@@ -63,13 +63,18 @@ void	draw_minimap_wall(t_data *c3d, int i, int j)
 	draw_rect(c3d->img_minimap, &inner_rect);
 }
 
-void	draw_minimap_player(t_data *c3d)
+void	draw_minimap_player(t_data *c3d, float offset_x, float offset_y)
 {
 	t_rect	player_outer;
 	t_rect	player_inner;
+	float	player_minimap_x;
+	float	player_minimap_y;
 
-	player_outer.x_start = (MINIMAP_IMG_SIZE / 2 - 2) + 2;
-	player_outer.y_start = (MINIMAP_IMG_SIZE / 2 - 2) + 2;
+	player_minimap_x = (c3d->player->pos_x - offset_x) * MINIMAP_CELL_SIZE;
+	player_minimap_y = (c3d->player->pos_y - offset_y) * MINIMAP_CELL_SIZE;
+
+	player_outer.x_start = player_minimap_x - 3;
+	player_outer.y_start = player_minimap_y - 3;
 	player_outer.x_end = player_outer.x_start + 6;
 	player_outer.y_end = player_outer.y_start + 6;
 	player_outer.color = 0x00FF00FF;
@@ -84,16 +89,17 @@ void	draw_minimap_player(t_data *c3d)
 	draw_rect(c3d->img_minimap, &player_inner);
 }
 
+
 void	draw_minimap(t_data *c3d)
 {
 	int		i;
 	int		j;
 	char	cell;
-	int		offset_x;
-	int		offset_y;
+	float	offset_x;
+	float	offset_y;
 
-	offset_x = c3d->player->pos_x - (MINIMAP_IMG_SIZE / (2 * MINIMAP_CELL_SIZE));
-	offset_y = c3d->player->pos_y - (MINIMAP_IMG_SIZE / (2 * MINIMAP_CELL_SIZE));
+	offset_x = c3d->player->pos_x - (MINIMAP_IMG_SIZE / (2.0f * MINIMAP_CELL_SIZE));
+	offset_y = c3d->player->pos_y - (MINIMAP_IMG_SIZE / (2.0f * MINIMAP_CELL_SIZE));
 
 	i = 0;
 	while (i < c3d->map->height)
@@ -112,6 +118,6 @@ void	draw_minimap(t_data *c3d)
 		}
 		i++;
 	}
-	draw_minimap_player(c3d);
+	draw_minimap_player(c3d, offset_x, offset_y);
 	// draw_minimap_borders(c3d);
 }
