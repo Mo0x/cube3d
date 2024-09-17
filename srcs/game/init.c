@@ -14,28 +14,28 @@
 
 void	ft_set_up_dir(t_player *player)
 {
-	if (player->dir == 'E') //est ?
+	if (player->dir == 'N')
 	{
 		player->dir_x = -1.0f;
 		player->dir_y = 0.0f;
 		player->plane_x = 0.0f;
 		player->plane_y = 0.66f;
 	}
-	else if (player->dir == 'W') //ouest
+	else if (player->dir == 'S')
 	{
 		player->dir_x = 1.0f;
 		player->dir_y = 0.0f;
 		player->plane_x = 0.0f;
 		player->plane_y = -0.66f;
 	}
-	else if (player->dir == 'N') //nord
+	else if (player->dir == 'W')
 	{
 		player->dir_x = 0.0f;
 		player->dir_y = -1.0f;
 		player->plane_x = -0.66f;
 		player->plane_y = -0.0f;
 	}
-	else if (player->dir == 'S') //sud
+	else if (player->dir == 'E')
 	{
 		player->dir_x = 0.0f;
 		player->dir_y = 1.0f;
