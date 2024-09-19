@@ -42,7 +42,7 @@ void	draw_rect(mlx_image_t *img, t_rect *rect)
 	}
 }
 
-void	draw_minimap_wall(t_data *c3d, int i, int j)
+void	draw_minimap_wall(t_data *c3d, float i, float j)
 {
 	t_rect	outer_rect;
 	t_rect	inner_rect;
@@ -73,8 +73,8 @@ void	draw_minimap_player(t_data *c3d, float offset_x, float offset_y)
 	player_minimap_x = (c3d->player->pos_x - offset_x) * MINIMAP_CELL_SIZE;
 	player_minimap_y = (c3d->player->pos_y - offset_y) * MINIMAP_CELL_SIZE;
 
-	player_outer.x_start = player_minimap_x - 3;
-	player_outer.y_start = player_minimap_y - 3;
+	player_outer.x_start = (int)player_minimap_x - 3;
+	player_outer.y_start = (int)player_minimap_y - 3;
 	player_outer.x_end = player_outer.x_start + 6;
 	player_outer.y_end = player_outer.y_start + 6;
 	player_outer.color = 0x00FF00FF;
@@ -89,6 +89,19 @@ void	draw_minimap_player(t_data *c3d, float offset_x, float offset_y)
 	draw_rect(c3d->img_minimap, &player_inner);
 }
 
+/*
+void	draw_minimap_background(t_data *c3d)
+{
+	t_rect	background_rect;
+
+	background_rect.x_start = 0;
+	background_rect.y_start = 0;
+	background_rect.x_end = MINIMAP_IMG_SIZE;
+	background_rect.y_end = MINIMAP_IMG_SIZE;
+	// Set the color to black with 40% opacity (60% transparent)
+	background_rect.color = 0x66000000; // ARGB format: Alpha=0x66, RGB=0x000000
+	draw_rect(c3d->img_minimap, &background_rect);
+}*/
 
 void	draw_minimap(t_data *c3d)
 {
@@ -98,6 +111,7 @@ void	draw_minimap(t_data *c3d)
 	float	offset_x;
 	float	offset_y;
 
+	//draw_minimap_background(c3d);
 	offset_x = c3d->player->pos_x - (MINIMAP_IMG_SIZE / (2.0f * MINIMAP_CELL_SIZE));
 	offset_y = c3d->player->pos_y - (MINIMAP_IMG_SIZE / (2.0f * MINIMAP_CELL_SIZE));
 
@@ -105,7 +119,7 @@ void	draw_minimap(t_data *c3d)
 	while (i < c3d->map->height)
 	{
 		j = 0;
-		while (j < c3d->map->width)
+		while (c3d->map->map_arr[i][j] && j < c3d->map->width)
 		{
 			cell = c3d->map->map_arr[i][j];
 			if (cell == '1')

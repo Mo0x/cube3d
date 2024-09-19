@@ -26,6 +26,7 @@ void	update_map_dimensions(t_map *map, char *to_add)
 {
 	int	current_width;
 
+	current_width = 0;
 	current_width = ft_strlen(to_add);
 	if (current_width > map->width)
 	{
@@ -45,7 +46,7 @@ void	add_line(t_map *map, char *to_add)
 	if (size == 1)
 	{
 		map->map_arr = (char **)walloc(sizeof(char *) * (size + 1));
-		map->map_arr[0] = to_add; // usage de ft_strdup ou pas pour probleme de propriete ?
+		map->map_arr[0] = ft_strdup(to_add);
 		map->map_arr[1] = NULL;
 		size++;
 		return ;
@@ -54,19 +55,19 @@ void	add_line(t_map *map, char *to_add)
 	{
 		new_array = (char **)walloc(sizeof(char *) * (size + 1));
 		arrcpy(map->map_arr, new_array);
-		new_array[size - 1] = to_add; // idem que ci dessus / gestion erreur si dup
+		new_array[size - 1] = ft_strdup(to_add);
 		new_array[size] = NULL;
-	//	free_arr(map->map_arr);
+		free_arr(map->map_arr);
 		map->map_arr = new_array;
 		size++;
 		return ;
 	}
 }
 
-void	finalize_map_validation(t_map *map)
+void	finalize_map_validation(t_data *c3d)
 {
-	if (!map || !map->map_arr)
-		exit_exclaim("Map validation failed\n");
+	if (!c3d->map || !c3d->map->map_arr)
+		exit_exclaim("Map validation failed\n", c3d);
 	else
 		printf("La carte est valide.\n");
 	return ;

@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-void	validate_boundary_row(char **map_arr, int y, size_t width)
+void	validate_boundary_row(char **map_arr, int y, size_t width, t_data *c3d)
 {
 	size_t	x;
 
@@ -22,7 +22,7 @@ void	validate_boundary_row(char **map_arr, int y, size_t width)
 		if (map_arr[y][x] != '1' && map_arr[y][x] != ' ')
 		{
 			printf("Invalid character at boundary: x = %d / y = %d / char = %c\n", (int)x, (int)y, map_arr[y][x]); //test
-			exit_exclaim("Top or bottom row must have only '1's or spaces\n");
+			exit_exclaim("Top or bottom row must have only '1's or spaces\n", c3d);
 		}
 		x++;
 	}
@@ -55,14 +55,14 @@ int	check_edge_chars(char **map_arr, int y, size_t width)
 }
 
 /* check tous les middles rows j ai enleve la verif des spaces qui est faite dans une autre fonction pour toutes les cases ... ce qui fait vide ! */
-void	validate_middle_row(char **map_arr, int y, size_t width)
+void	validate_middle_row(char **map_arr, int y, size_t width,  t_data *c3d)
 {
 	if (check_edge_chars(map_arr, y, width))
 		exit_exclaim("First or last char except space in midle row \
-must be '1'\n");
+must be '1'\n", c3d);
 }
 
-void	validate_map_boundaries(char **map_arr, int height)
+void	validate_map_boundaries(char **map_arr, int height, t_data *c3d)
 {
 	int		y;
 	size_t	current_width;
@@ -72,17 +72,17 @@ void	validate_map_boundaries(char **map_arr, int height)
 	{
 		current_width = ft_strlen(map_arr[y]);
 		if (y == 0 || y == height - 1)
-			validate_boundary_row(map_arr, y, current_width);
+			validate_boundary_row(map_arr, y, current_width, c3d);
 		else
-			validate_middle_row(map_arr, y, current_width);
+			validate_middle_row(map_arr, y, current_width, c3d);
 		y++;
 	}
 }
 
-void	validate_rows(t_map *map)
+void	validate_rows(t_data *c3d)
 {
 	int	height;
 
-	height = arrsize(map->map_arr);
-	validate_map_boundaries(map->map_arr, height);
+	height = arrsize(c3d->map->map_arr);
+	validate_map_boundaries(c3d->map->map_arr, height, c3d);
 }

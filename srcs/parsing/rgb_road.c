@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-void	check_space_in_str_color(char *arr)
+void	check_space_in_str_color(char *arr, t_data *c3d)
 {
 	int	i;
 
@@ -20,7 +20,8 @@ void	check_space_in_str_color(char *arr)
 	while (arr[i])
 	{
 		if (arr[i] == ' ')
-			exit_exclaim("Found weird spaces in the string colors ! Why ?\n");
+			exit_exclaim("Found weird spaces in the string colors ! Why ?\n", \
+										c3d);
 		i++;
 	}
 }
@@ -60,7 +61,7 @@ int	validate_rgb_format(char *str)
 	return (count_comma == 2);
 }
 
-int	convert_rgb_str_to_int(char *rgb_str)
+int	convert_rgb_str_to_int(char *rgb_str, t_data *c3d)
 {
 	int	r;
 	int	g;
@@ -70,7 +71,7 @@ int	convert_rgb_str_to_int(char *rgb_str)
 	g = parse_rgb_component(&rgb_str);
 	b = parse_rgb_component(&rgb_str);
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
-		exit_exclaim("Color value out of range\n");
+		exit_exclaim("Color value out of range\n", c3d);
 	printf("R: %d, G: %d, B: %d\n", r, g, b); // test avant conversion
 	return ((r << 16) | (g << 8) | b);
 }
@@ -79,15 +80,15 @@ void	setup_colors(t_data *c3d)
 {
 	printf("before convert Color str ceiling :%s\n", c3d->map->ccolor); //test
 	printf("before convert Color str floor :%s\n", c3d->map->fcolor); //test
-	check_space_in_str_color(c3d->map->ccolor);
-	check_space_in_str_color(c3d->map->fcolor);
+	check_space_in_str_color(c3d->map->ccolor, c3d);
+	check_space_in_str_color(c3d->map->fcolor, c3d);
 	if (validate_rgb_format(c3d->map->ccolor) && \
 		validate_rgb_format(c3d->map->fcolor))
 	{
-		c3d->floorcolor = convert_rgb_str_to_int(c3d->map->ccolor);
-		c3d->ceilingcolor = convert_rgb_str_to_int(c3d->map->fcolor);
+		c3d->floorcolor = convert_rgb_str_to_int(c3d->map->ccolor, c3d);
+		c3d->ceilingcolor = convert_rgb_str_to_int(c3d->map->fcolor, c3d);
 	}
 	else
-		exit_exclaim("Check your colors man\n");
+		exit_exclaim("Check your colors man\n", c3d);
 	return ;
 }

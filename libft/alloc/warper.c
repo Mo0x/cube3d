@@ -44,6 +44,29 @@ void	wclear(void)
 void	del_one(t_list **h, void *to_del)
 {
 	t_list	*ptr;
+	t_list	*prev;
+
+	ptr = *h;
+	prev = NULL;
+	if (!h || !*h)
+		return ;
+	while (ptr && ptr->content != to_del)
+	{
+		prev = ptr;
+		ptr = ptr->next;
+	}
+	if (ptr == NULL)
+		return ;
+	if (prev == NULL)
+		*h = ptr->next;
+	else
+		prev->next = ptr->next;
+	if (ptr->content)
+		free(ptr->content);
+	free(ptr);
+}
+	/*
+	t_list	*ptr;
 
 	ptr = *h;
 	if (h)
@@ -62,5 +85,8 @@ void	del_one(t_list **h, void *to_del)
 			}
 			ptr = ptr->next;
 		}
-	}
-}
+	}*/
+
+
+
+

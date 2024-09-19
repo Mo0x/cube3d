@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-void	validate_map_enclosure(t_map *map)
+void	validate_map_enclosure(t_data *c3d)
 {
 	int	y;
 	int	height;
@@ -20,25 +20,33 @@ void	validate_map_enclosure(t_map *map)
 	int	width;
 
 	y = 0;
-	height = arrsize(map->map_arr);
+	height = arrsize(c3d->map->map_arr);
 	while (y < height)
 	{
-		width = ft_strlen(map->map_arr[y]);
+		width = ft_strlen(c3d->map->map_arr[y]);
 		x = 0;
 		while (x < width)
 		{
-			if (map->map_arr[y][x] == ' ')
+			if (c3d->map->map_arr[y][x] == ' ')
 			{
-				if (!is_enclosed_by_walls_or_spaces(map, x, y))
+				if (!is_enclosed_by_walls_or_spaces(c3d->map, x, y))
 				{
 					printf("Invalid space at: x = %d, y = %d\n", x, y); // testing
-					exit_exclaim("Spaces must be enclosed by '1's or spaces\n");
+					exit_exclaim("Spaces must be enclosed by '1's or spaces\n" \
+								, c3d);
 				}
 			}
 			x++;
 		}
 		y++;
 	}
+}
+
+void	ft_initialise_value_map(t_map *map)
+{
+	map->height = 0;
+	map->width = 0;
+	map->map_arr = NULL;
 }
 
 void	parse_map(t_map *map, t_data *c3d)
@@ -52,20 +60,20 @@ void	parse_map(t_map *map, t_data *c3d)
 		line = get_next_line(map->fd);
 	}
 	if (!line)
-		exit_exclaim("Where is the map ?\n");
-	map->height = 0;
-	while (map_check(&line, map))
+		exit_exclaim("Where is the map ?\n", c3d);
+	ft_initialise_value_map(map);
+	while (map_check(&line, c3d))
 	{
 		add_line(map, line);
 		line = get_next_line(map->fd);
 		if (!line || *line == '\n')
 		{
-			is_there_a_gift_after_map(map->fd, line);
+			is_there_a_gift_after_map(map->fd, line, c3d);
 			break ;
 		}
 	}
-	validate_rows(map);
-	validate_map_enclosure(map);
+	validate_rows(c3d);
+	validate_map_enclosure(c3d);
 	check_single_spawn_point(c3d);
-	finalize_map_validation(map);
+	finalize_map_validation(c3d);
 }

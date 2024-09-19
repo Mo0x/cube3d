@@ -41,7 +41,7 @@ typedef struct s_img
 }				t_img;
 */
 
-typedef	struct s_rect
+typedef struct s_rect
 {
 	int				x_start;
 	int				x_end;
@@ -52,7 +52,7 @@ typedef	struct s_rect
 
 /* perhaps need to convert line height draw_start and draw_end into float*/
 
-typedef struct	s_ray
+typedef struct s_ray
 {
 	double	camera_x;
 	double	ray_dir_x;
@@ -93,9 +93,13 @@ typedef struct s_data
 	int				floorcolor;
 	int				ceilingcolor;
 	mlx_t			*mlx;
-	mlx_image_t 	*img;
-	mlx_image_t 	*img_minimap;
-	mlx_image_t 	*img_sprite;
+	mlx_image_t		*img;
+	mlx_image_t		*img_minimap;
+	mlx_image_t		*img_sprite;
+	mlx_texture_t	*n_texture;
+	mlx_texture_t	*e_texture;
+	mlx_texture_t	*w_texture;
+	mlx_texture_t	*s_texture;
 	struct s_player	*player;
 	double			start_time;
 	double			time;

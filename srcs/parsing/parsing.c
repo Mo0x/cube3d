@@ -15,13 +15,13 @@
 void	parsing(t_map *map, char **filename, int argc, t_data *c3d)
 {
 	if (argc != 2)
-		exit_exclaim("Error wrong number of arguments\n");
+		exit_exclaim("Error wrong number of arguments\n", c3d);
 	filename_check(filename[1]);
 	map->fd = open(filename[1], O_RDONLY);
 	if (map->fd == -1)
-		exit_exclaim("Error when openning file\n");
-	colors_harvester(map);
-	check_textures(map);
+		exit_exclaim("Error when openning file\n", c3d);
+	colors_harvester(c3d);
+	check_textures(c3d);
 	setup_colors(c3d);
 	parse_map(map, c3d);
 	//check_player_enclosure(map);

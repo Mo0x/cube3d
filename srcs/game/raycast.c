@@ -43,7 +43,7 @@ t_ray	*ft_init_ray(t_data *c3d, int x)
 
 	ray = walloc(sizeof(t_ray));
 	if (!ray)
-		exit_exclaim("Error mallocing ray");
+		exit_exclaim("Error mallocing ray", c3d);
 	ray->hit = FALSE;
 	ray->camera_x = 2.0f * (float)x / (float)WIDTH - 1.0f;
 	ray->ray_dir_x = c3d->player->dir_x + c3d->player->plane_x * ray->camera_x;
@@ -127,7 +127,7 @@ void ft_do_the_raycast(t_data *c3d)
 		if(c3d->player->ray->hit == 1)
 		{
 			ft_draw_wall(c3d, c3d->player->ray, x);
-		//free(c3d->player->ray); <- idk about this
+			//free(c3d->player->ray); <- idk about this
 		}
 		x++;
 	}

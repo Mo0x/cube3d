@@ -16,6 +16,34 @@ void	ft_set_up_dir(t_player *player)
 {
 	if (player->dir == 'N')
 	{
+		player->dir_x = 0.0f;
+		player->dir_y = -1.0f;
+		player->plane_x = 0.66f;
+		player->plane_y = 0.0f;
+	}
+	else if (player->dir == 'S')
+	{
+		player->dir_x = 0.0f;
+		player->dir_y = 1.0f;
+		player->plane_x = -0.66f;
+		player->plane_y = 0.0f;
+	}
+	else if (player->dir == 'E')
+	{
+		player->dir_x = 1.0f;
+		player->dir_y = 0.0f;
+		player->plane_x = 0.0f;
+		player->plane_y = 0.66f;
+	}
+	else if (player->dir == 'W')
+	{
+		player->dir_x = -1.0f;
+		player->dir_y = 0.0f;
+		player->plane_x = 0.0f;
+		player->plane_y = -0.66f;
+	}
+	/*if (player->dir == 'N')
+	{
 		player->dir_x = -1.0f;
 		player->dir_y = 0.0f;
 		player->plane_x = 0.0f;
@@ -41,7 +69,7 @@ void	ft_set_up_dir(t_player *player)
 		player->dir_y = 1.0f;
 		player->plane_x = 0.66f;
 		player->plane_y = 0.0f;
-	}
+	}*/
 }
 
 void	ft_init(t_data *c3d)
@@ -158,34 +186,34 @@ void	init_mlx(t_data *c3d)
 {
 	c3d->mlx = mlx_init(WIDTH, HEIGHT, "MLX42", FALSE);
 	if (!(c3d->mlx))
-		exit_exclaim("Couldn't initialize mlx :(\n");
+		exit_exclaim("Couldn't initialize mlx :(\n", c3d);
 	c3d->img = mlx_new_image(c3d->mlx, WIDTH, HEIGHT);
 	if (!(c3d->img))
 	{
 		mlx_close_window(c3d->mlx);
-		exit_exclaim("Couldn't initialize image :(\n");
+		exit_exclaim("Couldn't initialize image :(\n", c3d);
 	}
 	if (mlx_image_to_window(c3d->mlx, c3d->img, 0, 0) == -1)
 	{
 		mlx_close_window(c3d->mlx);
-		exit_exclaim("couldn't image to window");
+		exit_exclaim("couldn't image to window", c3d);
 	}
 	c3d->img_minimap = mlx_new_image(c3d->mlx, MINIMAP_IMG_SIZE, MINIMAP_IMG_SIZE);
 	if (!(c3d->img_minimap))
 	{
 		mlx_close_window(c3d->mlx);
-		exit_exclaim("Couldn't initialize minimap image :(\n");
+		exit_exclaim("Couldn't initialize minimap image :(\n", c3d);
 	}
 	if (mlx_image_to_window(c3d->mlx, c3d->img_minimap, MINIMAP_OFF_X, MINIMAP_OFF_Y) == -1)
 	{
 		mlx_close_window(c3d->mlx);
-		exit_exclaim("couldn't image to window");
+		exit_exclaim("couldn't image to window", c3d);
 	}
 	load_weapon_image(c3d, "srcs/sprite/gun.png");
 	if (mlx_image_to_window(c3d->mlx, c3d->img_sprite, 0, 0) == -1)
 	{
 		mlx_close_window(c3d->mlx);
-		exit_exclaim("Couldn't display weapon sprite");
+		exit_exclaim("Couldn't display weapon sprite", c3d);
 	}
 	// Positionnement initial du sprite
 	c3d->img_sprite->instances[0].x = (WIDTH / 2) - (c3d->img_sprite->width / 2);
@@ -250,6 +278,7 @@ void	ft_start_game(t_data *c3d)
 {
 	ft_init(c3d);
 	init_mlx(c3d);
+	init_wall_textures(c3d);
 	mlx_loop_hook(c3d->mlx, game_render, c3d);
 	
 	//game_loop(c3d);

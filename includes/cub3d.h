@@ -35,7 +35,8 @@
 # define BLUE 0x0000FFFF
 
 /* Error*/
-void	exit_exclaim(char *string);
+void	exit_exclaim(char *string, t_data *c3d);
+void	ft_clean_up(t_data *c3d);
 
 /*Parse*/
 void	parsing(t_map *map, char **filename, int argc, t_data *c3d);
@@ -60,5 +61,9 @@ void	player_look(t_data *c3d, char *dir);
 /*sprite*/
 void	load_weapon_image(t_data *c3d, char *weapon_path);
 void	update_weapon_sprite(t_data *c3d);
+
+/*texture*/
+void		init_wall_textures(t_data *c3d);
+uint32_t	get_texture_color(mlx_texture_t *texture, int x, int y);
 
 #endif

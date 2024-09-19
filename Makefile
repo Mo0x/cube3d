@@ -21,7 +21,8 @@ SRCS = ./srcs/main.c  \
 		./srcs/player/player_move.c \
 		./srcs/player/player_look.c \
 		./srcs/minimap/minimap.c \
-		./srcs/sprite/sprite.c
+		./srcs/sprite/sprite.c \
+		./srcs/texture/texture.c
 
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 INCDIRS = ./includes

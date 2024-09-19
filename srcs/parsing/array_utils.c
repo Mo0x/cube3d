@@ -38,8 +38,10 @@ void	free_arr(char **to_free)
 {
 	int	i;
 
+	if (!to_free)
+		return ;
 	i = 0;
-	while (to_free[i] != NULL)
+	while (to_free[i])
 	{
 		wfree(to_free[i]);
 		i++;

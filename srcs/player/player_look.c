@@ -23,7 +23,7 @@ void	ft_rotate(double *x, double *y, float angle)
 	*y = tmp_x * sin(angle) + tmp_y * cos(angle);
 }
 
-void	player_look_right(t_data *c3d)
+void	player_look_left(t_data *c3d)
 {
 	t_player	*p;
 
@@ -33,7 +33,7 @@ void	player_look_right(t_data *c3d)
 	c3d->refresh = TRUE;
 }
 
-void	player_look_left(t_data *c3d)
+void	player_look_right(t_data *c3d)
 {
 	t_player	*p;
 
