@@ -18,22 +18,26 @@ void	ft_step_and_side_dist(t_data *c3d, t_ray *ray)
 	if (ray->ray_dir_x < 0.0f)
 	{
 		ray->step_x = -1;
-		ray->side_dist_x = (c3d->player->pos_x - (double)ray->map_x) * ray->delta_x;
+		ray->side_dist_x = (c3d->player->pos_x - (double)ray->map_x) \
+										* ray->delta_x;
 	}
 	else
 	{
 		ray->step_x = 1;
-		ray->side_dist_x = ((double)ray->map_x + 1.0f - c3d->player->pos_x) * ray->delta_x;
+		ray->side_dist_x = ((double)ray->map_x + 1.0f - c3d->player->pos_x) \
+										* ray->delta_x;
 	}
 	if (ray->ray_dir_y < 0.0f)
 	{
 		ray->step_y = -1;
-		ray->side_dist_y = (c3d->player->pos_y - (double) ray->map_y) * ray->delta_y;
+		ray->side_dist_y = (c3d->player->pos_y - (double) ray->map_y) \
+										* ray->delta_y;
 	}
 	else
 	{
 		ray->step_y = 1;
-		ray->side_dist_y = ((double)ray->map_y + 1.0f - c3d->player->pos_y) * ray->delta_y;
+		ray->side_dist_y = ((double)ray->map_y + 1.0f - c3d->player->pos_y) \
+										* ray->delta_y;
 	}
 }
 
@@ -53,11 +57,11 @@ t_ray	*ft_init_ray(t_data *c3d, int x)
 	if (ray->ray_dir_x == 0.0f)
 		ray->delta_x = INFINITY;
 	else
-		ray->delta_x = ft_abs_double(1.0f /ray->ray_dir_x);
+		ray->delta_x = ft_abs_double(1.0f / ray->ray_dir_x);
 	if (ray->ray_dir_y == 0.0f)
 		ray->delta_y = INFINITY;
 	else
-		ray->delta_y = ft_abs_double(1.0f /ray->ray_dir_y);
+		ray->delta_y = ft_abs_double(1.0f / ray->ray_dir_y);
 	ft_step_and_side_dist(c3d, ray);
 	return (ray);
 }

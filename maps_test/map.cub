@@ -1,7 +1,7 @@
-NO ./srcs/texture/wall1.png
-SO ./srcs/texture/w4.png
-WE ./srcs/texture/w5.png
-EA ./srcs/texture/w6.png
+NO ./srcs/texture/z2.png
+SO ./srcs/texture/z3.png
+WE ./srcs/texture/z4.png
+EA ./srcs/texture/z1.png
 
 F 0,120,0
 C 0,0,120

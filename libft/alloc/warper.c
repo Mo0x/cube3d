@@ -65,28 +65,3 @@ void	del_one(t_list **h, void *to_del)
 		free(ptr->content);
 	free(ptr);
 }
-	/*
-	t_list	*ptr;
-
-	ptr = *h;
-	if (h)
-	{
-		while (ptr)
-		{
-			if (ptr->next && ptr->next->content == to_del)
-			{
-				if (ptr->next->next)
-					ptr->next = ptr->next->next;
-				else
-					ptr->next = NULL;
-				if (ptr->next && ptr->next->content)
-					free(ptr->next->content);
-				free(ptr->next);
-			}
-			ptr = ptr->next;
-		}
-	}*/
-
-
-
-
