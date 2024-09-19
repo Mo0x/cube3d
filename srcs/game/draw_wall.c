@@ -57,8 +57,7 @@ int	calculate_texture_x(mlx_texture_t *texture, double wall_x)
 	return (tex_x);
 }
 
-void	draw_vertical_line(t_data *c3d, mlx_texture_t *texture, t_ray *ray, \
-							int x, int tex_x, double tex_pos, double step)
+void	draw_vertical_line(t_data *c3d, mlx_texture_t *texture, t_ray *ray)
 {
 	int			y;
 	int			tex_y;
@@ -67,14 +66,14 @@ void	draw_vertical_line(t_data *c3d, mlx_texture_t *texture, t_ray *ray, \
 	y = (int)ray->draw_start;
 	while (y < (int)ray->draw_end)
 	{
-		tex_y = (int)tex_pos;
+		tex_y = (int)ray->tex_pos;
 		if (tex_y < 0)
 			tex_y = 0;
 		if (tex_y >= (int)texture->height)
 			tex_y = texture->height - 1;
-		color = get_texture_color(texture, tex_x, tex_y);
-		ft_warpper_put_pxl(c3d->img, x, y, color);
-		tex_pos += step;
+		color = get_texture_color(texture, ray->tex_x, tex_y);
+		ft_warpper_put_pxl(c3d->img, ray->x, y, color);
+		ray->tex_pos += ray->step;
 		y++;
 	}
 }
@@ -83,10 +82,8 @@ void	ft_draw_wall(t_data *c3d, t_ray *ray, int x)
 {
 	mlx_texture_t	*texture;
 	double			wall_x;
-	int				tex_x;
-	double			step;
-	double			tex_pos;
 
+	ray->x = x;
 	ray->line_height = (float)HEIGHT / ray->perp_wall_dist;
 	ray->draw_start = (-ray->line_height + HEIGHT) / 2;
 	if (ray->draw_start < 0.0f)
@@ -96,10 +93,10 @@ void	ft_draw_wall(t_data *c3d, t_ray *ray, int x)
 		ray->draw_end = (float)HEIGHT - 1;
 	texture = select_texture(c3d, ray);
 	wall_x = calculate_wall_x(c3d, ray);
-	tex_x = calculate_texture_x(texture, wall_x);
-	step = texture->height / ray->line_height;
-	tex_pos = (ray->draw_start - HEIGHT / 2 + ray->line_height / 2) * (step);
-	draw_vertical_line(c3d, texture, ray, x, tex_x, tex_pos, step); // petit soucis d argument a modif en mettant dans c3d
+	ray->tex_x = calculate_texture_x(texture, wall_x);
+	ray->step = texture->height / ray->line_height;
+	ray->tex_pos = (ray->draw_start - HEIGHT / 2 + ray->line_height / 2) * (ray->step);
+	draw_vertical_line(c3d, texture, ray);
 }
 
 /*

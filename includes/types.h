@@ -71,6 +71,10 @@ typedef struct s_ray
 	float	line_height;
 	float	draw_start;
 	float	draw_end;
+	int		x;
+	int		tex_x;
+	double	tex_pos;
+	double	step;
 }				t_ray;
 
 typedef struct s_player
