@@ -16,10 +16,9 @@ void	add_door(t_data *c3d, int x, int y)
 {
 	t_door	*new_door;
 
-	new_door = malloc(sizeof(t_door));
+	new_door = walloc(sizeof(t_door));
 	if (!new_door)
 		exit_exclaim("Erreur d'allocation pour la porte", c3d);
-
 	new_door->x = x;
 	new_door->y = y;
 	new_door->state = 0;

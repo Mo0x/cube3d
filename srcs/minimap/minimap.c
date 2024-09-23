@@ -110,6 +110,8 @@ void	draw_minimap_door(t_data *c3d, float i, float j, t_door *door)
 	int		y;
 	int		k;
 
+//	if (!door)
+//		return ;
 	rect.x_start = j * MINIMAP_CELL_SIZE;
 	rect.y_start = i * MINIMAP_CELL_SIZE;
 	rect.x_end = rect.x_start + MINIMAP_CELL_SIZE - 1;
