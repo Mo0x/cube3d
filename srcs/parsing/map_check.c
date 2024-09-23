@@ -24,7 +24,7 @@ int	map_check(char **line, t_data *c3d)
 	{
 		if (current[i] != '1' && current[i] != '0' && current[i] != ' ' && \
 			current[i] != 'N' && current[i] != 'S' && current[i] != 'W' && \
-			current[i] != 'E' && current[i] != '\n')
+			current[i] != 'E' && current[i] != '\n' && current[i] != 'D')
 			exit_exclaim("This map has character standards, and yours just doesn't \
 fit in. Try again!\n", c3d);
 		i++;
@@ -71,6 +71,8 @@ void	check_single_spawn_point(t_data *c3d)
 				c3d->map->map_arr[y][x] = '0';
 				spawn_count++;
 			}
+			if (c3d->map->map_arr[y][x] == 'D')
+				add_door(c3d, x, y);
 			x++;
 		}
 		y++;

@@ -103,6 +103,44 @@ void	draw_minimap_background(t_data *c3d)
 	draw_rect(c3d->img_minimap, &background_rect);
 }*/
 
+void	draw_minimap_door(t_data *c3d, float i, float j, t_door *door)
+{
+	t_rect	rect;
+	int		x;
+	int		y;
+	int		k;
+
+	rect.x_start = j * MINIMAP_CELL_SIZE;
+	rect.y_start = i * MINIMAP_CELL_SIZE;
+	rect.x_end = rect.x_start + MINIMAP_CELL_SIZE - 1;
+	rect.y_end = rect.y_start + MINIMAP_CELL_SIZE - 1;
+
+	if (door->state == 2)
+	{
+		rect.color = 0x00FF00FF;
+		draw_rect(c3d->img_minimap, &rect);
+	}
+	else
+	{
+		rect.color = 0xA2D2FFFF;
+		draw_rect(c3d->img_minimap, &rect);
+
+		k = 0;
+		while (k < MINIMAP_CELL_SIZE)
+		{
+			x = rect.x_start + k;
+			y = rect.y_start + k;
+			mlx_put_pixel(c3d->img_minimap, x, y, 0xFF0000FF);
+
+			x = rect.x_end - k;
+			y = rect.y_start + k;
+			mlx_put_pixel(c3d->img_minimap, x, y, 0xFF0000FF);
+
+			k++;
+		}
+	}
+}
+
 void	draw_minimap(t_data *c3d)
 {
 	int		i;
@@ -110,6 +148,7 @@ void	draw_minimap(t_data *c3d)
 	char	cell;
 	float	offset_x;
 	float	offset_y;
+	t_door	*door; // fonction a modif trop de args trop de lignes
 
 	//draw_minimap_background(c3d);
 	offset_x = c3d->player->pos_x - (MINIMAP_IMG_SIZE / (2.0f * MINIMAP_CELL_SIZE));
@@ -126,12 +165,12 @@ void	draw_minimap(t_data *c3d)
 				draw_minimap_wall(c3d, i - offset_y, j - offset_x);
 			else if (cell == 'D')
 			{
-				// draw_minimap_door(c3d, i, j);
+				door = find_door(c3d, j, i);
+				draw_minimap_door(c3d, i - offset_y, j - offset_x, door);
 			}
 			j++;
 		}
 		i++;
 	}
 	draw_minimap_player(c3d, offset_x, offset_y);
-	// draw_minimap_borders(c3d);
 }

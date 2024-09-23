@@ -68,27 +68,45 @@ t_ray	*ft_init_ray(t_data *c3d, int x)
 
 int	ft_ray_hit(t_data *c3d, t_ray *ray)
 {
-	int	cell;
+	char	cell;
+	t_door	*door;
 
 	if (ray->map_x < 0 || ray->map_y < 0)
 		return (FALSE);
 	if (ray->map_x >= WIDTH || ray->map_y >= HEIGHT)
 		return (FALSE);
 	//printf("DeBUG x = %d y = %d \n", ray->map_x, ray->map_y);
-	cell = (c3d->map->map_arr[ray->map_y][ray->map_x]) - '0';
-	if (cell != 0)
+	cell = (c3d->map->map_arr[ray->map_y][ray->map_x]);
+	if (cell == '1')
 	{
-		/* if (current_cell = DOOR) here we will handle doors*/
+		ray->hit_type = WALL_HIT;
 		return (TRUE);
 	}
-	return (FALSE);
+	else if (cell == 'D')
+	{
+		// si le rayon trouve une porte et qu elle est open, retourne false pour afficher ce qui il y a derriere
+		door = find_door(c3d, ray->map_x, ray->map_y);
+		if (door && door->open_amount >= 1.0)
+			return (FALSE);
+		else
+		{
+			ray->hit_type = DOOR_HIT;
+			if (door)
+				ray->door_open_amount = door->open_amount;
+			else
+				ray->door_open_amount = 0.0;
+			return (TRUE);
+		}
+	}
+	else
+		return (FALSE);
 }
 
-
-void	ft_cast_ray(t_data *c3d)
+void	ft_cast_ray(t_data *c3d) /* a spliter j ai rajoute des lines pour la porte je m en charge */
 {
 	t_ray	*ray;
 	int		depth;
+	t_door	*door;
 
 	depth = 0;
 	ray = c3d->player->ray;
@@ -109,7 +127,19 @@ void	ft_cast_ray(t_data *c3d)
 			//printf("map_y %d, step_y %d, dist_y %f delta_y %f\n", ray->map_y, ray->step_y, ray->side_dist_y, ray->delta_y);
 		}
 		if (ft_ray_hit(c3d, ray))
+		{
 			ray->hit = TRUE;
+			if (ray->hit_type == DOOR_HIT)
+			{
+				door = find_door(c3d, ray->map_x, ray->map_y);
+				if (door)
+					ray->door_open_amount = door->open_amount;
+				else
+					ray->door_open_amount = 0.0;
+			}
+			else
+				ray->door_open_amount = 0.0;
+		}
 		depth++;
 	}
 	if (ray->side == 0)

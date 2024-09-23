@@ -14,23 +14,27 @@
 
 mlx_texture_t	*select_texture(t_data *c3d, t_ray *ray)
 {
-	mlx_texture_t	*texture;
-
+	if (ray->hit_type == DOOR_HIT)
+	{
+		if (c3d->door_texture)
+			return (c3d->door_texture);
+		else
+			return (c3d->n_texture);
+	}
 	if (ray->side == 0)
 	{
 		if (ray->ray_dir_x > 0)
-			texture = c3d->e_texture;
+			return (c3d->e_texture);
 		else
-			texture = c3d->w_texture;
+			return (c3d->w_texture);
 	}
 	else
 	{
 		if (ray->ray_dir_y > 0)
-			texture = c3d->s_texture;
+			return (c3d->s_texture);
 		else
-			texture = c3d->n_texture;
+			return (c3d->n_texture);
 	}
-	return (texture);
 }
 
 double	calculate_wall_x(t_data *c3d, t_ray *ray)
@@ -85,6 +89,8 @@ void	ft_draw_wall(t_data *c3d, t_ray *ray, int x)
 
 	ray->x = x;
 	ray->line_height = (float)HEIGHT / ray->perp_wall_dist;
+	if (ray->hit_type == DOOR_HIT)
+		ray->line_height *= (1.0 - ray->door_open_amount);
 	ray->draw_start = (-ray->line_height + HEIGHT) / 2;
 	if (ray->draw_start < 0.0f)
 		ray->draw_start = 0.0f;
@@ -95,7 +101,8 @@ void	ft_draw_wall(t_data *c3d, t_ray *ray, int x)
 	wall_x = calculate_wall_x(c3d, ray);
 	ray->tex_x = calculate_texture_x(texture, wall_x);
 	ray->step = texture->height / ray->line_height;
-	ray->tex_pos = (ray->draw_start - HEIGHT / 2 + ray->line_height / 2) * (ray->step);
+	ray->tex_pos = (ray->draw_start - HEIGHT / 2 + ray->line_height / 2) \
+									* (ray->step);
 	draw_vertical_line(c3d, texture, ray);
 }
 

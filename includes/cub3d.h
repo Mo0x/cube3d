@@ -61,9 +61,16 @@ void	player_look(t_data *c3d, char *dir);
 /*sprite*/
 void	load_weapon_image(t_data *c3d, char *weapon_path);
 void	update_weapon_sprite(t_data *c3d);
+t_door	*find_door(t_data *c3d, int x, int y);
+void	add_door(t_data *c3d, int x, int y);
+void	update_doors(t_data *c3d);
+void	handle_door_interaction(t_data *c3d);
+void	close_door(t_door *door);
+void	open_door(t_door *door);
 
 /*texture*/
 void		init_wall_textures(t_data *c3d);
 uint32_t	get_texture_color(mlx_texture_t *texture, int x, int y);
+
 
 #endif

@@ -251,6 +251,8 @@ void	ft_do_the_input(t_data *c3d)
 		player_look(c3d, "LEFT");
 	else if (mlx_is_key_down(c3d->mlx, MLX_KEY_RIGHT))
 		player_look(c3d, "RIGHT");
+	else if (mlx_is_key_down(c3d->mlx, MLX_KEY_E))
+		handle_door_interaction(c3d);
 }
 
 void	set_up_player(t_data *c3d)
@@ -271,6 +273,7 @@ void	game_render(void *c4d)
 	c3d->time = mlx_get_time() - c3d->start_time;
 	//todo frame time and sprite time
 	set_up_player(c3d);
+	update_doors(c3d);
 	render(c3d); // the function that draw ceilling and floor and call the ray_cast
 }
 
