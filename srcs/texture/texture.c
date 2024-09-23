@@ -12,21 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-//load texture door seulement si un D sur la map ?
-/*
-void	load_door_texture(t_data *c3d)
-{
-	mlx_texture_t	*png_texture;
-
-	png_texture = NULL;
-	png_texture = mlx_load_png("srcs/textures/doom_door.png");
-	if (!png_texture)
-		exit_exclaim("Error when loading the PNG file of the door.\n", c3d);
-	c3d->door_texture = png_texture;
-}
-*/
-
-void    load_wall_texture(t_data *c3d, mlx_texture_t **texture, char *path)
+void	load_wall_texture(t_data *c3d, mlx_texture_t **texture, char *path)
 {
 	(void)c3d;
 	*texture = mlx_load_png(path);
@@ -35,7 +21,7 @@ void    load_wall_texture(t_data *c3d, mlx_texture_t **texture, char *path)
 }
 
 //Faire un if variable ? car si pas de door pas besoin de load door
-void    load_door_texture(t_data *c3d, mlx_texture_t **texture, char *path)
+void	load_door_texture(t_data *c3d, mlx_texture_t **texture, char *path)
 {
 	(void)c3d;
 	*texture = mlx_load_png(path);
@@ -43,6 +29,7 @@ void    load_door_texture(t_data *c3d, mlx_texture_t **texture, char *path)
 		exit_exclaim("Error loading door texture.\n", c3d);
 }
 
+// si pas de texture porte et une porte est presente fail / doit on modifier pour qu une texture par defaut soit prise en compte ?
 void	init_wall_textures(t_data *c3d)
 {
 	load_wall_texture(c3d, &c3d->n_texture, c3d->map->n_path);

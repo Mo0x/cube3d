@@ -12,6 +12,22 @@
 
 #include "../includes/cub3d.h"
 
+t_door	*find_door(t_data *c3d, int x, int y)
+{
+	t_door	*door;
+
+	door = c3d->doors;
+
+	while (door)
+	{
+		if (door->x == x && door->y == y)
+			return (door);
+		door = door->next;
+	}
+
+	return (NULL);
+}
+
 void	update_door_opening(t_data *c3d, t_door *door, double delta_time)
 {
 	door->timer += delta_time;
@@ -30,14 +46,16 @@ void	update_door_open(t_data *c3d, t_door *door, double delta_time)
 	door->timer += delta_time;
 	if (door->timer >= DOOR_STAY_OPEN_TIME)
 	{
-		if ((int)c3d->player->pos_x != door->x || (int)c3d->player->pos_y != door->y)
+		if ((int)c3d->player->pos_x != door->x || \
+		(int)c3d->player->pos_y != door->y)
 			close_door(door);
 	}
 }
 
 void	update_door_closing(t_data *c3d, t_door *door, double delta_time)
 {
-	if ((int)c3d->player->pos_x == door->x && (int)c3d->player->pos_y == door->y)
+	if ((int)c3d->player->pos_x == door->x && \
+	(int)c3d->player->pos_y == door->y)
 	{
 		door->state = DOOR_OPEN;
 		door->timer = 0.0;

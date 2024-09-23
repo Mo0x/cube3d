@@ -17,13 +17,15 @@ SRCS = ./srcs/main.c  \
 		./srcs/game/render.c \
 		./srcs/game/raycast.c \
 		./srcs/game/draw_wall.c \
+		./srcs/game/handle_door.c \
 		./srcs/utils/mlx_utils.c \
 		./srcs/player/player_move.c \
 		./srcs/player/player_look.c \
 		./srcs/minimap/minimap.c \
 		./srcs/sprite/sprite.c \
 		./srcs/texture/texture.c \
-		./srcs/sprite/doors.c
+		./srcs/sprite/doors.c \
+		./srcs/sprite/updating_doors.c
 
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 INCDIRS = ./includes

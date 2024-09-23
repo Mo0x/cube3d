@@ -46,6 +46,7 @@ void	ft_start_game(t_data *c3d);
 void	render(t_data *c3d);
 void	ft_do_the_raycast(t_data *c3d);
 void	ft_draw_wall(t_data *c3d, t_ray *ray, int x);
+int		handle_door_cell(t_data *c3d, t_ray *ray);
 
 /*mlx utils*/
 void	ft_draw_vertical(t_data *c3d, t_ray *ray, int x);
@@ -67,6 +68,7 @@ void	update_doors(t_data *c3d);
 void	handle_door_interaction(t_data *c3d);
 void	close_door(t_door *door);
 void	open_door(t_door *door);
+void	update_doors(t_data *c3d);
 
 /*texture*/
 void		init_wall_textures(t_data *c3d);

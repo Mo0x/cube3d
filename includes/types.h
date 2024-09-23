@@ -136,4 +136,14 @@ typedef struct s_data
 	t_door			*doors;
 }				t_data;
 
+typedef struct s_pos
+{
+	int	x;
+	int	y;
+	int	px;
+	int	py;
+	int	dx;
+	int	dy;
+}		t_pos;
+
 #endif

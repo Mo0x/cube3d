@@ -29,21 +29,6 @@ void	add_door(t_data *c3d, int x, int y)
 	c3d->doors = new_door;
 }
 
-t_door	*find_door(t_data *c3d, int x, int y)
-{
-	t_door	*door;
-
-	door = c3d->doors;
-
-	while (door)
-	{
-		if (door->x == x && door->y == y)
-			return (door);
-		door = door->next;
-	}
-
-	return (NULL);
-}
 
 void	open_door(t_door *door)
 {
@@ -57,49 +42,50 @@ void	close_door(t_door *door)
 	door->timer = 0.0;
 }
 
-void	handle_door_interaction(t_data *c3d)
+void	check_and_toggle_door(t_data *c3d, t_pos pos)
 {
-	int		px;
-	int		py;
-	int		dx;
-	int		dy;
-	int		nx;
-	int		ny;
 	t_door	*door;
 
-	px = (int)c3d->player->pos_x;
-	py = (int)c3d->player->pos_y;
-
-	dy = -1;
-	while (dy <= 1)
+	if (pos.x >= 0 && pos.y >= 0 && \
+		pos.y < c3d->map->height && pos.x < c3d->map->width)
 	{
-		dx = -1;
-		while (dx <= 1)
+		if (c3d->map->map_arr[pos.y][pos.x] == 'D')
 		{
-			if (dx == 0 && dy == 0)
+			door = find_door(c3d, pos.x, pos.y);
+			if (door)
 			{
-				dx++;
+				if (door->state == DOOR_CLOSED)
+					open_door(door);
+				else if (door->state == DOOR_OPEN)
+					close_door(door);
+			}
+		}
+	}
+}
+
+void	handle_door_interaction(t_data *c3d)
+{
+	t_pos	pos;
+
+	pos.px = (int)c3d->player->pos_x;
+	pos.py = (int)c3d->player->pos_y;
+	pos.dy = -1;
+	while (pos.dy <= 1)
+	{
+		pos.dx = -1;
+		while (pos.dx <= 1)
+		{
+			if (pos.dx == 0 && pos.dy == 0)
+			{
+				pos.dx++;
 				continue ;
 			}
-			nx = px + dx;
-			ny = py + dy;
-			if (nx >= 0 && ny >= 0 && ny < c3d->map->height && nx < c3d->map->width)
-			{
-				if (c3d->map->map_arr[ny][nx] == 'D')
-				{
-					door = find_door(c3d, nx, ny);
-					if (door)
-					{
-						if (door->state == 0)
-							open_door(door);
-						else if (door->state == 2)
-							close_door(door);
-					}
-				}
-			}
-			dx++;
+			pos.x = pos.px + pos.dx;
+			pos.y = pos.py + pos.dy;
+			check_and_toggle_door(c3d, pos);
+			pos.dx++;
 		}
-		dy++;
+		pos.dy++;
 	}
 	c3d->refresh = TRUE;
 }
