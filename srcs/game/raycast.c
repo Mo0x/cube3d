@@ -12,7 +12,6 @@
 
 #include "cub3d.h"
 
-
 void	ft_step_and_side_dist(t_data *c3d, t_ray *ray)
 {
 	if (ray->ray_dir_x < 0.0f)
@@ -69,7 +68,6 @@ t_ray	*ft_init_ray(t_data *c3d, int x)
 int	ft_ray_hit(t_data *c3d, t_ray *ray)
 {
 	char	cell;
-	t_door	*door;
 
 	if (ray->map_x < 0 || ray->map_y < 0)
 		return (FALSE);
@@ -83,26 +81,13 @@ int	ft_ray_hit(t_data *c3d, t_ray *ray)
 		return (TRUE);
 	}
 	else if (cell == 'D')
-	{
-		// si le rayon trouve une porte et qu elle est open, retourne false pour afficher ce qui il y a derriere
-		door = find_door(c3d, ray->map_x, ray->map_y);
-		if (door && door->open_amount >= 1.0)
-			return (FALSE);
-		else
-		{
-			ray->hit_type = DOOR_HIT;
-			if (door)
-				ray->door_open_amount = door->open_amount;
-			else
-				ray->door_open_amount = 0.0;
-			return (TRUE);
-		}
-	}
+		return (handle_door_cell(c3d, ray)); // si le rayon trouve une porte et qu elle est open, retourne false pour afficher ce qui il y a derriere
 	else
 		return (FALSE);
 }
 
-void	ft_cast_ray(t_data *c3d) /* a spliter j ai rajoute des lines pour la porte je m en charge */
+
+void	ft_cast_ray(t_data *c3d) // a spliter j ai rajoute des lines pour la porte je m en charge
 {
 	t_ray	*ray;
 	int		depth;

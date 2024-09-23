@@ -29,61 +29,6 @@ void	add_door(t_data *c3d, int x, int y)
 	c3d->doors = new_door;
 }
 
-void	update_doors(t_data *c3d)
-{
-	t_door	*door;
-	double	delta_time;
-
-	door = c3d->doors;
-	delta_time = c3d->mlx->delta_time;
-
-	while (door)
-	{
-		if (door->state == DOOR_OPENING)
-		{
-			door->timer += delta_time;
-			door->open_amount = door->timer / DOOR_OPEN_TIME;
-			if (door->open_amount >= 1.0)
-			{
-				door->open_amount = 1.0;
-				door->state = DOOR_OPEN;
-				door->timer = 0.0;
-			}
-			c3d->refresh = TRUE;
-		}
-		else if (door->state == DOOR_OPEN)
-		{
-			door->timer += delta_time;
-			if (door->timer >= DOOR_STAY_OPEN_TIME)
-			{
-				if ((int)c3d->player->pos_x != door->x || (int)c3d->player->pos_y != door->y)
-					close_door(door);
-			}
-		}
-		else if (door->state == DOOR_CLOSING)
-		{
-			if ((int)c3d->player->pos_x == door->x && (int)c3d->player->pos_y == door->y)
-			{
-				door->state = DOOR_OPEN;
-				door->timer = 0.0;
-			}
-			else
-			{
-				door->timer += delta_time;
-				door->open_amount = 1.0 - (door->timer / DOOR_OPEN_TIME);
-				if (door->open_amount <= 0.0)
-				{
-					door->open_amount = 0.0;
-					door->state = DOOR_CLOSED;
-					door->timer = 0.0;
-				}
-				c3d->refresh = TRUE;
-			}
-		}
-		door = door->next;
-	}
-}
-
 t_door	*find_door(t_data *c3d, int x, int y)
 {
 	t_door	*door;
