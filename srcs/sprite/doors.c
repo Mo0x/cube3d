@@ -156,4 +156,5 @@ void	handle_door_interaction(t_data *c3d)
 		}
 		dy++;
 	}
+	c3d->refresh = TRUE;
 }

@@ -236,6 +236,7 @@ void	ft_check_moving(t_data *c3d)
 	c3d->is_moving = is_moving;
 }
 
+// est ce qu on fait les diagonales : W et D / W et A ?
 void	ft_do_the_input(t_data *c3d)
 {
 	ft_check_moving(c3d);
@@ -251,7 +252,7 @@ void	ft_do_the_input(t_data *c3d)
 		player_look(c3d, "LEFT");
 	else if (mlx_is_key_down(c3d->mlx, MLX_KEY_RIGHT))
 		player_look(c3d, "RIGHT");
-	else if (mlx_is_key_down(c3d->mlx, MLX_KEY_E))
+	if (mlx_is_key_down(c3d->mlx, MLX_KEY_E))
 		handle_door_interaction(c3d);
 }
 

@@ -108,7 +108,7 @@ int	check_player_surroundings(t_map *map, int x, int y, int dx, int dy)
 	if (map->map_arr[check_y][check_x])
 	{
 		current = map->map_arr[check_y][check_x];
-		if (current != '0' && current != '1')
+		if (current != '0' && current != '1' && current != 'D')
 			return (0);
 	}
 	return (1);
