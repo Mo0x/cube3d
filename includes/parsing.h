@@ -35,7 +35,7 @@ void	setup_colors(t_data *c3d);
 void	parse_map(t_map *map, t_data *c3d);
 
 // dans map_array.c
-void	add_line(t_map *map, char *to_add);
+void	add_line(t_data *c3d, char *to_add);
 void	finalize_map_validation(t_data *c3d);
 void	remove_newline(char *line);
 
@@ -52,6 +52,8 @@ int		is_enclosed_by_walls_or_spaces(t_map *map, int x, int y);
 void	arrcpy(char **src, char **dest);
 int		arrsize(char **array);
 void	free_arr(char **to_free);
+int     init_map_arr(t_map *map, char *to_add, int size);
+int		expand_map_arr(t_map *map, char *to_add, int size);
 
 // dans map_row.c
 void	validate_rows(t_data *c3d);

@@ -19,7 +19,6 @@ void	remove_newline(char *line)
 	length = ft_strlen(line);
 	if (length > 0 && line[length - 1] == '\n')
 		line[length - 1] = '\0';
-//Remplace '\n' par '\0' car penible ce \n de merdeee qui me plombait mes comparaisons !!
 }
 
 void	update_map_dimensions(t_map *map, char *to_add)
@@ -35,6 +34,7 @@ void	update_map_dimensions(t_map *map, char *to_add)
 	map->height++;
 }
 
+/*
 void	add_line(t_map *map, char *to_add)
 {
 	static int	size = 1;
@@ -62,6 +62,34 @@ void	add_line(t_map *map, char *to_add)
 		size++;
 		return ;
 	}
+}
+Refactoring this because of the 2 ft_strdup not protected if failure!!!
+*/
+
+void	add_line(t_data *c3d, char *to_add)
+{
+	static int	size = 1;
+
+	remove_newline(to_add);
+	update_map_dimensions(c3d->map, to_add);
+
+	if (size == 1)
+	{
+		if (!init_map_arr(c3d->map, to_add, size))
+		{
+			exit_exclaim("Error : init map array failed\n", c3d);
+			return ;
+		}
+	}
+	else
+	{
+		if (!expand_map_arr(c3d->map, to_add, size))
+		{
+			exit_exclaim("Error : Expand map array failed!\n", c3d);
+			return ;
+		}
+	}
+	size++;
 }
 
 void	finalize_map_validation(t_data *c3d)

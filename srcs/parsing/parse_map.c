@@ -80,7 +80,7 @@ void	parse_map(t_map *map, t_data *c3d)
 	ft_initialise_value_map(c3d);
 	while (map_check(&line, c3d))
 	{
-		add_line(map, line);
+		add_line(c3d, line);
 		line = get_next_line(map->fd);
 		if (!line || *line == '\n')
 		{
