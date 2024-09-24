@@ -17,14 +17,12 @@ t_door	*find_door(t_data *c3d, int x, int y)
 	t_door	*door;
 
 	door = c3d->doors;
-
 	while (door)
 	{
 		if (door->x == x && door->y == y)
 			return (door);
 		door = door->next;
 	}
-
 	return (NULL);
 }
 
