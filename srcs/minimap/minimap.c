@@ -44,23 +44,28 @@ void	draw_rect(mlx_image_t *img, t_rect *rect)
 
 void	draw_minimap_wall(t_data *c3d, float i, float j)
 {
-	t_rect	outer_rect;
-	t_rect	inner_rect;
+	t_rect	out_rect;
+	t_rect	inn_rect;
 
-	outer_rect.x_start = j * MINIMAP_CELL_SIZE;
-	outer_rect.y_start = i * MINIMAP_CELL_SIZE;
-	outer_rect.x_end = outer_rect.x_start + MINIMAP_CELL_SIZE - 1;
-	outer_rect.y_end = outer_rect.y_start + MINIMAP_CELL_SIZE - 1;
-	outer_rect.color = 0xA2D2FFFF;
+	out_rect.x_start = j * MINIMAP_CELL_SIZE;
+	out_rect.y_start = i * MINIMAP_CELL_SIZE;
+	out_rect.x_end = out_rect.x_start + MINIMAP_CELL_SIZE - 1;
+	out_rect.y_end = out_rect.y_start + MINIMAP_CELL_SIZE - 1;
+	out_rect.color = 0xA2D2FFFF;
 
-	inner_rect.x_start = outer_rect.x_start + 1;
-	inner_rect.y_start = outer_rect.y_start + 1;
-	inner_rect.x_end = outer_rect.x_end - 1;
-	inner_rect.y_end = outer_rect.y_end - 1;
-	inner_rect.color = 0x1A1A1AFF;
-
-	draw_rect(c3d->img_minimap, &outer_rect);
-	draw_rect(c3d->img_minimap, &inner_rect);
+	inn_rect.x_start = out_rect.x_start + 1;
+	inn_rect.y_start = out_rect.y_start + 1;
+	inn_rect.x_end = out_rect.x_end - 1;
+	inn_rect.y_end = out_rect.y_end - 1;
+	inn_rect.color = 0x1A1A1AFF;
+	if ((out_rect.x_start < 0 || out_rect.x_end >= (int)c3d->img_minimap->width \
+	|| out_rect.y_start < 0 || out_rect.y_end >= (int)c3d->img_minimap->height) \
+	&& (inn_rect.x_start < 0 || inn_rect.x_end >= (int)c3d->img_minimap->width \
+	|| inn_rect.y_start < 0 || inn_rect.y_end >= (int)c3d->img_minimap->height))
+	{
+		draw_rect(c3d->img_minimap, &out_rect);
+		draw_rect(c3d->img_minimap, &inn_rect);
+	}
 }
 
 void	draw_minimap_player(t_data *c3d, float offset_x, float offset_y)
@@ -110,14 +115,14 @@ void	draw_minimap_door(t_data *c3d, float i, float j, t_door *door)
 	int		y;
 	int		k;
 
-//	if (!door)
-//		return ;
+	if (!door)
+		return ;
 	rect.x_start = j * MINIMAP_CELL_SIZE;
 	rect.y_start = i * MINIMAP_CELL_SIZE;
 	rect.x_end = rect.x_start + MINIMAP_CELL_SIZE - 1;
 	rect.y_end = rect.y_start + MINIMAP_CELL_SIZE - 1;
 
-	if (door->state == 2)
+	if (door->state == DOOR_OPEN)
 	{
 		rect.color = 0x00FF00FF;
 		draw_rect(c3d->img_minimap, &rect);
@@ -132,12 +137,15 @@ void	draw_minimap_door(t_data *c3d, float i, float j, t_door *door)
 		{
 			x = rect.x_start + k;
 			y = rect.y_start + k;
-			mlx_put_pixel(c3d->img_minimap, x, y, 0xFF0000FF);
+			if (x >= 0 && x < (int)c3d->img_minimap->width && \
+			y >= 0 && y < (int)c3d->img_minimap->height)
+				mlx_put_pixel(c3d->img_minimap, x, y, 0xFF0000FF);
 
 			x = rect.x_end - k;
 			y = rect.y_start + k;
-			mlx_put_pixel(c3d->img_minimap, x, y, 0xFF0000FF);
-
+			if (x >= 0 && x < (int)c3d->img_minimap->width && \
+			y >= 0 && y < (int)c3d->img_minimap->height)
+				mlx_put_pixel(c3d->img_minimap, x, y, 0xFF0000FF);
 			k++;
 		}
 	}

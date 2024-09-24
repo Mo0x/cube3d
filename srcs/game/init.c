@@ -53,7 +53,6 @@ void	ft_init(t_data *c3d)
 	c3d->old_time = 0;
 	c3d->start_time = 0;
 	c3d->refresh = TRUE;
-//	c3d->doors = NULL; A remettre et verifier car valgrind aime pas que c pas ini ! Si on initialise j ai des bugs minimap / WORK IN PROGRESS :o
 	ft_set_up_dir(c3d->player);
 	// temp;
 }

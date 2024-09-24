@@ -21,6 +21,7 @@ int	main(int argc, char **argv)
 	c3d = walloc(sizeof(t_data));
 	if (!c3d)
 		exit_exclaim("c3d malloc failed\n", c3d);
+	ft_memset(c3d, 0, sizeof(t_data));
 	c3d->map = walloc(sizeof(t_map));
 	if (!c3d->map)
 		exit_exclaim("c3d->map malloc failed\n", c3d);

@@ -42,11 +42,27 @@ void	validate_map_enclosure(t_data *c3d)
 	}
 }
 
-void	ft_initialise_value_map(t_map *map)
+void	ft_initialise_value_map(t_data *c3d)
 {
-	map->height = 0;
-	map->width = 0;
-	map->map_arr = NULL;
+	c3d->map->height = 0;
+	c3d->map->width = 0;
+	c3d->map->map_arr = NULL;
+	c3d->doors = NULL;
+}
+
+int	count_doors(t_data *c3d)
+{
+	t_door	*door;
+	int		count;
+
+	door = c3d->doors;
+	count = 0;
+	while (door)
+	{
+		count++;
+		door = door->next;
+	}
+	return (count);
 }
 
 void	parse_map(t_map *map, t_data *c3d)
@@ -61,7 +77,7 @@ void	parse_map(t_map *map, t_data *c3d)
 	}
 	if (!line)
 		exit_exclaim("Where is the map ?\n", c3d);
-	ft_initialise_value_map(map);
+	ft_initialise_value_map(c3d);
 	while (map_check(&line, c3d))
 	{
 		add_line(map, line);
@@ -72,6 +88,7 @@ void	parse_map(t_map *map, t_data *c3d)
 			break ;
 		}
 	}
+	printf("Total doors: %d\n", count_doors(c3d));
 	validate_rows(c3d);
 	validate_map_enclosure(c3d);
 	check_single_spawn_point(c3d);

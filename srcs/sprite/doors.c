@@ -26,6 +26,7 @@ void	add_door(t_data *c3d, int x, int y)
 	new_door->timer = 0.0;
 	new_door->next = c3d->doors;
 	c3d->doors = new_door;
+	printf("Added door at (%d, %d)\n", x, y);
 }
 
 
