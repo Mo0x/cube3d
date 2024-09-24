@@ -70,6 +70,13 @@ void	close_door(t_door *door);
 void	open_door(t_door *door);
 void	update_doors(t_data *c3d);
 
+/*minimap*/
+void	draw_rect_minimap(mlx_image_t *img, t_rect *rect, t_pos pos);
+void	draw_open_door_mini(t_data *c3d, t_rect rect);
+void	draw_closed_door_mini(t_data *c3d, t_rect rect);
+void	ft_draw_door_pixel_mini(t_data *c3d, int x, int y);
+void	draw_minimap_door(t_data *c3d, float i, float j, t_door *door);
+
 /*texture*/
 void		init_wall_textures(t_data *c3d);
 uint32_t	get_texture_color(mlx_texture_t *texture, int x, int y);

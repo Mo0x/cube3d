@@ -25,7 +25,8 @@ SRCS = ./srcs/main.c  \
 		./srcs/sprite/sprite.c \
 		./srcs/texture/texture.c \
 		./srcs/sprite/doors.c \
-		./srcs/sprite/updating_doors.c
+		./srcs/sprite/updating_doors.c \
+		./srcs/minimap/minimap_utils.c
 
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 INCDIRS = ./includes

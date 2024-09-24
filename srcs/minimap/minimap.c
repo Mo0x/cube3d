@@ -12,33 +12,6 @@
 
 #include "../includes/cub3d.h"
 
-void	draw_rect(mlx_image_t *img, t_rect *rect, t_pos pos)
-{
-	if (!img || !rect)
-		return ;
-	pos.y = rect->y_start;
-	while (pos.y < rect->y_end)
-	{
-		if (pos.y < 0 || pos.y >= (int)img->height)
-		{
-			pos.y++;
-			continue ;
-		}
-		pos.x = rect->x_start;
-		while (pos.x < rect->x_end)
-		{
-			if (pos.x < 0 || pos.x >= (int)img->width)
-			{
-				pos.x++;
-				continue ;
-			}
-			mlx_put_pixel(img, pos.x, pos.y, rect->color);
-			pos.x++;
-		}
-		pos.y++;
-	}
-}
-
 void	draw_minimap_wall(t_data *c3d, float i, float j)
 {
 	t_rect	out_rect;
@@ -57,8 +30,8 @@ void	draw_minimap_wall(t_data *c3d, float i, float j)
 	inn_rect.y_end = out_rect.y_end - 1;
 	inn_rect.color = 0x1A1A1AFF;
 	ft_memset((void *)&pos, 0, sizeof(t_pos));
-	draw_rect(c3d->img_minimap, &out_rect, pos);
-	draw_rect(c3d->img_minimap, &inn_rect, pos);
+	draw_rect_minimap(c3d->img_minimap, &out_rect, pos);
+	draw_rect_minimap(c3d->img_minimap, &inn_rect, pos);
 }
 
 void	draw_minimap_player(t_data *c3d, float offset_x, float offset_y)
@@ -84,8 +57,8 @@ void	draw_minimap_player(t_data *c3d, float offset_x, float offset_y)
 	player_inner.y_end = player_outer.y_end - 1;
 	player_inner.color = 0x1A1A1AFF;
 	ft_memset((void *)&pos, 0, sizeof(t_pos));
-	draw_rect(c3d->img_minimap, &player_outer, pos);
-	draw_rect(c3d->img_minimap, &player_inner, pos);
+	draw_rect_minimap(c3d->img_minimap, &player_outer, pos);
+	draw_rect_minimap(c3d->img_minimap, &player_inner, pos);
 }
 
 /*
@@ -102,6 +75,67 @@ void	draw_minimap_background(t_data *c3d)
 	draw_rect(c3d->img_minimap, &background_rect);
 }*/
 
+void	process_map_row(t_data *c3d, int i, float offset_x, float offset_y)
+{
+	int		j;
+	char	cell;
+	t_door	*door;
+
+	j = 0;
+	while (c3d->map->map_arr[i][j] && j < c3d->map->width)
+	{
+		cell = c3d->map->map_arr[i][j];
+		if (cell == '1')
+			draw_minimap_wall(c3d, i - offset_y, j - offset_x);
+		else if (cell == 'D')
+		{
+			door = find_door(c3d, j, i);
+			draw_minimap_door(c3d, i - offset_y, j - offset_x, door);
+		}
+		j++;
+	}
+}
+
+void	draw_minimap_door(t_data *c3d, float i, float j, t_door *door)
+{
+	t_rect	rect;
+	t_pos	pos;
+
+	if (!door)
+		return ;
+	ft_memset(&pos, 0, sizeof(t_pos));
+
+	rect.x_start = j * MINIMAP_CELL_SIZE;
+	rect.y_start = i * MINIMAP_CELL_SIZE;
+	rect.x_end = rect.x_start + MINIMAP_CELL_SIZE - 1;
+	rect.y_end = rect.y_start + MINIMAP_CELL_SIZE - 1;
+	if (door->state == DOOR_OPEN)
+		draw_open_door_mini(c3d, rect);
+	else
+		draw_closed_door_mini(c3d, rect);
+}
+
+void	draw_minimap(t_data *c3d)
+{
+	float	offset_x;
+	float	offset_y;
+	int		i;
+
+	offset_x = c3d->player->pos_x - (MINIMAP_IMG_SIZE \
+				/ (2.0f * MINIMAP_CELL_SIZE));
+	offset_y = c3d->player->pos_y - (MINIMAP_IMG_SIZE \
+				/ (2.0f * MINIMAP_CELL_SIZE));
+	i = 0;
+	while (i < c3d->map->height)
+	{
+		process_map_row(c3d, i, offset_x, offset_y);
+		i++;
+	}
+	draw_minimap_player(c3d, offset_x, offset_y);
+}
+
+/* BEFORE REFACTORING */
+/*
 void	draw_minimap_door(t_data *c3d, float i, float j, t_door *door)
 {
 	t_rect	rect;
@@ -178,3 +212,5 @@ void	draw_minimap(t_data *c3d)
 	}
 	draw_minimap_player(c3d, offset_x, offset_y);
 }
+END BEFORE REFACTORING
+*/
