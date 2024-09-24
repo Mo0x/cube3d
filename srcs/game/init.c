@@ -12,6 +12,25 @@
 
 #include "../includes/cub3d.h"
 
+
+void	ft_set_up_dir_2(t_player *player, int flag)
+{
+	if (flag == 1)
+	{
+		player->dir_x = 1.0f;
+		player->dir_y = 0.0f;
+		player->plane_x = 0.0f;
+		player->plane_y = 0.66f;
+	}
+	if (flag == 2)
+	{
+		player->dir_x = -1.0f;
+		player->dir_y = 0.0f;
+		player->plane_x = 0.0f;
+		player->plane_y = -0.66f;
+	}
+}
+
 void	ft_set_up_dir(t_player *player)
 {
 	if (player->dir == 'N')
@@ -29,19 +48,9 @@ void	ft_set_up_dir(t_player *player)
 		player->plane_y = 0.0f;
 	}
 	else if (player->dir == 'E')
-	{
-		player->dir_x = 1.0f;
-		player->dir_y = 0.0f;
-		player->plane_x = 0.0f;
-		player->plane_y = 0.66f;
-	}
+		ft_set_up_dir_2(player, 1);
 	else if (player->dir == 'W')
-	{
-		player->dir_x = -1.0f;
-		player->dir_y = 0.0f;
-		player->plane_x = 0.0f;
-		player->plane_y = -0.66f;
-	}
+		ft_set_up_dir_2(player, 2);
 }
 
 void	ft_init(t_data *c3d)

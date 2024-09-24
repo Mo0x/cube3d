@@ -107,7 +107,6 @@ void	ft_draw_wall(t_data *c3d, t_ray *ray, int x)
 }
 
 /*
-
 void	ft_draw_wall(t_data *c3d, t_ray *ray, int x)
 {
 	int			y;

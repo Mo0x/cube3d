@@ -92,7 +92,6 @@ void	ft_free_map_data(t_data *c3d)
 		wfree(c3d->map);
 		c3d->map = NULL;
 	}
-
 }
 
 void	ft_clean_up(t_data *c3d)
@@ -113,4 +112,3 @@ void	ft_clean_up(t_data *c3d)
 		c3d = NULL;
 	}
 }
-
