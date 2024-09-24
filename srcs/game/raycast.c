@@ -47,7 +47,6 @@ t_ray	*ft_init_ray(t_data *c3d, int x)
 	ray = walloc(sizeof(t_ray));
 	if (!ray)
 		exit_exclaim("Error mallocing ray", c3d);
-	ft_memset(ray, 0, sizeof(t_ray));
 	ray->hit = FALSE;
 	ray->camera_x = 2.0f * (float)x / (float)WIDTH - 1.0f;
 	ray->ray_dir_x = c3d->player->dir_x + c3d->player->plane_x * ray->camera_x;
@@ -91,7 +90,7 @@ int	ft_ray_hit(t_data *c3d, t_ray *ray)
 		return (FALSE);
 }
 
-
+/*
 void	ft_cast_ray(t_data *c3d) // a spliter j ai rajoute des lines pour la porte je m en charge
 {
 	t_ray	*ray;
@@ -137,6 +136,69 @@ void	ft_cast_ray(t_data *c3d) // a spliter j ai rajoute des lines pour la porte 
 	else
 		ray->perp_wall_dist = (ray->side_dist_y - ray->delta_y);
 	//printf("side %d perp %f\n", ray->side, ray->perp_wall_dist); //probleme here
+}*/
+
+void	ft_update_side_dist_x(t_ray *ray)
+{
+	ray->map_x += ray->step_x;
+	ray->side_dist_x += ray->delta_x;
+	ray->side = 0;
+}
+
+void	ft_update_side_dist_y(t_ray *ray)
+{
+	ray->map_y += ray->step_y;
+	ray->side_dist_y += ray->delta_y;
+	ray->side = 1;
+}
+
+void	ft_handle_hit(t_data *c3d, t_ray *ray)
+{
+	t_door	*door;
+
+	door = NULL;
+	if (ray->hit_type == DOOR_HIT)
+	{
+		door = find_door(c3d, ray->map_x, ray->map_y);
+		if (door)
+			ray->door_open_amount = door->open_amount;
+		else
+			ray->door_open_amount = 0.0;
+	}
+	else
+		ray->door_open_amount = 0.0;
+}
+
+void	ft_perform_cast_ray(t_data *c3d, t_ray *ray, int depth)
+{
+	while (ray->hit == 0 && depth < 64)
+	{
+		if (ray->side_dist_x < ray->side_dist_y)
+			ft_update_side_dist_x(ray);
+		else
+			ft_update_side_dist_y(ray);
+		if (ft_ray_hit(c3d, ray))
+		{
+			ray->hit = TRUE;
+			ft_handle_hit(c3d, ray);
+		}
+		depth++;
+	}
+}
+
+void	ft_cast_ray(t_data *c3d)
+{
+	t_ray	*ray;
+	int		depth;
+
+	ray = c3d->player->ray;
+	depth = 0;
+
+	ft_perform_cast_ray(c3d, ray, depth);
+	if (ray->side == 0)
+		ray->perp_wall_dist = ray->side_dist_x - ray->delta_x;
+	else
+		ray->perp_wall_dist = ray->side_dist_y - ray->delta_y;
 }
 
 void ft_do_the_raycast(t_data *c3d)
