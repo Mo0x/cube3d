@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/11 17:48:28 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:26:51 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct s_data
 	double			frame;
 	int				refresh;
 	int				is_moving;
+	int				focus;
 }				t_data;
 
 #endif

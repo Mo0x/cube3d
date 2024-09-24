@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 14:44:27 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/09/17 18:13:56 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:35:16 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	ft_warpper_put_pxl(mlx_image_t *img, int x, int y, unsigned int color);
 void	player_move(t_data *c3d, char *dir);
 void	player_look(t_data *c3d, char *dir);
 void	ft_escape(mlx_key_data_t keydata, void *c4d);
+void	ft_mouse(mouse_key_t button, action_t action, modifier_key_t mods, void *c4d);
+void	ft_cursor(double x, double y, void *c4d);
 
 /*sprite*/
 void	load_weapon_image(t_data *c3d, char *weapon_path);
