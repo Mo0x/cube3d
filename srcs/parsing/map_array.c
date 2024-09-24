@@ -72,7 +72,6 @@ void	add_line(t_data *c3d, char *to_add)
 
 	remove_newline(to_add);
 	update_map_dimensions(c3d->map, to_add);
-
 	if (size == 1)
 	{
 		if (!init_map_arr(c3d->map, to_add, size))

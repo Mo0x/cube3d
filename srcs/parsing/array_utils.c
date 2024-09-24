@@ -62,22 +62,20 @@ void	free_arr(char **to_free)
 	wfree(to_free);
 }
 
-
 int	init_map_arr(t_map *map, char *to_add, int size)
 {
 	map->map_arr = (char **)walloc(sizeof(char *) * (size + 1));
 	if (!map->map_arr)
-		return (0); // Allocation failed
-
+		return (0);
 	map->map_arr[0] = ft_strdup(to_add);
 	if (!map->map_arr[0])
 	{
 		free(map->map_arr);
 		map->map_arr = NULL;
-		return (0); // Duplication failed
+		return (0);
 	}
 	map->map_arr[1] = NULL;
-	return (1); // Success
+	return (1);
 }
 
 int	expand_map_arr(t_map *map, char *to_add, int size)
@@ -86,17 +84,16 @@ int	expand_map_arr(t_map *map, char *to_add, int size)
 
 	new_array = (char **)walloc(sizeof(char *) * (size + 1));
 	if (!new_array)
-		return (0); // Allocation failed
-
+		return (0);
 	arrcpy(map->map_arr, new_array);
 	new_array[size - 1] = ft_strdup(to_add);
 	if (!new_array[size - 1])
 	{
 		free_arr(new_array);
-		return (0); // Duplication failed
+		return (0);
 	}
 	new_array[size] = NULL;
 	free_arr(map->map_arr);
 	map->map_arr = new_array;
-	return (1); // Success
+	return (1);
 }
