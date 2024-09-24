@@ -47,12 +47,17 @@ t_ray	*ft_init_ray(t_data *c3d, int x)
 	ray = walloc(sizeof(t_ray));
 	if (!ray)
 		exit_exclaim("Error mallocing ray", c3d);
+	ft_memset(ray, 0, sizeof(t_ray));
 	ray->hit = FALSE;
 	ray->camera_x = 2.0f * (float)x / (float)WIDTH - 1.0f;
 	ray->ray_dir_x = c3d->player->dir_x + c3d->player->plane_x * ray->camera_x;
 	ray->ray_dir_y = c3d->player->dir_y + c3d->player->plane_y * ray->camera_x;
 	ray->map_x = (int)c3d->player->pos_x;
 	ray->map_y = (int)c3d->player->pos_y;
+	ray->side = 0;
+	ray->perp_wall_dist = 0;
+	ray->hit_type = 0;
+	ray->door_open_amount = 0;
 	if (ray->ray_dir_x == 0.0f)
 		ray->delta_x = INFINITY;
 	else

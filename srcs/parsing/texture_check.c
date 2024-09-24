@@ -45,4 +45,8 @@ void	check_textures(t_data *c3d)
 	check_texture(c3d->map->w_path, c3d);
 	check_texture(c3d->map->e_path, c3d);
 	check_texture(c3d->map->n_path, c3d);
+	printf("North path: %s\n", c3d->map->n_path);
+	printf("South path: %s\n", c3d->map->s_path);
+	printf("West path: %s\n", c3d->map->w_path);
+	printf("East path: %s\n", c3d->map->e_path);
 }

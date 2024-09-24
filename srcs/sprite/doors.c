@@ -29,7 +29,6 @@ void	add_door(t_data *c3d, int x, int y)
 	printf("Added door at (%d, %d)\n", x, y);
 }
 
-
 void	open_door(t_door *door)
 {
 	door->state = DOOR_OPENING;
@@ -67,6 +66,7 @@ void	handle_door_interaction(t_data *c3d)
 {
 	t_pos	pos;
 
+	ft_memset(&pos, 0, sizeof(t_pos));
 	pos.px = (int)c3d->player->pos_x;
 	pos.py = (int)c3d->player->pos_y;
 	pos.dy = -1;

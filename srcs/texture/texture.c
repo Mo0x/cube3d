@@ -33,11 +33,23 @@ void	load_door_texture(t_data *c3d, mlx_texture_t **texture, char *path)
 void	init_wall_textures(t_data *c3d)
 {
 	load_wall_texture(c3d, &c3d->n_texture, c3d->map->n_path);
+	if (!c3d->n_texture)
+		exit_exclaim("Failed to load north texture", c3d);
 	load_wall_texture(c3d, &c3d->s_texture, c3d->map->s_path);
+	if (!c3d->s_texture)
+		exit_exclaim("Failed to load south texture", c3d);
 	load_wall_texture(c3d, &c3d->w_texture, c3d->map->w_path);
+	if (!c3d->w_texture)
+		exit_exclaim("Failed to load west texture", c3d);
 	load_wall_texture(c3d, &c3d->e_texture, c3d->map->e_path);
+	if (!c3d->e_texture)
+		exit_exclaim("Failed to load east texture", c3d);
 	if (c3d->doors)
+	{
 		load_door_texture(c3d, &c3d->door_texture, "srcs/sprite/doom_door.png");
+		if (!c3d->door_texture)
+			exit_exclaim("Failed to load door texture", c3d);
+	}
 	else
 		c3d->door_texture = NULL;
 }
