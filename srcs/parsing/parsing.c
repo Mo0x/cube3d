@@ -24,7 +24,6 @@ void	parsing(t_map *map, char **filename, int argc, t_data *c3d)
 	check_textures(c3d);
 	setup_colors(c3d);
 	parse_map(map, c3d);
-
 	if (access(c3d->map->n_path, F_OK) != 0)
 		exit_exclaim("North texture file does not exist", c3d);
 	if (access(c3d->map->s_path, F_OK) != 0)

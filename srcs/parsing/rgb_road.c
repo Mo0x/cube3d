@@ -35,13 +35,9 @@ int	parse_rgb_component(char **str)
 		(*str)++;
 	if (**str == ',')
 		(*str)++;
-
 	return (value);
 }
 
-
-/* validate fct pour verif si la string donnee comprend bien 2
-virgules et qu apres la 2 eme virgule il y a une valeur*/
 int	validate_rgb_format(char *str)
 {
 	int	count_comma;
@@ -72,14 +68,11 @@ int	convert_rgb_str_to_int(char *rgb_str, t_data *c3d)
 	b = parse_rgb_component(&rgb_str);
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 		exit_exclaim("Color value out of range\n", c3d);
-	printf("R: %d, G: %d, B: %d\n", r, g, b); // test avant conversion
 	return ((r << 16) | (g << 8) | b);
 }
 
 void	setup_colors(t_data *c3d)
 {
-	printf("before convert Color str ceiling :%s\n", c3d->map->ccolor); //test
-	printf("before convert Color str floor :%s\n", c3d->map->fcolor); //test
 	check_space_in_str_color(c3d->map->ccolor, c3d);
 	check_space_in_str_color(c3d->map->fcolor, c3d);
 	if (validate_rgb_format(c3d->map->ccolor) && \

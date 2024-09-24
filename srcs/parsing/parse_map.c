@@ -31,7 +31,6 @@ void	validate_map_enclosure(t_data *c3d)
 			{
 				if (!is_enclosed_by_walls_or_spaces(c3d->map, x, y))
 				{
-					printf("Invalid space at: x = %d, y = %d\n", x, y); // testing
 					exit_exclaim("Spaces must be enclosed by '1's or spaces\n" \
 								, c3d);
 				}
@@ -88,7 +87,6 @@ void	parse_map(t_map *map, t_data *c3d)
 			break ;
 		}
 	}
-	printf("Total doors: %d\n", count_doors(c3d));
 	validate_rows(c3d);
 	validate_map_enclosure(c3d);
 	check_single_spawn_point(c3d);

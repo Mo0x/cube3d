@@ -14,7 +14,8 @@
 
 int	id_check(char *ids)
 {
-	/* check si palette_patrol est empty car si c est le cas on a toutes les infos*/
+	/* check si palette_patrol est empty car 
+	si c est le cas on a toutes les	infos*/
 	while (*ids)
 	{
 		if (*ids != ' ')
@@ -44,7 +45,7 @@ void	trim_stuff(t_map *map)
 	wfree(save);
 	save = map->ccolor;
 	map->ccolor = ft_strtrim(map->ccolor, nl);
-//	wfree(save);
+	wfree(save); //trying to uncomment
 	save = map->fcolor;
 	map->fcolor = ft_strtrim(map->fcolor, nl);
 	wfree(save);
@@ -63,7 +64,7 @@ int	add_info(char erase_me, t_data *c3d, char *palette_patrol, char *line)
 		palette_patrol++;
 	if (!*palette_patrol)
 		exit_exclaim("Same id twice in file my friend\n", c3d);
-	*palette_patrol = ' '; //efface l identifiant trouve
+	*palette_patrol = ' ';
 	skip_spaces(&line);
 	if (*line == '\0' || *line == '\n')
 		exit_exclaim("Have you missed something ? Nothing comes \
@@ -106,7 +107,6 @@ int	get_info(char *line, char *ids, t_data *c3d)
 
 void	colors_harvester(t_data *c3d)
 {
-	/* Fonction qui parse la map avec gnl et verifie que les donnees NSWEFC sont la*/
 	char	*palette_patrol;
 
 	palette_patrol = ft_strdup("NSWEFC");

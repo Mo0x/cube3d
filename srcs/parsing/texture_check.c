@@ -19,10 +19,8 @@ void	filename_texture_check(char *filename, t_data *c3d)
 	len = ft_strlen(filename);
 	if (len < 5)
 		exit_exclaim("How your texture can be that short?\n", c3d);
-	/* if (ft_strcmp(filename + len - 4, ".xpm") != 0)
-		exit_exclaim("Wrong texture file extension\n", c3d); 
-		-> to renable after texture is clear
-		*/
+	if (ft_strcmp(filename + len - 4, ".png") != 0)
+		exit_exclaim("Wrong texture file extension\n", c3d);
 }
 
 void	check_texture(char *arr, t_data *c3d)
