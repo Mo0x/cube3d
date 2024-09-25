@@ -12,20 +12,18 @@
 
 #include "../includes/cub3d.h"
 
-void	filename_texture_check(char *filename)
+void	filename_texture_check(char *filename, t_data *c3d)
 {
 	size_t	len;
 
 	len = ft_strlen(filename);
 	if (len < 5)
-		exit_exclaim("How your texture can be that short?\n");
-	/* if (ft_strcmp(filename + len - 4, ".xpm") != 0)
-		exit_exclaim("Wrong texture file extension\n"); 
-		-> to renable after texture is clear
-		*/
+		exit_exclaim("How your texture can be that short?\n", c3d);
+	if (ft_strcmp(filename + len - 4, ".png") != 0)
+		exit_exclaim("Wrong texture file extension\n", c3d);
 }
 
-void	check_texture(char *arr)
+void	check_texture(char *arr, t_data *c3d)
 {
 	int	i;
 
@@ -33,16 +31,20 @@ void	check_texture(char *arr)
 	while (arr[i])
 	{
 		if (arr[i] == ' ')
-			exit_exclaim("Found weird spaces in texture paths ! Why ?\n");
+			exit_exclaim("Found weird spaces in texture paths ! Why ?\n", c3d);
 		i++;
 	}
-	filename_texture_check(arr);
+	filename_texture_check(arr, c3d);
 }
 
-void	check_textures(t_map *map)
+void	check_textures(t_data *c3d)
 {
-	check_texture(map->s_path);
-	check_texture(map->w_path);
-	check_texture(map->e_path);
-	check_texture(map->n_path);
+	check_texture(c3d->map->s_path, c3d);
+	check_texture(c3d->map->w_path, c3d);
+	check_texture(c3d->map->e_path, c3d);
+	check_texture(c3d->map->n_path, c3d);
+	printf("North path: %s\n", c3d->map->n_path);
+	printf("South path: %s\n", c3d->map->s_path);
+	printf("West path: %s\n", c3d->map->w_path);
+	printf("East path: %s\n", c3d->map->e_path);
 }

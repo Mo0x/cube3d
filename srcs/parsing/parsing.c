@@ -15,14 +15,21 @@
 void	parsing(t_map *map, char **filename, int argc, t_data *c3d)
 {
 	if (argc != 2)
-		exit_exclaim("Error wrong number of arguments\n");
+		exit_exclaim("Error wrong number of arguments\n", c3d);
 	filename_check(filename[1]);
 	map->fd = open(filename[1], O_RDONLY);
 	if (map->fd == -1)
-		exit_exclaim("Error when openning file\n");
-	colors_harvester(map);
-	check_textures(map);
+		exit_exclaim("Error when openning file\n", c3d);
+	colors_harvester(c3d);
+	check_textures(c3d);
 	setup_colors(c3d);
 	parse_map(map, c3d);
-	//check_player_enclosure(map);
+	if (access(c3d->map->n_path, F_OK) != 0)
+		exit_exclaim("North texture file does not exist", c3d);
+	if (access(c3d->map->s_path, F_OK) != 0)
+		exit_exclaim("South texture file does not exist", c3d);
+	if (access(c3d->map->w_path, F_OK) != 0)
+		exit_exclaim("West texture file does not exist", c3d);
+	if (access(c3d->map->e_path, F_OK) != 0)
+		exit_exclaim("East texture file does not exist", c3d);
 }

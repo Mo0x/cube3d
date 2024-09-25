@@ -12,28 +12,31 @@
 
 #include "cub3d.h"
 
-
 void	ft_step_and_side_dist(t_data *c3d, t_ray *ray)
 {
 	if (ray->ray_dir_x < 0.0f)
 	{
 		ray->step_x = -1;
-		ray->side_dist_x = (c3d->player->pos_x - (double)ray->map_x) * ray->delta_x;
+		ray->side_dist_x = (c3d->player->pos_x - (double)ray->map_x) \
+										* ray->delta_x;
 	}
 	else
 	{
 		ray->step_x = 1;
-		ray->side_dist_x = ((double)ray->map_x + 1.0f - c3d->player->pos_x) * ray->delta_x;
+		ray->side_dist_x = ((double)ray->map_x + 1.0f - c3d->player->pos_x) \
+										* ray->delta_x;
 	}
 	if (ray->ray_dir_y < 0.0f)
 	{
 		ray->step_y = -1;
-		ray->side_dist_y = (c3d->player->pos_y - (double) ray->map_y) * ray->delta_y;
+		ray->side_dist_y = (c3d->player->pos_y - (double) ray->map_y) \
+										* ray->delta_y;
 	}
 	else
 	{
 		ray->step_y = 1;
-		ray->side_dist_y = ((double)ray->map_y + 1.0f - c3d->player->pos_y) * ray->delta_y;
+		ray->side_dist_y = ((double)ray->map_y + 1.0f - c3d->player->pos_y) \
+										* ray->delta_y;
 	}
 }
 
@@ -43,48 +46,56 @@ t_ray	*ft_init_ray(t_data *c3d, int x)
 
 	ray = walloc(sizeof(t_ray));
 	if (!ray)
-		exit_exclaim("Error mallocing ray");
+		exit_exclaim("Error mallocing ray", c3d);
 	ray->hit = FALSE;
 	ray->camera_x = 2.0f * (float)x / (float)WIDTH - 1.0f;
 	ray->ray_dir_x = c3d->player->dir_x + c3d->player->plane_x * ray->camera_x;
 	ray->ray_dir_y = c3d->player->dir_y + c3d->player->plane_y * ray->camera_x;
 	ray->map_x = (int)c3d->player->pos_x;
 	ray->map_y = (int)c3d->player->pos_y;
+	ray->side = 0;
+	ray->perp_wall_dist = 0;
+	ray->hit_type = 0;
+	ray->door_open_amount = 0;
 	if (ray->ray_dir_x == 0.0f)
 		ray->delta_x = INFINITY;
 	else
-		ray->delta_x = ft_abs_double(1.0f /ray->ray_dir_x);
+		ray->delta_x = ft_abs_double(1.0f / ray->ray_dir_x);
 	if (ray->ray_dir_y == 0.0f)
 		ray->delta_y = INFINITY;
 	else
-		ray->delta_y = ft_abs_double(1.0f /ray->ray_dir_y);
+		ray->delta_y = ft_abs_double(1.0f / ray->ray_dir_y);
 	ft_step_and_side_dist(c3d, ray);
 	return (ray);
 }
 
 int	ft_ray_hit(t_data *c3d, t_ray *ray)
 {
-	int	cell;
+	char	cell;
 
 	if (ray->map_x < 0 || ray->map_y < 0)
 		return (FALSE);
 	if (ray->map_x >= WIDTH || ray->map_y >= HEIGHT)
 		return (FALSE);
 	//printf("DeBUG x = %d y = %d \n", ray->map_x, ray->map_y);
-	cell = (c3d->map->map_arr[ray->map_y][ray->map_x]) - '0';
-	if (cell != 0)
+	cell = (c3d->map->map_arr[ray->map_y][ray->map_x]);
+	if (cell == '1')
 	{
-		/* if (current_cell = DOOR) here we will handle doors*/
+		ray->hit_type = WALL_HIT;
 		return (TRUE);
 	}
-	return (FALSE);
+	else if (cell == 'D')
+		return (handle_door_cell(c3d, ray)); // si le rayon trouve une porte et qu elle est open, retourne false pour afficher ce qui il y a derriere
+	else
+		return (FALSE);
 }
 
-
-void	ft_cast_ray(t_data *c3d)
+/*
+void	ft_cast_ray(t_data *c3d) // a spliter j ai rajoute des lines pour la porte je m en charge
 {
 	t_ray	*ray;
 	int		depth;
+	t_door	*door;
 
 	depth = 0;
 	ray = c3d->player->ray;
@@ -103,13 +114,89 @@ void	ft_cast_ray(t_data *c3d)
 			ray->side = 1;
 		}
 		if (ft_ray_hit(c3d, ray))
+		{
 			ray->hit = TRUE;
+			if (ray->hit_type == DOOR_HIT)
+			{
+				door = find_door(c3d, ray->map_x, ray->map_y);
+				if (door)
+					ray->door_open_amount = door->open_amount;
+				else
+					ray->door_open_amount = 0.0;
+			}
+			else
+				ray->door_open_amount = 0.0;
+		}
 		depth++;
 	}
 	if (ray->side == 0)
 		ray->perp_wall_dist = (ray->side_dist_x - ray->delta_x);
 	else
 		ray->perp_wall_dist = (ray->side_dist_y - ray->delta_y);
+	//printf("side %d perp %f\n", ray->side, ray->perp_wall_dist); //probleme here
+}*/
+
+void	ft_update_side_dist_x(t_ray *ray)
+{
+	ray->map_x += ray->step_x;
+	ray->side_dist_x += ray->delta_x;
+	ray->side = 0;
+}
+
+void	ft_update_side_dist_y(t_ray *ray)
+{
+	ray->map_y += ray->step_y;
+	ray->side_dist_y += ray->delta_y;
+	ray->side = 1;
+}
+
+void	ft_handle_hit(t_data *c3d, t_ray *ray)
+{
+	t_door	*door;
+
+	door = NULL;
+	if (ray->hit_type == DOOR_HIT)
+	{
+		door = find_door(c3d, ray->map_x, ray->map_y);
+		if (door)
+			ray->door_open_amount = door->open_amount;
+		else
+			ray->door_open_amount = 0.0;
+	}
+	else
+		ray->door_open_amount = 0.0;
+}
+
+void	ft_perform_cast_ray(t_data *c3d, t_ray *ray, int depth)
+{
+	while (ray->hit == 0 && depth < 64)
+	{
+		if (ray->side_dist_x < ray->side_dist_y)
+			ft_update_side_dist_x(ray);
+		else
+			ft_update_side_dist_y(ray);
+		if (ft_ray_hit(c3d, ray))
+		{
+			ray->hit = TRUE;
+			ft_handle_hit(c3d, ray);
+		}
+		depth++;
+	}
+}
+
+void	ft_cast_ray(t_data *c3d)
+{
+	t_ray	*ray;
+	int		depth;
+
+	ray = c3d->player->ray;
+	depth = 0;
+
+	ft_perform_cast_ray(c3d, ray, depth);
+	if (ray->side == 0)
+		ray->perp_wall_dist = ray->side_dist_x - ray->delta_x;
+	else
+		ray->perp_wall_dist = ray->side_dist_y - ray->delta_y;
 }
 
 void ft_do_the_raycast(t_data *c3d)
@@ -124,7 +211,7 @@ void ft_do_the_raycast(t_data *c3d)
 		if(c3d->player->ray->hit == 1)
 		{
 			ft_draw_wall(c3d, c3d->player->ray, x);
-		//free(c3d->player->ray); <- idk about this
+			//free(c3d->player->ray); <- idk about this
 		}
 		x++;
 	}
