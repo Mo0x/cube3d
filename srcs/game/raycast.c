@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 19:09:39 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/09/16 16:44:13 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/17 17:54:37 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,14 +106,12 @@ void	ft_cast_ray(t_data *c3d) // a spliter j ai rajoute des lines pour la porte 
 			ray->map_x += ray->step_x;
 			ray->side_dist_x += ray->delta_x;
 			ray->side = 0;
-			//printf("map_x %d, step_x %d, dist_x %f delta_x %f\n", ray->map_x, ray->step_x, ray->side_dist_x, ray->delta_x);
 		}
 		else
 		{
 			ray->map_y += ray->step_y;
 			ray->side_dist_y += ray->delta_y;
 			ray->side = 1;
-			//printf("map_y %d, step_y %d, dist_y %f delta_y %f\n", ray->map_y, ray->step_y, ray->side_dist_y, ray->delta_y);
 		}
 		if (ft_ray_hit(c3d, ray))
 		{

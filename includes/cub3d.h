@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 14:44:27 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/29 19:44:29 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:35:16 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,11 @@
 # define BLUE 0x0000FFFF
 
 /* Error*/
+
+void	ft_clean_shutdown(t_data *c3d);
 void	exit_exclaim(char *string, t_data *c3d);
 void	ft_clean_up(t_data *c3d);
+
 
 /*Parse*/
 void	parsing(t_map *map, char **filename, int argc, t_data *c3d);
@@ -58,6 +61,9 @@ void	ft_warpper_put_pxl(mlx_image_t *img, int x, int y, unsigned int color);
 /*Move set*/
 void	player_move(t_data *c3d, char *dir);
 void	player_look(t_data *c3d, char *dir);
+void	ft_escape(mlx_key_data_t keydata, void *c4d);
+void	ft_mouse(mouse_key_t button, action_t action, modifier_key_t mods, void *c4d);
+void	ft_cursor(double x, double y, void *c4d);
 
 /*sprite*/
 void	load_weapon_image(t_data *c3d, char *weapon_path);
