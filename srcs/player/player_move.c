@@ -14,10 +14,22 @@
 
 int	ft_valid_cell(t_data *c3d, int x, int y)
 {
-	//door check here too
-	if (c3d->map->map_arr[y][x] == '0')
+	char	cell;
+	t_door	*door;
+
+	cell = c3d->map->map_arr[y][x];
+	if (cell == '0')
 		return (TRUE);
-	return (FALSE);
+	else if (cell == 'D')
+	{
+		door = find_door(c3d, x, y);
+		if (door && door->open_amount >= 1.0)
+			return (TRUE);
+		else
+			return (FALSE);
+	}
+	else
+		return (FALSE);
 }
 
 void	move_up(t_data *c3d, t_player *player)
@@ -33,6 +45,7 @@ void	move_up(t_data *c3d, t_player *player)
 	if (ft_valid_cell(c3d, (int)player->pos_x, (int)new_pos))
 		player->pos_y = new_pos;
 }
+
 void	move_down(t_data *c3d, t_player *player)
 {
 	float	speed;

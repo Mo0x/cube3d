@@ -19,14 +19,14 @@
 
 
 // dans parsing_get_color_and_texture
-void	colors_harvester(t_map *map);
+void	colors_harvester(t_data *c3d);
 
 // dans parse_utils.c
 void	filename_check(char *filename);
 void	skip_spaces(char **str);
 
 // dans texture_check.c
-void	check_textures(t_map *map);
+void	check_textures(t_data *c3d);
 
 // dans color_
 void	setup_colors(t_data *c3d);
@@ -35,13 +35,13 @@ void	setup_colors(t_data *c3d);
 void	parse_map(t_map *map, t_data *c3d);
 
 // dans map_array.c
-void	add_line(t_map *map, char *to_add);
-void	finalize_map_validation(t_map *map);
+void	add_line(t_data *c3d, char *to_add);
+void	finalize_map_validation(t_data *c3d);
 void	remove_newline(char *line);
 
 // dans map_check.c
-int		map_check(char **line, t_map *map);
-void	is_there_a_gift_after_map(int fd, char *line);
+int		map_check(char **line, t_data *c3d);
+void	is_there_a_gift_after_map(int fd, char *line, t_data *c3d);
 void	check_single_spawn_point(t_data *c3d);
 
 // dans map_enclosure_check.c
@@ -52,8 +52,10 @@ int		is_enclosed_by_walls_or_spaces(t_map *map, int x, int y);
 void	arrcpy(char **src, char **dest);
 int		arrsize(char **array);
 void	free_arr(char **to_free);
+int     init_map_arr(t_map *map, char *to_add, int size);
+int		expand_map_arr(t_map *map, char *to_add, int size);
 
 // dans map_row.c
-void	validate_rows(t_map *map);
+void	validate_rows(t_data *c3d);
 
 #endif

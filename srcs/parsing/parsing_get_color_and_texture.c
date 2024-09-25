@@ -14,7 +14,8 @@
 
 int	id_check(char *ids)
 {
-	/* check si palette_patrol est empty car si c est le cas on a toutes les infos*/
+	/* check si palette_patrol est empty car 
+	si c est le cas on a toutes les	infos*/
 	while (*ids)
 	{
 		if (*ids != ' ')
@@ -44,14 +45,14 @@ void	trim_stuff(t_map *map)
 	wfree(save);
 	save = map->ccolor;
 	map->ccolor = ft_strtrim(map->ccolor, nl);
-//	wfree(save);
+	wfree(save); //trying to uncomment
 	save = map->fcolor;
 	map->fcolor = ft_strtrim(map->fcolor, nl);
 	wfree(save);
 	wfree((void *)nl);
 }
 
-int	add_info(char erase_me, t_map *map, char *palette_patrol, char *line)
+int	add_info(char erase_me, t_data *c3d, char *palette_patrol, char *line)
 {
 	/* 
 	Recherche la lettre dans palette patrol et l erase de palette patroll 
@@ -62,65 +63,64 @@ int	add_info(char erase_me, t_map *map, char *palette_patrol, char *line)
 	while (*palette_patrol != erase_me && *palette_patrol)
 		palette_patrol++;
 	if (!*palette_patrol)
-		exit_exclaim("Same id twice in file my friend\n");
-	*palette_patrol = ' '; //efface l identifiant trouve
+		exit_exclaim("Same id twice in file my friend\n", c3d);
+	*palette_patrol = ' ';
 	skip_spaces(&line);
 	if (*line == '\0' || *line == '\n')
 		exit_exclaim("Have you missed something ? Nothing comes \
-after identifier\n");
+after identifier\n", c3d);
 	if (erase_me == 'N')
-		map->n_path = ft_strdup(line);
+		c3d->map->n_path = ft_strdup(line);
 	else if (erase_me == 'S')
-		map->s_path = ft_strdup(line);
+		c3d->map->s_path = ft_strdup(line);
 	else if (erase_me == 'W')
-		map->w_path = ft_strdup(line);
+		c3d->map->w_path = ft_strdup(line);
 	else if (erase_me == 'E')
-		map->e_path = ft_strdup(line);
+		c3d->map->e_path = ft_strdup(line);
 	else if (erase_me == 'C')
-		map->ccolor = ft_strdup(line);
+		c3d->map->ccolor = ft_strdup(line);
 	else if (erase_me == 'F')
-		map->fcolor = ft_strdup(line);
+		c3d->map->fcolor = ft_strdup(line);
 	return (1);
 }
 
-int	get_info(char *line, char *ids, t_map *map)
+int	get_info(char *line, char *ids, t_data *c3d)
 {
 	if (*line == '\n')
 		return (1);
 	if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ')
-		return (add_info('N', map, ids, line + 2));
+		return (add_info('N', c3d, ids, line + 2));
 	else if (line[0] == 'S' && line[1] == 'O' && line[2] == ' ')
-		return (add_info('S', map, ids, line + 2));
+		return (add_info('S', c3d, ids, line + 2));
 	else if (line[0] == 'W' && line[1] == 'E' && line[2] == ' ')
-		return (add_info('W', map, ids, line + 2));
+		return (add_info('W', c3d, ids, line + 2));
 	else if (line[0] == 'E' && line[1] == 'A' && line[2] == ' ')
-		return (add_info('E', map, ids, line + 2));
+		return (add_info('E', c3d, ids, line + 2));
 	else if (line[0] == 'F' && line[1] == ' ')
-		return (add_info('F', map, ids, line + 1));
+		return (add_info('F', c3d, ids, line + 1));
 	else if (line[0] == 'C' && line[1] == ' ')
-		return (add_info('C', map, ids, line + 1));
+		return (add_info('C', c3d, ids, line + 1));
 	else
-		exit_exclaim("invalid identifier my friend\n");
+		exit_exclaim("invalid identifier my friend\n", c3d);
 	return (0);
 }
 
-void	colors_harvester(t_map *map)
+void	colors_harvester(t_data *c3d)
 {
-	/* Fonction qui parse la map avec gnl et verifie que les donnees NSWEFC sont la*/
 	char	*palette_patrol;
 
 	palette_patrol = ft_strdup("NSWEFC");
-	map->line = get_next_line(map->fd);
-	if (!map->line)
-		exit_exclaim("Empty file\n");
-	while (get_info(map->line, palette_patrol, map) == 1 \
+	c3d->map->line = get_next_line(c3d->map->fd);
+	if (!c3d->map->line)
+		exit_exclaim("Empty file\n", c3d);
+	while (get_info(c3d->map->line, palette_patrol, c3d) == 1 \
 			&& id_check(palette_patrol) == 1)
 	{
-		wfree(map->line);
-		map->line = get_next_line(map->fd);
-		if (!map->line)
-			exit_exclaim("Empty file");
+		wfree(c3d->map->line);
+		c3d->map->line = get_next_line(c3d->map->fd);
+		if (!c3d->map->line)
+			exit_exclaim("Empty file", c3d);
 	}
-	trim_stuff(map);
+	trim_stuff(c3d->map);
 	wfree(palette_patrol);
 }
