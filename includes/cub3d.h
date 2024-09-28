@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 14:44:27 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/09/28 18:56:17 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/28 19:35:23 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void		ft_clean_up(t_data *c3d);
 void		parsing(t_map *map, char **filename, int argc, t_data *c3d);
 
 /*core*/
+void		ft_init(t_data *c3d);
+void		init_mlx(t_data *c3d);
 void		ft_start_game(t_data *c3d);
 void		render(t_data *c3d);
 void		ft_do_the_raycast(t_data *c3d);

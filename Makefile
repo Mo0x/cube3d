@@ -14,6 +14,7 @@ SRCS = ./srcs/main.c  \
 		./srcs/parsing/map_enclosure_check.c \
 		./srcs/error/error.c \
 		./srcs/game/init.c \
+		./srcs/game/init2.c \
 		./srcs/game/render.c \
 		./srcs/game/raycast.c \
 		./srcs/game/draw_wall.c \
