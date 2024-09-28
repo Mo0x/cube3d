@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 19:18:15 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/09/14 18:46:59 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/28 19:04:15 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,9 @@ void	ft_draw_wall(t_data *c3d, t_ray *ray, int x)
 	uint32_t	color;
 
 	ray->line_height = (float)HEIGHT / ray->perp_wall_dist;
-	//printf(" line heigt = %f, height = %f, perp_wall %f\n", ray->line_height, (float)HEIGHT, ray->perp_wall_dist);
+	//printf(" line heigt = %f, height = %f, perp_wall %f\n", 
+	ray->line_height, (float)HEIGHT, ray->perp_wall_dist);
+
 	ray->draw_start = (-ray->line_height + HEIGHT) / 2;
 	if (ray->draw_start < 0.0f)
 		ray->draw_start = 0.0f;

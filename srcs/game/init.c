@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:03:38 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/09/24 17:29:46 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/28 19:02:39 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,9 +169,6 @@ void	ft_start_game(t_data *c3d)
 	init_mlx(c3d);
 	init_wall_textures(c3d);
 	mlx_loop_hook(c3d->mlx, game_render, c3d);
-	
-	//game_loop(c3d);
-	/* set hook here*/
 	mlx_key_hook(c3d->mlx, ft_escape, c3d);
 	mlx_mouse_hook(c3d->mlx, ft_mouse, c3d);
 	mlx_cursor_hook(c3d->mlx, ft_cursor, c3d);

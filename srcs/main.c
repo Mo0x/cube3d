@@ -6,13 +6,11 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 14:47:18 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/29 19:46:19 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/28 19:03:06 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-//test git
 
 int	main(int argc, char **argv)
 {
@@ -33,10 +31,10 @@ int	main(int argc, char **argv)
 	printf("S path :%s\n", c3d->map->s_path);
 	printf("W path :%s\n", c3d->map->w_path);
 	printf("E path :%s\n", c3d->map->e_path);
-	printf("Converted ceiling color: 0x%X\n", c3d->floorcolor); //testing hexa conversion color
-	printf("Converted floor color: 0x%X\n", c3d->ceilingcolor); //testing hexa conversion color
-	ft_start_game(c3d); // if fail launch ? err or not ?
+	printf("Converted ceiling color: 0x%X\n", c3d->floorcolor);
+	printf("Converted floor color: 0x%X\n", c3d->ceilingcolor);
+	ft_start_game(c3d);
 	ft_clean_up(c3d);
-	wclear(); /* <---- a mettre a chaque fin dexec pour clear les allocs*/
+	wclear();
 	return (0);
 }

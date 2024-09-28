@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:30:37 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/26 19:05:48 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/09/28 19:00:30 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,3 @@ char	*get_next_line(int fd)
 	ret = ft_get_line_and_clean(fd, garbage);
 	return (ret);
 }
-
