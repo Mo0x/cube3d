@@ -14,17 +14,18 @@
 
 void	filename_check(char *filename)
 {
+	char	*last_ext;
+
 	if (ft_strlen(filename) == 4)
 	{
 		ft_printf(1, "Wrong filename\n");
 		exit (1);
 	}
-	while (*filename != '.')
-		filename++;
-	if (ft_strnstr(filename, ".cub", 4) == 0 || ft_strlen(filename) != 4)
+	last_ext = ft_strrchr(filename, '.');
+	if (!last_ext || ft_strcmp(last_ext, ".cub") != 0)
 	{
 		ft_printf(1, "Wrong file extension\n");
-		exit (1);
+		exit(1);
 	}
 }
 
