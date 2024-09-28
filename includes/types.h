@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/24 17:26:51 by mgovinda         ###   ########.fr       */
+/*   Created: 2024/09/28 18:57:34 by mgovinda          #+#    #+#             */
+/*   Updated: 2024/09/28 18:59:25 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef TYPES_H
 # define TYPES_H
@@ -19,7 +18,7 @@
 # define FALSE 0
 # define WALL_HIT 1
 # define DOOR_HIT 2
-# define DOOR_OPEN_TIME 1.0 
+# define DOOR_OPEN_TIME 1.0
 # define DOOR_STAY_OPEN_TIME 3.0
 # define DOOR_CLOSED 0
 # define DOOR_OPENING 1
@@ -30,24 +29,24 @@
 
 typedef struct s_map
 {
-	char	*line;
-	char	*n_path;
-	char	*s_path;
-	char	*w_path;
-	char	*e_path;
-	char	*ccolor;
-	char	*fcolor;
-	int		fd;
-	char	**map_arr;
-	int		width;
-	int		height;
-}			t_map;
+	char			*line;
+	char			*n_path;
+	char			*s_path;
+	char			*w_path;
+	char			*e_path;
+	char			*ccolor;
+	char			*fcolor;
+	int				fd;
+	char			**map_arr;
+	int				width;
+	int				height;
+}					t_map;
 
 /*
 typedef struct s_img
 {
 
-}				t_img;
+}					t_img;
 */
 
 typedef struct s_rect
@@ -57,58 +56,58 @@ typedef struct s_rect
 	int				y_start;
 	int				y_end;
 	unsigned int	color;
-}			t_rect;
+}					t_rect;
 
 /* perhaps need to convert line height draw_start and draw_end into float*/
 
 typedef struct s_ray
 {
-	double	camera_x;
-	double	ray_dir_x;
-	double	ray_dir_y;
-	int		map_x;
-	int		map_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	double	delta_x;
-	double	delta_y;
-	double	perp_wall_dist;
-	int		step_x;
-	int		step_y;
-	int		hit;
-	int		side;
-	float	line_height;
-	float	draw_start;
-	float	draw_end;
-	int		x;
-	int		tex_x;
-	double	tex_pos;
-	double	step;
-	int		hit_type; //wall oder door
-	double	door_open_amount;
-}				t_ray;
+	double			camera_x;
+	double			ray_dir_x;
+	double			ray_dir_y;
+	int				map_x;
+	int				map_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_x;
+	double			delta_y;
+	double			perp_wall_dist;
+	int				step_x;
+	int				step_y;
+	int				hit;
+	int				side;
+	float			line_height;
+	float			draw_start;
+	float			draw_end;
+	int				x;
+	int				tex_x;
+	double			tex_pos;
+	double			step;
+	int				hit_type;
+	double			door_open_amount;
+}					t_ray;
 
 typedef struct s_player
 {
-	double	pos_x;
-	double	pos_y;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-	float	cam_speed;
-	float	move_speed;
-	char	dir;
-	t_ray	*ray;
-}				t_player;
+	double			pos_x;
+	double			pos_y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
+	float			cam_speed;
+	float			move_speed;
+	char			dir;
+	t_ray			*ray;
+}					t_player;
 
 typedef struct s_door
 {
-	int				x; //pos x et y
+	int				x;
 	int				y;
-	int				state; // 0 fermee 1 ouvert
-	float			open_amount; // variable allant de 0.0 a 1.0
-	double			timer; // temps depuis ouverture 3 sec se ferme
+	int				state;
+	float			open_amount;
+	double			timer;
 	struct s_door	*next;
 }					t_door;
 
@@ -135,16 +134,16 @@ typedef struct s_data
 	int				is_moving;
 	int				focus;
 	t_door			*doors;
-}				t_data;
+}					t_data;
 
 typedef struct s_pos
 {
-	int	x;
-	int	y;
-	int	px;
-	int	py;
-	int	dx;
-	int	dy;
-}		t_pos;
+	int				x;
+	int				y;
+	int				px;
+	int				py;
+	int				dx;
+	int				dy;
+}					t_pos;
 
 #endif

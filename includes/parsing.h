@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wkeiser <wkeiser@student.42mulhouse.fr>    +#+  +:+       +#+        */
+/*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 19:16:34 by wkeiser           #+#    #+#             */
-/*   Updated: 2024/08/08 19:16:36 by wkeiser          ###   ########.fr       */
+/*   Updated: 2024/09/28 18:57:01 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 # define PARSING_H
 # include "types.h"
-
 
 // dans parsing_get_color_and_texture
 void	colors_harvester(t_data *c3d);
@@ -52,7 +51,7 @@ int		is_enclosed_by_walls_or_spaces(t_map *map, int x, int y);
 void	arrcpy(char **src, char **dest);
 int		arrsize(char **array);
 void	free_arr(char **to_free);
-int     init_map_arr(t_map *map, char *to_add, int size);
+int		init_map_arr(t_map *map, char *to_add, int size);
 int		expand_map_arr(t_map *map, char *to_add, int size);
 
 // dans map_row.c
