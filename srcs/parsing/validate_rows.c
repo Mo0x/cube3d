@@ -21,14 +21,12 @@ void	validate_boundary_row(char **map_arr, int y, size_t width, t_data *c3d)
 	{
 		if (map_arr[y][x] != '1' && map_arr[y][x] != ' ')
 		{
-			printf("Invalid character at boundary: x = %d / y = %d / char = %c\n", (int)x, (int)y, map_arr[y][x]); //test
-			exit_exclaim("Top or bottom row must have only '1's or spaces\n", c3d);
+			exit_exclaim("Top/bottom row must have only '1's or spaces\n", c3d);
 		}
 		x++;
 	}
 }
 
-/* check le premier et dernier char de chaque row pour verif que c est bien un 1 en passant les spaces ! */
 int	check_edge_chars(char **map_arr, int y, size_t width)
 {
 	size_t	x;
@@ -54,8 +52,7 @@ int	check_edge_chars(char **map_arr, int y, size_t width)
 	return (0);
 }
 
-/* check tous les middles rows j ai enleve la verif des spaces qui est faite dans une autre fonction pour toutes les cases ... ce qui fait vide ! */
-void	validate_middle_row(char **map_arr, int y, size_t width,  t_data *c3d)
+void	validate_middle_row(char **map_arr, int y, size_t width, t_data *c3d)
 {
 	if (check_edge_chars(map_arr, y, width))
 		exit_exclaim("First or last char except space in midle row \

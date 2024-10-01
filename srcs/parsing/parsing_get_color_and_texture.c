@@ -14,8 +14,6 @@
 
 int	id_check(char *ids)
 {
-	/* check si palette_patrol est empty car 
-	si c est le cas on a toutes les	infos*/
 	while (*ids)
 	{
 		if (*ids != ' ')
@@ -45,7 +43,7 @@ void	trim_stuff(t_map *map)
 	wfree(save);
 	save = map->ccolor;
 	map->ccolor = ft_strtrim(map->ccolor, nl);
-	wfree(save); //trying to uncomment
+	wfree(save);
 	save = map->fcolor;
 	map->fcolor = ft_strtrim(map->fcolor, nl);
 	wfree(save);
@@ -54,12 +52,6 @@ void	trim_stuff(t_map *map)
 
 int	add_info(char erase_me, t_data *c3d, char *palette_patrol, char *line)
 {
-	/* 
-	Recherche la lettre dans palette patrol et l erase de palette patroll 
-	verifie qu apres l identifiant NSWECF il y a qqchose sinon error
-	copie le reste de la ligne dans map->n_path ou les autres var
-	si absent : a deja ete erase et renvoit error 
-	*/
 	while (*palette_patrol != erase_me && *palette_patrol)
 		palette_patrol++;
 	if (!*palette_patrol)

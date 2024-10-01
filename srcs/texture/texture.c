@@ -20,7 +20,6 @@ void	load_wall_texture(t_data *c3d, mlx_texture_t **texture, char *path)
 		exit_exclaim("Error loading wall texture.\n", c3d);
 }
 
-//Faire un if variable ? car si pas de door pas besoin de load door
 void	load_door_texture(t_data *c3d, mlx_texture_t **texture, char *path)
 {
 	(void)c3d;
@@ -29,7 +28,6 @@ void	load_door_texture(t_data *c3d, mlx_texture_t **texture, char *path)
 		exit_exclaim("Error loading door texture.\n", c3d);
 }
 
-// si pas de texture porte et une porte est presente fail / doit on modifier pour qu une texture par defaut soit prise en compte ?
 void	init_wall_textures(t_data *c3d)
 {
 	load_wall_texture(c3d, &c3d->n_texture, c3d->map->n_path);
@@ -62,9 +60,7 @@ uint32_t	get_texture_color(mlx_texture_t *texture, int x, int y)
 
 	if (x < 0 || x >= (int)texture->width
 		|| y < 0 || y >= (int)texture->height)
-		return (0xFF0000FF); /* si coord sont a l interieur de la texture sinon return rouge */
-	/*RGBA 4 octet/pixel calcule position du pixel dans tableau pixels de la texture
-	obtient un pointeur vers le debut des donnees needed*/
+		return (0xFF0000FF);
 	index = (y * texture->width + x) * 4;
 	pixel = &texture->pixels[index];
 	color = (pixel[0] << 24) | (pixel[1] << 16)
