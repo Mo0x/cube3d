@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wkeiser <wkeiser@student.42mulhouse.fr>    +#+  +:+       +#+        */
+/*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 16:58:54 by wkeiser           #+#    #+#             */
-/*   Updated: 2024/09/24 16:58:58 by wkeiser          ###   ########.fr       */
+/*   Updated: 2024/10/01 14:28:51 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	draw_closed_door_mini(t_data *c3d, t_rect rect)
 		x = rect.x_start + k;
 		y = rect.y_start + k;
 		ft_draw_door_pixel_mini(c3d, x, y);
-
 		x = rect.x_end - k;
 		y = rect.y_start + k;
 		ft_draw_door_pixel_mini(c3d, x, y);
@@ -74,7 +73,7 @@ void	draw_closed_door_mini(t_data *c3d, t_rect rect)
 
 void	ft_draw_door_pixel_mini(t_data *c3d, int x, int y)
 {
-	if (x >= 0 && x < (int)c3d->img_minimap->width &&
+	if (x >= 0 && x < (int)c3d->img_minimap->width && \
 		y >= 0 && y < (int)c3d->img_minimap->height)
 		mlx_put_pixel(c3d->img_minimap, x, y, 0xFF0000FF);
 }

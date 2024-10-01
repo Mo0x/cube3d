@@ -17,6 +17,7 @@ SRCS = ./srcs/main.c  \
 		./srcs/game/init2.c \
 		./srcs/game/render.c \
 		./srcs/game/raycast.c \
+		./srcs/game/raycast2.c \
 		./srcs/game/draw_wall.c \
 		./srcs/game/clean_shutdown.c \
 		./srcs/game/mouse.c \

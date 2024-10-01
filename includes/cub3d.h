@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 14:44:27 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/09/28 19:35:23 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/10/01 14:30:01 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ void		render(t_data *c3d);
 void		ft_do_the_raycast(t_data *c3d);
 void		ft_draw_wall(t_data *c3d, t_ray *ray, int x);
 int			handle_door_cell(t_data *c3d, t_ray *ray);
+t_ray		*ft_init_ray(t_data *c3d, int x);
+int			ft_ray_hit(t_data *c3d, t_ray *ray);
+void		ft_update_side_dist_x(t_ray *ray);
+void		ft_update_side_dist_y(t_ray *ray);
+void		ft_step_and_side_dist(t_data *c3d, t_ray *ray);
 
 /*mlx utils*/
 void		ft_draw_vertical(t_data *c3d, t_ray *ray, int x);
@@ -67,6 +72,7 @@ void		ft_escape(mlx_key_data_t keydata, void *c4d);
 void		ft_mouse(mouse_key_t button, action_t action,
 				modifier_key_t mods, void *c4d);
 void		ft_cursor(double x, double y, void *c4d);
+int			ft_valid_cell(t_data *c3d, int x, int y);
 
 /*sprite*/
 void		load_weapon_image(t_data *c3d, char *weapon_path);

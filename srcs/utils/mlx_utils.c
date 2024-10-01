@@ -6,7 +6,7 @@
 /*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 18:39:12 by mgovinda          #+#    #+#             */
-/*   Updated: 2024/08/31 17:06:27 by mgovinda         ###   ########.fr       */
+/*   Updated: 2024/10/01 14:30:43 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	ft_clear_mini_image(mlx_image_t *img, int color)
 		y++;
 	}
 }
-
 
 /*x_start and y_start must be << to x_end and y_end*/
 void	ft_warpper_put_pxl(mlx_image_t *img, int x, int y, unsigned int color)

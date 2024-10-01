@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wkeiser <wkeiser@student.42mulhouse.fr>    +#+  +:+       +#+        */
+/*   By: mgovinda <mgovinda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 10:55:38 by wkeiser           #+#    #+#             */
-/*   Updated: 2024/08/29 10:55:40 by wkeiser          ###   ########.fr       */
+/*   Updated: 2024/10/01 14:28:21 by mgovinda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	draw_minimap_wall(t_data *c3d, float i, float j)
 	out_rect.x_end = out_rect.x_start + MINIMAP_CELL_SIZE - 1;
 	out_rect.y_end = out_rect.y_start + MINIMAP_CELL_SIZE - 1;
 	out_rect.color = 0xA2D2FFFF;
-
 	inn_rect.x_start = out_rect.x_start + 1;
 	inn_rect.y_start = out_rect.y_start + 1;
 	inn_rect.x_end = out_rect.x_end - 1;
@@ -44,13 +43,11 @@ void	draw_minimap_player(t_data *c3d, float offset_x, float offset_y)
 
 	player_minimap_x = (c3d->player->pos_x - offset_x) * MINIMAP_CELL_SIZE;
 	player_minimap_y = (c3d->player->pos_y - offset_y) * MINIMAP_CELL_SIZE;
-
 	player_outer.x_start = (int)player_minimap_x - 3;
 	player_outer.y_start = (int)player_minimap_y - 3;
 	player_outer.x_end = player_outer.x_start + 6;
 	player_outer.y_end = player_outer.y_start + 6;
 	player_outer.color = 0x00FF00FF;
-
 	player_inner.x_start = player_outer.x_start + 1;
 	player_inner.y_start = player_outer.y_start + 1;
 	player_inner.x_end = player_outer.x_end - 1;
@@ -90,7 +87,6 @@ void	draw_minimap_door(t_data *c3d, float i, float j, t_door *door)
 	if (!door)
 		return ;
 	ft_memset(&pos, 0, sizeof(t_pos));
-
 	rect.x_start = j * MINIMAP_CELL_SIZE;
 	rect.y_start = i * MINIMAP_CELL_SIZE;
 	rect.x_end = rect.x_start + MINIMAP_CELL_SIZE - 1;
